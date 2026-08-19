@@ -1,6 +1,1276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="dark"/>
+<title>Morrigan's Midnight Tips</title>
+<link rel="icon" href="data:," />
+<style>
+  :root{
+    --bg:#0c0e12;
+    --bg2:#10131a;
+    --panel:#171a23;
+    --panel2:#1e2230;
+    --panel3:#252b3e;
+    --line:#2a3148;
+    --line2:#313a56;
+    --ink:#e9ecf4;
+    --muted:#9aa3bd;
+    --muted2:#6b7591;
+    --gold:#f5c518;
+    --gold2:#ffe27a;
+    --gold-dim:rgba(245,197,24,.14);
+    --green:#3ae68a;
+    --accent-venom:#6e84ff;
+    --radius:18px;
+    --radius-sm:12px;
+    --shadow:0 10px 40px rgba(0,0,0,.45), 0 1px 0 rgba(255,255,255,.04) inset;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scrollbar-color:var(--line2) var(--bg)}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family: ui-sans-system, -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "SF Pro Text", Roboto, Helvetica, Arial, sans-serif;
+    min-height:100dvh; line-height:1.6;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+    background:
+      radial-gradient(900px 600px at 15% -10%, rgba(245,197,24,.10) 0%, transparent 60%),
+      radial-gradient(800px 500px at 90% 0%, rgba(120,90,255,.12) 0%, transparent 60%),
+      radial-gradient(600px 400px at 60% 120%, rgba(58,230,138,.07) 0%, transparent 60%);
+  }
+  button{font:inherit}
+  .app{display:grid; grid-template-columns:320px 1fr; min-height:100dvh}
+  @media (max-width:900px){.app{grid-template-columns:1fr}}
+
+  .side{
+    position:sticky; top:0; align-self:start; height:100dvh; overflow:auto;
+    background:linear-gradient(180deg,var(--bg2) 0%, var(--bg) 100%);
+    border-right:1px solid var(--line);
+    display:flex; flex-direction:column;
+  }
+  @media (max-width:900px){.side{position:static; height:auto; overflow:visible} .side .dungeon-list{display:none}}
+  .side-top{padding:22px 18px 14px; border-bottom:1px solid var(--line); background:radial-gradient(400px 200px at 0% 0%, rgba(245,197,24,.08), transparent 70%)}
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+  .brand-mark{
+    width:36px; height:36px; border-radius:10px; display:grid; place-items:center;
+    background:linear-gradient(135deg,var(--gold),#ff8a2a); color:#111; font-weight:800;
+    font-family: ui-serif, Georgia, serif; font-size:18px; letter-spacing:-.02em;
+    box-shadow:0 4px 18px rgba(245,197,24,.35);
+  }
+  .brand h1{margin:0; font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight:700; letter-spacing:-.02em; font-size:19px; line-height:.95; color:var(--ink)}
+  .brand h1 span{display:block; color:var(--gold); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; margin-top:3px; font-family: ui-sans-system, system-ui, sans-serif; font-weight:600}
+  .switch{display:flex; gap:6px; padding:6px; background:var(--panel); border:1px solid var(--line); border-radius:12px; margin-bottom:12px}
+  .switch-btn{flex:1; padding:9px 8px; border-radius:9px; border:1px solid transparent; background:transparent; color:var(--muted); font-weight:600; font-size:12.8px; cursor:pointer; transition:.14s; letter-spacing:.02em}
+  .switch-btn.active{background:linear-gradient(90deg,var(--gold),#ffb73a); color:#101010; border-color:rgba(255,255,255,.12); box-shadow:0 2px 12px rgba(245,197,24,.35)}
+  .switch-btn:hover:not(.active){background:var(--panel2); color:var(--ink); border-color:var(--line2)}
+  .search-wrap{position:relative}
+  .search-wrap input{
+    width:100%; background:var(--panel); border:1px solid var(--line);
+    color:var(--ink); padding:11px 12px 11px 36px; border-radius:11px; outline:none;
+    font-size:13.2px; transition:.15s;
+  }
+  .search-wrap input::placeholder{color:var(--muted2)}
+  .search-wrap input:focus{border-color:var(--line2); background:var(--panel2); box-shadow:0 0 0 3px var(--gold-dim)}
+  .search-wrap svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--muted2)}
+  .clear-btn{position:absolute; right:8px; top:50%; transform:translateY(-50%); background:transparent; border:0; color:var(--muted2); cursor:pointer; padding:4px; border-radius:6px; display:none}
+  .clear-btn.show{display:block}
+  .dungeon-list{padding:10px 10px 18px; display:flex; flex-direction:column; gap:3px; flex:1}
+  .season-head{font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold2); padding:14px 10px 6px; margin-top:6px; opacity:.95; border-top:1px solid rgba(255,255,255,.06)}
+  .season-head:first-child{border-top:0; margin-top:0; padding-top:6px}
+  .season-head.raid-head{color:var(--accent-venom); border-top-color:rgba(110,132,255,.15)}
+  .dungeon-btn{text-align:left; padding:11px 12px; border-radius:10px; border:1px solid transparent; background:transparent; color:var(--muted); cursor:pointer; transition:.14s; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13.6px; font-weight:500}
+  .dungeon-btn:hover{background:var(--panel); color:var(--ink); border-color:var(--line)}
+  .dungeon-btn.active{background:linear-gradient(90deg,var(--gold-dim),rgba(245,197,24,.06)); color:var(--ink); border-color:rgba(245,197,24,.28); box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+  .dungeon-btn.raid-active{background:linear-gradient(90deg,rgba(110,132,255,.16),rgba(110,132,255,.05)); border-color:rgba(110,132,255,.35); color:var(--ink)}
+  .dungeon-btn.active .count{background:var(--gold); color:#111}
+  .dungeon-btn.raid-active .count{background:var(--accent-venom); color:white}
+  .dungeon-btn .name{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .count{font-size:11px; font-weight:700; min-width:20px; height:20px; display:grid; place-items:center; border-radius:999px; background:var(--panel2); color:var(--muted2); border:1px solid var(--line); flex-shrink:0}
+  .side-foot{padding:14px 16px; border-top:1px solid var(--line); color:var(--muted2); font-size:11.5px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+
+  .main{min-width:0; padding:28px 28px 60px; max-width:1220px; width:100%}
+  @media (max-width:900px){.main{padding:18px 16px 40px}}
+  .header{display:flex; gap:18px; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--line)}
+  .header h2{margin:0; font-family: ui-serif, Georgia, serif; font-size:clamp(26px,4vw,38px); line-height:.95; letter-spacing:-.02em}
+  .header h2 b{color:var(--gold)}
+  .header h2.raid-title b{color:var(--accent-venom)}
+  .pill{display:inline-flex; align-items:center; gap:7px; padding:7px 11px; border-radius:999px; background:var(--panel); border:1px solid var(--line); color:var(--muted); font-size:12.1px; font-weight:600; flex-wrap:wrap}
+  .pill.gold{border-color:rgba(245,197,24,.28); background:rgba(245,197,24,.08); color:var(--gold2)}
+  .pill.venom{border-color:rgba(110,132,255,.28); background:rgba(110,132,255,.10); color:#b9c3ff}
+  .notice{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:14px; padding:14px 16px; color:var(--muted); font-size:13px; display:flex; gap:12px; margin-bottom:22px}
+  .notice strong{color:var(--ink)}
+  .boss-grid{display:grid; gap:18px}
+  .boss-card{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  .boss-head{padding:18px 20px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); background:linear-gradient(90deg,rgba(245,197,24,.08),transparent 60%)}
+  .boss-head.raid-head{background:linear-gradient(90deg,rgba(110,132,255,.14),transparent 70%)}
+  .boss-head h3{margin:0; font-family: ui-serif, Georgia, serif; font-size:18.5px; letter-spacing:-.01em; display:flex; align-items:center; gap:10px}
+  .boss-icon{width:28px; height:28px; border-radius:9px; display:grid; place-items:center; background:var(--panel3); border:1px solid var(--line); font-size:13px; color:var(--gold)}
+  .boss-icon.raid{color:var(--accent-venom)}
+  .boss-head .mini{color:var(--muted2); font-size:12.2px; font-weight:600}
+  .tips{padding:6px 10px 12px; display:flex; flex-direction:column}
+  .tip-row{display:grid; grid-template-columns:1fr 320px; gap:14px; padding:12px 10px; border-radius:12px; transition:.12s; border:1px solid transparent}
+  .tip-row:hover{background:rgba(255,255,255,.02); border-color:rgba(255,255,255,.04)}
+  @media (max-width:920px){.tip-row{grid-template-columns:1fr}}
+  .tip-text{font-size:14px; color:var(--ink); line-height:1.55; text-wrap:pretty; display:flex; gap:10px; align-items:flex-start}
+  .tip-num{flex:0 0 26px; width:26px; height:26px; display:grid; place-items:center; background:var(--panel3); border:1px solid var(--line); border-radius:8px; color:var(--muted); font-size:11.5px; font-weight:700; margin-top:1px}
+  .tip-row:hover .tip-num{color:var(--ink); border-color:var(--line2)}
+  .tip-row:has(.tip-media.empty){grid-template-columns:1fr}
+  .tip-media{position:relative; border-radius:12px; overflow:hidden; background:var(--panel3); border:1px solid var(--line); aspect-ratio:16/9; display:grid; place-items:center}
+  .tip-media img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:.2s}
+  .tip-media img:hover{transform:scale(1.02)}
+  .tip-media.empty{display:none}
+  .img-badge{position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.6); backdrop-filter:blur(6px); color:white; font-size:11px; padding:4px 7px; border-radius:7px; border:1px solid rgba(255,255,255,.15)}
+
+  /* RAID specifics */
+  .raid-body{padding:16px 18px 18px}
+  .tldr{background:linear-gradient(90deg,rgba(245,197,24,.12),rgba(245,197,24,.02)); border-left:3px solid var(--gold); border-radius:10px; padding:12px 14px; font-size:13.8px; line-height:1.55; color:var(--ink); margin-bottom:14px}
+  .tldr.venom-tldr{background:linear-gradient(90deg,rgba(110,132,255,.15),rgba(110,132,255,.02)); border-left-color:var(--accent-venom)}
+  .tldr strong{color:var(--gold); margin-right:6px}
+  .tldr.venom-tldr strong{color:#b9c3ff}
+  .setup-line{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
+  .strat{display:grid; gap:10px}
+  .strat h4{margin:14px 0 6px; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold2)}
+  .strat h4.raid-h{color:#b9c3ff}
+  .strat ul{margin:0; padding-left:18px; color:var(--ink); font-size:13.8px; line-height:1.55}
+  .strat li{margin:5px 0}
+  .strat li::marker{color:var(--muted2)}
+  .img-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:14px}
+  @media (max-width:700px){.img-grid{grid-template-columns:1fr}}
+  .img-card{border-radius:12px; overflow:hidden; background:var(--panel3); border:1px solid var(--line); aspect-ratio:16/9; position:relative}
+  .img-card img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:.2s}
+  .img-card img:hover{transform:scale(1.02)}
+  .img-card .cap{position:absolute; left:0; right:0; bottom:0; background:linear-gradient(0deg,rgba(0,0,0,.72),transparent); color:white; font-size:11.5px; padding:10px 10px 8px; backdrop-filter:blur(2px)}
+
+  .no-results{padding:40px 20px; text-align:center; color:var(--muted); border:1px dashed var(--line); border-radius:16px; background:var(--panel)}
+  .mobile-dungeons{display:none; margin-bottom:18px}
+  @media (max-width:900px){
+    .mobile-dungeons{display:block}
+    .mobile-dungeons select{width:100%; padding:12px 14px; border-radius:12px; background:var(--panel); color:var(--ink); border:1px solid var(--line); font-size:14px}
+  }
+  .lightbox{position:fixed; inset:0; z-index:60; display:none; place-items:center; padding:20px; background:rgba(5,6,10,.78); backdrop-filter:blur(10px)}
+  .lightbox.open{display:grid}
+  .lightbox img{max-width:min(1100px,92vw); max-height:86vh; border-radius:14px; border:1px solid rgba(255,255,255,.12); box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .lightbox .close{position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:99px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:white; cursor:pointer; display:grid; place-items:center}
+  kbd{font-family:ui-monospace,monospace; font-size:11px; background:var(--panel3); border:1px solid var(--line); border-bottom-width:2px; padding:2px 6px; border-radius:6px; color:var(--muted)}
+
+  /* readability tokens */
+  .spell{
+    display:inline-flex; align-items:center; gap:4px;
+    padding:2px 8px; border-radius:999px;
+    background:linear-gradient(180deg, rgba(122, 236, 236, .18), rgba(122, 236, 236, .08));
+    border:1px solid rgba(122,236,236,.36);
+    color:#8ef6f6; font-weight:700; font-size:12.4px; letter-spacing:.01em;
+    box-shadow:0 0 0 1px rgba(122,236,236,.06) inset;
+    white-space:nowrap;
+  }
+  .entity{
+    font-weight:800; color:#f6e7b8; font-size:105%;
+    text-decoration: underline dotted rgba(245,197,24,.45);
+    text-underline-offset:3px; text-decoration-thickness:1.4px;
+  }
+  .entity::before{content:"◐"; font-size:.85em; margin-right:3px; opacity:.7}
+  .role{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:1px 7px; border-radius:999px; font-size:10.6px; font-weight:800;
+    text-transform:uppercase; letter-spacing:.07em; line-height:1.4;
+    border:1px solid transparent; vertical-align:middle;
+  }
+  .role-tank{background:rgba(72,135,255,.16); border-color:rgba(72,135,255,.38); color:#8ab4ff}
+  .role-healer{background:rgba(52,211,121,.16); border-color:rgba(52,211,121,.36); color:#7be6a2}
+  .role-dps{background:rgba(255,90,90,.15); border-color:rgba(255,90,90,.36); color:#ff9494}
+  .action{
+    color:#ffe68f; font-weight:700; letter-spacing:.01em;
+  }
+  .action::before{content:"→ "; color:var(--gold); font-weight:900}
+  strong.action{color:#ffe68f; font-weight:800}
+  .dungeon-btn .raid-ico{
+    width:32px; height:32px; border-radius:9px; object-fit:cover; flex:0 0 32px;
+    border:1px solid rgba(255,255,255,.14); background:radial-gradient(120% 120% at 30% 20%, var(--panel3), var(--panel));
+    box-shadow:0 2px 10px rgba(0,0,0,.36), 0 0 0 1px rgba(0,0,0,.18) inset;
+    image-rendering:-webkit-optimize-contrast;
+  }
+  .dungeon-btn.raid-active .raid-ico{
+    border-color:rgba(110,132,255,.42);
+    box-shadow:0 2px 12px rgba(110,132,255,.22), 0 0 0 1px rgba(110,132,255,.18) inset;
+  }
+  .tank-box{
+    margin:12px 0 14px; padding:12px 12px 10px 12px;
+    border-radius:12px;
+    border:1.5px solid #f0a500; border-left-width:4px;
+    background:linear-gradient(180deg, rgba(240,165,0,.12), rgba(240,165,0,.04));
+    box-shadow:0 6px 24px rgba(240,165,0,.12), inset 0 1px 0 rgba(255,255,255,.05);
+    color:var(--ink);
+  }
+  .tank-box-head{display:flex; align-items:center; gap:10px; margin-bottom:8px; font-weight:800; letter-spacing:.02em; font-size:13.5px; color:#ffd27a}
+  .tank-box-head .tb-icon{width:26px; height:26px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(135deg,#ffb84d,#ffd27a); color:#1a1200; font-size:14px; font-weight:900; border:1px solid rgba(255,255,255,.18)}
+  .tank-box ul{margin:6px 0 0 18px; padding:0; font-size:13.2px; line-height:1.52}
+  .tank-box li{margin:5px 0}
+  .tank-box li::marker{color:#ffb84d}
+
+  .pn-top{
+    display:flex; justify-content:space-between; gap:8px; margin:0 0 12px; align-items:center;
+  }
+  .pn-btn{
+    display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+    border:1px solid var(--line); background:var(--panel2); color:var(--ink);
+    border-radius:10px; cursor:pointer; transition:.14s; font-weight:600;
+    text-align:left; max-width:44vw; overflow:hidden; text-overflow:ellipsis;
+  }
+  .pn-btn.small{padding:6px 10px; font-size:12.5px; border-radius:9px; opacity:.92}
+  .pn-btn.large{padding:12px 18px; font-size:14px; border-radius:12px; min-width:160px; justify-content:center; font-weight:700}
+  .pn-btn:hover{border-color:var(--line2); background:var(--panel3); transform:translateY(-1px)}
+  .pn-btn:active{transform:translateY(0)}
+  .pn-btn[disabled], .pn-btn.disabled{
+    opacity:.32; pointer-events:none; border-style:dashed;
+  }
+  .pn-btn.venom:hover{border-color:rgba(110,132,255,.45); box-shadow:0 0 0 3px rgba(110,132,255,.12)}
+  .pn-btn.gold:hover{border-color:rgba(245,197,24,.42); box-shadow:0 0 0 3px var(--gold-dim)}
+  .pn-label{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:22ch}
+  .pn-hint{font-size:10.5px; color:var(--muted2); letter-spacing:.06em; text-transform:uppercase; font-weight:700; margin-right:4px}
+
+  /* Title deeplink */
+  .deeplink{
+    color:inherit; text-decoration:none; cursor:pointer; position:relative;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .deeplink:hover{ text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1.5px; }
+  .header h2:not(.raid-title) .deeplink:hover{ text-decoration-color: var(--gold); }
+  .header h2.raid-title .deeplink:hover{ text-decoration-color: var(--accent-venom); }
+  .deeplink .link-ic{
+    opacity:0; transform: translateX(-4px);
+    font-size:14px; line-height:1; transition: opacity .15s ease, transform .15s ease;
+    filter: saturate(.8);
+  }
+  .deeplink:hover .link-ic, .deeplink:focus-visible .link-ic{ opacity:1; transform: translateX(0); }
+  .deeplink:focus-visible{ outline:none; text-decoration:underline; text-underline-offset:4px; }
+  #copyFeedback{
+    position:fixed; left:50%; bottom:22px; transform:translateX(-50%) translateY(8px);
+    background:#1c2236; color:#dbe3ff; border:1px solid rgba(110,132,255,.35);
+    border-left:2px solid var(--accent-venom);
+    padding:8px 14px; border-radius:10px; font-size:12.5px; font-weight:600;
+    box-shadow:0 8px 24px rgba(0,0,0,.45);
+    opacity:0; pointer-events:none; transition: opacity .18s, transform .18s; z-index:99999;
+  }
+  #copyFeedback.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* Mech scannability */
+  .strat ul{list-style:none; padding-left:0}
+  .strat ul li.mech-item{
+    padding:11px 12px; border:1px solid rgba(255,255,255,.06); border-radius:11px;
+    background:linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.005));
+    margin:10px 0;
+  }
+  .strat ul li.mech-item + li.mech-item{margin-top:12px}
+  .mech-lead{font-weight:700; font-size:13.8px; line-height:1.45; margin-bottom:6px}
+  .mech-lead strong{font-weight:800}
+  .mech-subs{margin:6px 0 0 0; padding-left:16px !important; list-style:disc !important}
+  .mech-subs li{padding:3px 0; margin:3px 0 !important; border:0 !important; background:transparent !important; font-size:12.9px; color:var(--muted); line-height:1.45}
+  .mech-subs li::marker{color:var(--muted2); font-size:11px}
+  .mech-divider{height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:18px 0 8px; opacity:.8}
+  .mech-ico{width:22px; height:22px; border-radius:7px; object-fit:cover; border:1px solid var(--line); vertical-align:middle; margin-right:6px; background:var(--panel3); display:inline-block}
+
+  /* Spell tooltips - desktop only */
+  .spell{
+    position:relative;
+  }
+  @media (hover: hover) and (pointer: fine){
+    .spell{cursor:help}
+    .spell:hover,.spell:focus{filter:brightness(1.15); outline:none}
+    .spell:focus-visible{box-shadow:0 0 0 2px rgba(122,236,236,.5), 0 0 0 4px rgba(122,236,236,.18)}
+  }
+  #spellTooltip{
+    position:fixed;
+    left:0; top:0;
+    max-width:320px;
+    width:max-content;
+    max-width:min(320px, calc(100vw - 24px));
+    background:linear-gradient(180deg, #1b1f2e 0%, #141824 100%);
+    color:#e9ecf6;
+    border:1px solid rgba(122,236,236,.38);
+    border-left:3px solid #7aecec;
+    border-radius:10px;
+    padding:10px 12px 9px;
+    font-size:12.7px;
+    line-height:1.45;
+    font-weight:500;
+    box-shadow:0 12px 36px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.06) inset;
+    z-index:9999;
+    opacity:0;
+    transform:translateY(4px) scale(.98);
+    pointer-events:none;
+    transition:opacity .14s ease, transform .14s ease;
+    text-wrap:pretty;
+    white-space:normal;
+  }
+  #spellTooltip.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  #spellTooltip::before{
+    content:"";
+    position:absolute;
+    width:8px; height:8px;
+    background:#1b1f2e;
+    border-left:1px solid rgba(122,236,236,.38);
+    border-top:1px solid rgba(122,236,236,.38);
+    transform:rotate(45deg);
+    left:16px;
+    bottom:-5px;
+  }
+  #spellTooltip.flip-above::before{
+    top:-5px; bottom:auto;
+    transform:rotate(225deg);
+  }
+  @media (max-width:768px), (hover: none), (pointer: coarse){
+    #spellTooltip{display:none !important}
+    .spell{cursor:default}
+  }
+</style>
+</head>
 <body>
-  Loading...
-</body>
+<div class="app">
+  <aside class="side" aria-label="Navigation">
+    <div class="side-top">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <h1>Morrigan's<span>Midnight Tips</span></h1>
+      </div>
+      <div class="switch" role="tablist">
+        <button class="switch-btn active" id="swDungeon" role="tab" aria-selected="true">Dungeons</button>
+        <button class="switch-btn" id="swRaid" role="tab" aria-selected="false">Raid • Abyss</button>
+      </div>
+      <div class="search-wrap">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M11.5 11.5L13.8 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="7" r="4" stroke="currentColor" stroke-width="1.3"/></svg>
+        <input id="q" placeholder="Search bosses, mechanics…" autocomplete="off" spellcheck="false"/>
+        <button class="clear-btn" id="clearQ" aria-label="Clear search">✕</button>
+      </div>
+    </div>
+    <div class="dungeon-list" id="dungeonList"></div>
+    <div class="side-foot"><span>⚔️ 16 dungeons · 60 bosses</span><span style="opacity:.8">+ Raid S2</span></div>
+  </aside>
+  <main class="main">
+    <div class="mobile-dungeons"><select id="mobileSelect" aria-label="Select"></select></div>
+    <div class="pn-top" id="topPrevNext" aria-label="Previous Next top"></div>
+    <div class="header">
+      <h2 id="dungeonTitle">Temple of Sethraliss</h2>
+      <div class="meta" id="headerMeta"><span class="pill"><kbd>/</kbd> to search • <kbd>Esc</kbd> closes image</span></div>
+    </div>
+    <div class="notice" id="notice"><span style="font-size:16px">💡</span><div><strong id="noticeTitle">How to use:</strong> <span id="noticeText">pick a dungeon left, then skim boss cards. Search filters bosses and mechanics.</span></div></div>
+    <div class="boss-grid" id="bossGrid"></div>
+  </main>
+</div>
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog"><button class="close" id="lbClose" aria-label="Close">✕</button><img id="lbImg" alt="Zoomed screenshot"/></div>
+<div id="spellTooltip" role="tooltip" aria-hidden="true"></div>
+<div id="copyFeedback" role="status" aria-live="polite"></div>
 <script>
-  window.location.href = 'https://agent.meta.ai/s/morrigan-s-midnight-tips-xzm5xhxhbxoxsaxvxn'
+// deeplink titles are <a href="#..."> – allow native hash navigation, show feedback, keep right-click copy working
+document.addEventListener('click', (e)=>{
+  const a=e.target.closest && e.target.closest('a.deeplink');
+  if(!a) return;
+  const href=a.getAttribute('href')||'';
+  if(!href.startsWith('#')) return;
+  const el=document.getElementById('copyFeedback');
+  if(el){
+    el.textContent='Link copied · '+href;
+    el.classList.add('show');
+    clearTimeout(window.__cf_t);
+    window.__cf_t=setTimeout(()=>el.classList.remove('show'),1400);
+  }
+});
 </script>
+<script>
+
+const IMAGE_MAP={"flp6.png":"rlp6.png"};
+const DUNGEONS={
+  "Temple of Sethraliss":{bosses:[
+    {name:"Adderis and Aspix",tips:[{text:"1 boss has immunity. Always target the one that takes damage"},{image:"tos1.png",text:"2 players targeted, drop puddles. Drop them away. Center is a good place"},{image:"tos2.png",text:"Line attacks with knockbacks"},{image:"tos4.png",text:"Group soak after knockback"}]},
+    {name:"Merektha",tips:[{text:"Alternates between boss phase and adds phase"},{image:"tos5.png",text:"Knot of snakes. Group in melee range. 2 targeted players are stunned until snakes CCd. Then lots of snakes spawn"},{image:"tos6.png",text:"2 targeted players start dropping puddles"},{image:"tos7.png",text:"Adds phase. Interrupt cast. Storm puddles spawn. Tank near existing puddles"}]},
+    {name:"Galvazzt",tips:[{text:"Similar to the Skyreach boss"},{image:"tos8.png",text:"3 beams to be soaked"},{image:"tos9.png",text:"Then boss hits and drops puddle"}]},
+    {name:"Avatar of Sethraliss",tips:[{text:"Trash based fight. Heal boss to win"},{image:"tos10.png",text:"Phase 1. Adds channel healing prevention. Don't heal the boss now."},{image:"tos11.png",text:"Avoid AOE on some mob death"},{image:"tos12.png",text:"3 Soaks. You have 4.5s to soak them or they explode. Soak ASAP. Successful soaks heal the boss"},{image:"tos13.png",text:"Drop puddles away"},{image:"tos14.png",text:"Phase 2. Healer now can heal boss. Adds fixate healer. Healer needs to kite and heal. Each wave you kill heals the boss."}]}
+  ]},
+  "King's Rest":{bosses:[
+    {name:"The Golden Serpent",tips:[{image:"kr1.png",text:"2 players targeted. Drop puddles together and near existing ones"},{image:"kr2.png",text:"Puddles turn into mobs trying to reach boss. Kill them before they reach boss"}]},
+    {name:"Mchimba the Embalmer",tips:[{text:"Drain fluids. Healer remove debuff by healing to over 90%"},{image:"kr3.png",text:"2 mummy adds spawn. Tank grab aggro. Cleave under boss"},{text:"Entombed player: spam special action button to shake the tomb, so other players can free"},{image:"kr4.png",text:"Drops large puddle"}]},
+    {name:"Council of Tribes",tips:[{image:"kr5.png",text:"First boss, spinnig axes. Fight this boss in the center"},{image:"kr6.png",text:"Second boss. Group soak. All stay close"},{image:"kr7.png",text:"Third boss spawns totems. Explosive Totem prio. Then Thundering Totem. Then Torrent Totem."}]},
+    {name:"the Shade of Zul Miniboss",tips:[{image:"kr8.png",text:"2 soaks. Tank soaks one. Anyone else soaks the other."},{image:"kr9.png",text:"2 players targeted. Spread out"}]},
+    {name:"Dazar, The First King",tips:[{image:"kr10.png",text:"Dodge falling spears. Tank face boss away from group"},{text:"Focus Reban first"},{image:"kr11.png",text:"Quaking leap. Move away if you are targeted. Moving further reduces damage. Combat drops remove all remaining leaps"}]}
+  ]},
+  "Ruby Life Pools":{bosses:[
+    {name:"Melidrussa Chillworn",tips:[{text:"Interrupt Frigid Shard. Group should stack"},{image:"rlp1.png",text:"Spawn crystals all close"},{image:"rlp2.png",text:"Player targeted run away from group to spawn the tornado"},{image:"rlp3.png",text:"That player spawns the tornado that pulls everyone in"},{image:"rlp4.png",text:"Adds spawn. Tanks get ready to get aggro. Break boss shield"}]},
+    {name:"Kokia Blazehoof",tips:[{image:"rlp5.png",text:"Targeted player spawns add. Drop new add near existing puddle. They leave big puddle on death"},{text:"Interrupt Blaze volley. Kick late"},{image:"flp6.png",text:"Dodge the boulder. Aim it away"}]},
+    {name:"Kyrakka and Erkhart",tips:[{image:"rlp7.png",text:"2 players debuffed. Put puddles away. Puddles will move"},{text:"When dragon is on ground, dmg dragon"},{text:"Wind order: NW edge, SW statue, SE entrace, NE statue. That's where to drop the puddles"}]}
+  ]},
+  "Voidscar Arena":{bosses:[
+    {name:"Taz'Rah",tips:[{image:"vsa1.png",text:"Line attacks that apply dot. Loosely spread. Shades will leave puddles after the attack"},{image:"vsa2.png",text:"Orbs shoot from puddles"}]},
+    {name:"Atroxus",tips:[{image:"vsa3.png",text:"Poison puddles. Dodge"},{image:"vsa4.png",text:"Random target frontal. Dodge. Ranged players don't play too far"},{image:"vsa5.png",text:"Roar spawns add that fixates tank. Tank kites. Dps focus add"}]},
+    {name:"Charonus",tips:[{image:"vsa6.png",text:"3 singularities pull players in. Avoid"},{image:"vsa7.png",text:"Circle around each player. Loosely spread"},{image:"vsa8.png",text:"Orbs fixate random players. Kite to destroy singularities. DPS pre position near a singularity. Tank point boss away from DPS players"}]}
+  ]},
+  "Den of Nalorakk":{bosses:[
+    {name:"Hoardmonger",tips:[{image:"den1.png",text:"At 90, 70, 40% health boss runs to resources pile. Empowers a boss ability. Order: Meat at entrance, bone pile, mushrooms"},{image:"den2.png",text:"AOE with knockback"},{image:"den3.png",text:"Dodge frontal. Leaves spikes"},{image:"den4.png",text:"Mushrooms that explode. SOAK"}]},
+    {name:"Sentinel of Winter",tips:[{text:"Dispel Glacial Torment"},{image:"den5.png",text:"Rotating tornado spawns under players. Stack before spawn"},{image:"den6.png",text:"Stationary adds. Interrupt. Drag boss to them one at a time."},{image:"den7.png",text:"Soak when add dies"},{image:"den8.png",text:"During tempest stay near boss. Constant pushbacks"},{image:"den9.png",text:"Stand on snowpile during pushback"}]},
+    {name:"Nalorakk",tips:[{image:"den10.png",text:"Echoes spawn under 3 players. Drop near existing echoes. Don't get too close to them"},{image:"den11.png",text:"Intercept charging echoes"},{image:"den12.png",text:"Step into the shield. Ends with knockback"},{image:"den13.png",text:"Tank soak, right after shield"}]}
+  ]},
+  "Murder Row":{bosses:[
+    {name:"Kystia Manaheart",tips:[{image:"row1.png",text:"Focus Nibbles down to 20%. Then boss takes double damage."},{text:"Dispel Corroding Spittle"},{image:"row2.png",text:"Dodge frontal. Starts with tank"},{image:"row3.png",text:"Dodge this"},{image:"row4.png",text:"Interrupt or CC mirror images"}]},
+    {name:"Zaen Bladesorrow",tips:[{image:"row5.png",text:"1 of the barrels is fel infused"},{image:"row6.png",text:"Fire bombs. One player targets the fel infused. Do not hit normal barrels."},{image:"row7.png",text:"Murder in a row. Intercept line with a barrel."}]},
+    {name:"Xathuux the Annihilator",tips:[{image:"row8.png",text:"Tank on edge of arena. Face boss outwards."},{image:"row9.png",text:"Player targeted by axe, run melee. Swap to the add"},{image:"row10.png",text:"Demonic rage. Takes 30% more damage, makes puddles. Use 1/3 of arena per phase"}]},
+    {name:"Lithiel Cinderfury",tips:[{image:"row11.png",text:"First infernal doesn't die. Tank to kite it."},{image:"row12.png",text:"AOE hit + spawns. Get circles close. Use CCs and cleave."},{text:"Kick Chaos Bolt"},{image:"row13.png",text:"Gate and shockwave. Kill adds before shockwave reaches them. Avoid shockwave taking teleport"}]}
+  ]},
+  "Blinding Vale":{bosses:[
+    {name:"Lightblossom Trinity",tips:[{image:"vale1.png",text:"Interrupt Kezkitt"},{image:"vale2.png",text:"Dodge line attack through the 3 circles"},{image:"vale3.png",text:"When turned into flowers, soak. Step out of puddle at the end"},{image:"vale4.png",text:"Big circle, move away from group"}]},
+    {name:"Ikuzz",tips:[{image:"vale5.png",text:"Thorns will root you"},{image:"vale6.png",text:"Knockback. Don't get pushed into roots. Roots after 4 seconds. If melee, reach melee range before auto root but don't stack"},{image:"vale7.png",text:"Fixated player leads boss to walk over roots to destroy them"},{image:"vale8.png",text:"Frenzy. Pulses damage. Group defensives and healing cooldowns"}]},
+    {name:"Lightwarden Ruia",tips:[{image:"vale9.png",text:"Phase1. Interrupt"},{image:"vale10.png",text:"Phase1. Tornadoes shoot out, silence on hit. Do not stack. Spread out and dodge"},{image:"vale12.png",text:"Phase2. Frontal to 3 players. Don't get hit twice. Loosely spread"},{text:"Phase3. All spells active. Use cooldowns"}]},
+    {name:"Ziekket",tips:[{image:"vale13.png",text:"Interrupt, CC, kill adds"},{image:"vale14.png",text:"Aim beam at dead adds"},{image:"vale15.png",text:"Soak orbs"}]}
+  ]},
+  "Altar of Fangs":{bosses:[
+    {name:"Rav'i",tips:[{image:"altar1.png",text:"2 piles have a corpse. Tank drag boss on pile without corpse"},{image:"altar2.png",text:"Loosely spread"}]},
+    {name:"The Writing Coil",tips:[{text:"Keep dmg cooldowns for phase 2"},{image:"altar3.png",text:"Phase 1. Interrupt Toxic Atrophy"},{image:"altar4.png",text:"Dodge line attack"},{image:"altar5.png",text:"Dodge frontal"},{image:"altar6.png",text:"Intermission. Pull tethers"},{image:"altar7.png",text:"Random fixates. Keep them grouped up. Avoid center of arena at end of phase"}]},
+    {name:"Ascendant Serpent (miniboss)",tips:[{image:"altar8.png",text:"Circle and dot that spawn hatchlings. Loosely spread, then AOE"},{image:"altar9.png",text:"Avoid tornadoes and line attack"}]},
+    {name:"Zul'jan",tips:[{image:"altar10.png",text:"Soak the 4 beams. Beams add stacks. If stacks end you die. Stacks removed by physical damage, which drops puddles"},{image:"altar11.png",text:"You can use this to clear stacks. Cast twice per phase. You just need to use it once. Tanks get cleared by melee attacks"},{image:"altar12.png",text:"Axegrinder. Dodge spinning axes"}]}
+  ]},
+  "Algeth’ar Academy":{bosses:[
+    {name:"Overgrown Ancient",tips:[{text:"The tree"},{image:"academy1.png",text:"All players stack closely to spawn adds close."},{text:"Cleave adds"}]},
+    {name:"Crawth",tips:[{text:"Mostly just dodging"},{image:"academy2.png",text:"3 balls to Air first."},{text:"3 balls to Fire"}]},
+    {name:"Vexamus",tips:[{image:"academy3.png",text:"Soak the orbs."},{image:"academy4.png",text:"Drop puddles on the outside."}]},
+    {name:"Echo of Doragosa",tips:[{image:"academy5.png",text:"Start taking at entrance."},{text:"Being hit by any ability, at 3 stacks, opens another Rift"}]}
+  ]},
+  "Maisara Caverns":{bosses:[
+    {name:"Muro'jin and Nekraxx",tips:[{text:"Shared health pool, damage evenly"},{image:"maisara1.png",text:"Position around boss to avoid barrage."},{image:"maisara2.png",text:"Self-freeze on trap when targeted."}]},
+    {name:"Vordaza",tips:[{text:"Healing check boss"},{image:"maisara3.png",text:"Phantom adds. Make phantoms collide."},{text:"Do not collide 2 pairs of phantoms too quickly (big group DoT)"},{image:"maisara4.png",text:"Intermission: burst boss shield and interrupt channel."}]},
+    {name:"Rak'tul",tips:[{image:"maisara5.png",text:"3 players targeted, drop totems close."},{text:"3rd totem can be dropped on top of 1st totem!"},{image:"maisara6.png",text:"Focus totems."},{text:"Tank: stay opposite side of players (to drop puddle away)"},{image:"maisara7.png",text:"Intermission: silence/kick adds."}]}
+  ]},
+  "Pit of Saron":{bosses:[
+    {name:"Forgemaster Garfrost",tips:[{image:"saron01.png",text:"2 chunks created."},{image:"saron02.png",text:"Tank destroy 1 chunk"},{image:"saron03.png",text:"Hide behind other chunk. Tank near it."},{text:"Then move to other forge."}]},
+    {name:"Ick and Krick",tips:[{text:"Duo, shared health pool"},{image:"saron04.png",text:"Tank drag boss to adds"},{text:"Interrupt Death Bolt"},{image:"saron05.png",text:"Get 'em Ick phase. Fixates a player. Kite"}]},
+    {name:"Scourgelord Tyrannus",tips:[{image:"saron06.png",text:"Defuse illuminated piles"},{image:"saron07.png",text:"Tank on remaining pile"},{image:"saron08.png",text:"Interrupt Plague Bolt"}]}
+  ]},
+  "Skyreach":{bosses:[
+    {name:"Ranji",tips:[{image:"skyreach01.png",text:"Lots of dodging. Tank on edge and move around."},{image:"skyreach02.png",text:"Dodge Chakram, marked by arrow."}]},
+    {name:"Araknath",tips:[{image:"skyreach03.png",text:"Tank melee, stationary boss."},{image:"skyreach04.png",text:"Intercept beams."},{image:"skyreach05.png",text:"Avoid big beams."}]},
+    {name:"Rukhran",tips:[{image:"skyreach06.png",text:"Stationary, tank melee."},{image:"skyreach07.png",text:"DPS focus add. Drops an egg."},{image:"skyreach08.png",text:"Do NOT kill new adds on eggs."},{image:"skyreach09.png",text:"Searing Quills, hide behind pillar. Tank return to boss ASAP after."}]},
+    {name:"High Sage Viryx",tips:[{image:"skyreach10.png",text:"Tank at entrance platform."},{image:"skyreach11.png",text:"Focus add (drags player away). CCs: stuns work."},{image:"skyreach12.png",text:"Lens flare: run away from it. Place puddles away."}]}
+  ]},
+  "Magister's Terrace":{bosses:[
+    {name:"Arcanotron Custos",tips:[{image:"magister01.png",text:"Puddles space management."},{image:"magister02.png",text:"Intermission: soak orbs."}]},
+    {name:"Seranel Sunlash",tips:[{text:"Silencing suppression zones."},{image:"magister03.png",text:"Runic Mark: remove by entering suppression. (do not do at same time)"},{image:"magister04.png",text:"Wave of Silence: enter suppression at end of cast."}]},
+    {name:"Gemellus",tips:[{text:"Copies share health"},{image:"magister05.png",text:"Neural link: follow arrow to remove shield to a copy."}]},
+    {name:"Degentrius",tips:[{text:"Volleyball match. Players spread around"},{image:"magister06.png",text:"Intercept ball."},{image:"magister07.png",text:"Hulking Fragment for tank, leaves puddle on expiration."}]}
+  ]},
+  "Nexus Point Xenas":{bosses:[
+    {name:"Chief Corewright Kasreth",tips:[{image:"nexus01.png",text:"Remove rays when targeted"},{image:"nexus02.png",text:"Corespark detonation: knockback and puddle. Bait at edge"}]},
+    {name:"Corewarden Nysarra",tips:[{image:"nexus03.png",text:"Avoid first beam"},{image:"nexus04.png",text:"Stand in second beam for 300% damage"},{image:"nexus05.png",text:"Away from other players when targeted"},{text:"Focus adds. Interrupt nullifiers. Must kill before intermission end."}]},
+    {name:"Lothraxion",tips:[{image:"nexus06.png",text:"Loosely spread when targeted"},{image:"nexus07.png",text:"Intermission: interrupt clone WITHOUT horns. Or use Hunter's Mark"}]}
+  ]},
+  "Seat of the Triumvirate":{bosses:[
+    {name:"Zuraal the Ascended",tips:[{image:"seat01.png",text:"Drop puddle at edges"},{image:"seat02.png",text:"Adds: don't let them reach boss. Use CCs"}]},
+    {name:"Saprish",tips:[{text:"Boss and 2 pets share health"},{image:"seat03.png",text:"Remove bombs with circle. TANK to soak remaining bombs."},{text:"Interrupt Dread Screech"}]},
+    {name:"Viceroy Nezhar",tips:[{image:"seat04.png",text:"Gates shoot orbs"},{text:"Interrupt Mind Blast"},{image:"seat05.png",text:"Focus tentacle adds"},{image:"seat06.png",text:"Intermission: run to center"}]},
+    {name:"L'ura",tips:[{image:"seat07.png",text:"Aim beams to notes"},{text:"Intermission: boss takes 200% more damage"}]}
+  ]},
+  "Windrunner Spire":{bosses:[
+    {name:"Emberdawn",tips:[{image:"windrunner01.png",text:"Flaming updraft: drop puddles away"},{image:"windrunner02.png",text:"Intermission: dodge stuff"}]},
+    {name:"Derelict Duo",tips:[{text:"Cleave down duo evenly"},{image:"windrunner03.png",text:"Drop puddles on edges"},{image:"windrunner04.png",text:"Go behind other boss when targeted by hook"},{text:"Adds cannot be killed. CC"}]},
+    {name:"Commander Kroluk",tips:[{image:"windrunner05.png",text:"Reckless Leap: targets furthest player. TANK can bait second leap."},{image:"windrunner06.png",text:"Intimidating Shout: stack near boss. (Or 1 stack for melee, 1 stack for ranged)"},{image:"windrunner07.png",text:"Intermission: focus adds"}]},
+    {name:"The Restless Heart",tips:[{image:"windrunner08.png",text:"DoT stack when boss repositions. Using arrow removes DoT"},{image:"windrunner09.png",text:"Circle removes puddles"},{image:"windrunner10.png",text:"Bolt Gale: stand still"},{image:"windrunner11.png",text:"Windblast: jump with arrow"}]}
+  ]}
+};
+const SEASON_2=["Temple of Sethraliss","King's Rest","Ruby Life Pools","Voidscar Arena","Den of Nalorakk","Murder Row","Blinding Vale","Altar of Fangs"];
+const SEASON_1=["Algeth’ar Academy","Maisara Caverns","Pit of Saron","Skyreach","Magister's Terrace","Nexus Point Xenas","Seat of the Triumvirate","Windrunner Spire"];
+
+// RAID DATA — scannable rewrite preserving all info
+const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs"];
+// Friendly aliases for task-requested names
+const RAID_ALIASES={
+  "Vashnik the Water-Gazer":"Vashnik the Malignant",
+  "Sszorak the Ascended":"Sszorak",
+  "Ithrax & Vexhul - The Twin Fangs":"The Twin Fangs",
+  "Lost Explorers (Iku'nal & Nama'jin)":"The Lost Explorers"
+};
+function resolveRaidName(n){ return RAID_ALIASES[n]||n; }
+const RAID_DATA={
+  "Nek'zali the Soulcoiler":{
+    short:"Tower-defense gatekeeper",
+    bossNum:1,
+    tldr:"Tower-defense opener. Nothing may reach Soulcoil Well or boss races to 100 energy enrage. Keep all puddles intentional — they haunt you later.",
+    setup:"2 / 4 / 14 · Dispels (Magic) · Strong AoE · Lust P2",
+    strategy:[
+      {lead:"Possession Barrage + Hollowing Strikes → Entrance tank, far off-tank, swap on stacks", subs:[
+        "Hold boss at entrance, off-tank 30+ yd away for Possession Barrage line — no one between",
+        "Swap at 30-40% Hollowing Strikes (stacking heal absorb)",
+        "Tank role coordination high"
+      ]},
+      {lead:"Essence Rend → Move side for dispel", subs:[
+        "Targeted players move side, get dispelled in lane",
+        "Leaves Latent Cultist — permanent slow puddle",
+        "Stack dispels intentionally off main lanes to keep path clear"
+      ]},
+      {lead:"Restless Amani march → Break shields, kill before Well", subs:[
+        "March from sarcophagi → Soulcoil Well",
+        "Spawn with Gravebound Advance magic shield = 25% HP — break with magic DPS then kill",
+        "Each leak = Soulcoil Rite raid hit + DoT + Ritual Burn +15% stacking taken from next Rites"
+      ]},
+      {lead:"Entry check → 0 Burn stacks before Soulcoil Ignition", subs:[
+        "Ignition = 4× Rite + Anguished Echoes circles",
+        "On clean raid = healing check — survivable",
+        "With Burn stacks = wipe — enforce 0 before pull"
+      ]}
+    ],
+    intermission:[
+      {lead:"Soul Transfer 50% → Beam channel creates Echo of Jawae", subs:[
+        "Beam channels 50% Soul Transfer creating Echo of Jawae",
+        "Don't stand in beam finish — lethal"
+      ]},
+      {lead:"Hungering Pyre + Slithering Flame → Soak & burn corpses", subs:[
+        "Melee soak Hungering Pyre — group 10y split",
+        "Non-soakers get Slithering Flame circles — both burn Vessel of Awakening corpses (dead Amani)",
+        "On expiry Flame → Cremation incinerates corpses in 4y radius",
+        "Fewer Vessels = fewer empowered re-awakened Amani"
+      ]},
+      {lead:"Goal → Delete corpses, kill both Echoes", subs:[
+        "Delete corpses mid-phase to trivialize P2",
+        "Kill both Echoes to end intermission"
+      ]}
+    ],
+    p2:[
+      {lead:"Uncoiling soft enrage → Lust, burn", subs:[
+        "Lust on pull into P2, burn boss",
+        "Uncoiling ticks raid damage rest of fight — permanent soft enrage",
+        "No wasted damage"
+      ]},
+      {lead:"Entwined Step → Dodge orbit of P1 puddles", subs:[
+        "Invoke repositions all P1 Cultist puddles around well via Entwined Step — dodge orbit",
+        "Fewer P1 puddles = trivial P2 positioning"
+      ]},
+      {lead:"Timer → Kill before 100 energy", subs:[
+        "Kill before 100 energy — no second intermission",
+        "Second intermission = likely wipe"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/nekzali-phase1-positioning.jpg",cap:"Phase 1 positioning — entrance tanking"},
+      {src:"assets/raid/nekzali-phase1-amani.jpg",cap:"Restless Amani march paths"},
+      {src:"assets/raid/nekzali-intermission.jpg",cap:"Intermission Ritual — Pyre soak + corpse burn"},
+      {src:"assets/raid/nekzali-phase2.jpg",cap:"Phase 2 — moving puddles post-Invoke"}
+    ]
+  },
+  "Entombed Sentinels":{
+    short:"Split council math test",
+    bossNum:2,
+    tldr:"Council: 2 even teams 40+ yd apart (Ula'tek's Dominance = 99% DR when close). Keep HP even — Vitriolic Stasis heals weaker to match stronger — and swap sides every intermission to drop Mark stacks.",
+    setup:"2 / 4 / 14 · Magic dispels · Immunities cheat math · Lust Pull",
+    green:[
+      {lead:"Toxic Droplets → Soak orbs to spread Noxious Blast", subs:[
+        "Orbs → 16s Noxious Blast raid hit per orb",
+        "Soak 1-2 per player, distribute damage evenly"
+      ]},
+      {lead:"Venom Coagulation → Big slime #1 prio", subs:[
+        "Pulses Contaminate raid damage while alive",
+        "Kill ASAP before raid damage ramps"
+      ]},
+      {lead:"Living Venom (Heroic) → Dodge lines both ways", subs:[
+        "Lines shoot out and return after 4s",
+        "Dodge both directions — don't get clipped on return"
+      ]},
+      {lead:"Empowering Slam → Swap golems each intermission", subs:[
+        "15% amp per stack on same target, resets on new target",
+        "Tank with Mark out, new tank pulls other golem",
+        "Reset via intermission swap"
+      ]}
+    ],
+    red:[
+      {lead:"Floor control → Start corner, everything puddles", subs:[
+        "Start in corner — all mechanics drop puddles",
+        "Control floor deliberately"
+      ]},
+      {lead:"Unstable Miasma → Group soak then walk as group", subs:[
+        "8s timer → 8y group soak + Clinging Murk short DoT",
+        "Stack, soak, then walk as group to designated puddle dump"
+      ]},
+      {lead:"Blood Venom → Edge dispel only", subs:[
+        "On dispel/expiry drops pool — size scales with stacks",
+        "Dispel at edge only — not in middle"
+      ]},
+      {lead:"Bloodvenom Injection → Tank walks puddle out", subs:[
+        "Stacking DoT + drops massive puddle on expiry",
+        "Outgoing tank walks it corner-ward before expiry"
+      ]}
+    ],
+    intermission:[
+      {lead:"Vitriolic Stasis 100 energy → 30s 99% DR, health evens", subs:[
+        "100 energy triggers 30s both 99% DR",
+        "Health refunds to even — keep DPS balanced whole fight",
+        "Unbalanced HP = free heal but wastes DR time"
+      ]},
+      {lead:"Helical Toxins → Pair greens to exactly 4", subs:[
+        "Each player gets 4 orbs (mix red/green)",
+        "Touch exactly 1 partner so combined greens = exactly 4 — e.g. 1+3, 2+2",
+        "Only 1 partner collision"
+      ]},
+      {lead:"Cultivated Burst → Punish mis-pairs", subs:[
+        "Wrong pairing = Cultivated Burst lethal + lingering puddle",
+        "Assign punishment corner for mis-pairs",
+        "Immunities survive it clean — cheat"
+      ]},
+      {lead:"Swap → Sides + tanks after intermission", subs:[
+        "Swap sides + tanks after every intermission",
+        "Repeat loop"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/entombed-positioning.jpg",cap:"Split positioning — 40y+ separation"},
+      {src:"assets/raid/entombed-blood.jpg",cap:"Blood golem corner puddle mgmt"},
+      {src:"assets/raid/entombed-stasis.jpg",cap:"Vitriolic Stasis math — form pairs"},
+      {src:"assets/raid/entombed-cultivated.jpg",cap:"Cultivated Burst punishment corner"}
+    ]
+  },
+  "The Lost Explorers":{
+    short:"Fish economy council",
+    bossNum:3,
+    tldr:"Council 3 turtles can't be close (United Defense immune). Flexible cleave. Fish economy engine holds fight together — only 3 fish, 4th Ascension is hard enrage.",
+    setup:"2 / 4 / 14 · Cleave / multi-dot premium · Bleed removal · Mobility · Lust Pull",
+    tanks:"Iku Shredding Shards & Nama Steady Strikes both ramp → trade as needed. Cleave can be kept on 2 but Iku blinks force tank reposition.",
+    boxes:"Permanent cleanup crew: Physical resist / Evoker dispel for Splinters bleed. Pop every box before 25s Relic Rupture raid explosion. One box contains Disgusting Fish — Fish interrupts Mor'zahi Final Ascension 100 energy (resets to 0) but triggers Fishy Feedback raid hit.",
+    feed:"Recommended: Iku → Nama → Gebbo (choice, run what you handle). Feeding empowers that turtle's ultimate. Fish count forces kill all 3 before 4th Ascension.",
+    ultimates:[
+      {lead:"Mighty Thud (Nama) → 3 soak groups distance-ordered", subs:[
+        "3 marked players — Nama leaps in distance order (closest first)",
+        "3 soak groups, one per marker, no empty soak (raid hit)",
+        "Avoid Aftershock craters after landing"
+      ]},
+      {lead:"Frostfire Volley (Iku) → Clear DoT in opposite element", subs:[
+        "2 sets fire + frost patches + 1 min DoT",
+        "Clear your DoT in opposite element before second set or Elemental Explosion wipe",
+        "Convention: Frost → melee, Fire → ranged to deconflict"
+      ]},
+      {lead:"Explosive Surprise (Gebbo) → Timed Mushroom jump", subs:[
+        "Bomb drop at edge — leaves shrinking puddle → lethal Blast Wave",
+        "Counter: timed Bouncy Mushroom jump close to wave, or blink/leap/immunity",
+        "Shrooms despawn fast if brushed — don't waste"
+      ]}
+    ],
+    enrage:"Balance HP all fight, kill together in window. If forced stagger: Gebbo > Nama > Iku (Iku explosion scales worst).",
+    images:[
+      {src:"assets/raid/lost-united-defense.jpg",cap:"United Defense — spread turtles, pair cleave"},
+      {src:"assets/raid/lost-boxes.jpg",cap:"Gebbo's boxes — fish economy"},
+      {src:"assets/raid/lost-mighty-thud.jpg",cap:"Mighty Thud — 3 soak groups distance-ordered"},
+      {src:"assets/raid/lost-frostfire.jpg",cap:"Frostfire Volley — clear opposite"},
+      {src:"assets/raid/lost-bomb-mushroom.jpg",cap:"Bomb + Mushroom — timed jump"}
+    ]
+  },
+  "Vashnik the Malignant":{
+    short:"Fountain rotation add control",
+    bossNum:4,
+    tldr:"Single-phase fountain rotation controls whole fight. Tanks decide imbibe pairs — one wrong pair drifts to triple-buffed lethal.",
+    setup:"2 / 4 / 14 · CC for Shadow/Fire · Staggered dispels · Add-kill squad",
+    rotation:[
+      {lead:"Default rotation → Blood+Shadow, Shadow+Fire, Fire+Blood repeat", subs:[
+        "Clean rotation: 1 Blood+Shadow, 2 Shadow+Fire, 3 Fire+Blood, repeat",
+        "Logic = one new fountain per cycle, one carried over — avoids triple-buff",
+        "Makes callouts predictable"
+      ]},
+      {lead:"Tank execution → Walk boss to correct pair before Imbibe", subs:[
+        "Tanks physically walk boss to correct pair before each Imbibe",
+        "Call loud every time — rotation failure = wipe"
+      ]}
+    ],
+    adds:[
+      {lead:"Core rule → Every add paths center, kill before 60s Hardened Venom", subs:[
+        "Core: Every add paths center pool — single Malignant Burst = raid-wide DoT",
+        "Dedicated add crew, kill on spawn before 60s Hardened Venom CC-immune sprint"
+      ]},
+      {lead:"Blood Clotting → No CC, pure burn, count splits", subs:[
+        "No CC possible — pure burn",
+        "Cleaves, splits immediately — keep count"
+      ]},
+      {lead:"Shadow Shrouded → CC lock, place death circles intentionally", subs:[
+        "CC lock extras to limit spawns",
+        "Respect Umbral Ejection death circles — kill where you want circles, not random"
+      ]},
+      {lead:"Burning Venom → Staggered kills, never together", subs:[
+        "Pair pulses raid damage + stacking explosion on death",
+        "CC one, nuke other, second after debuff falls — never together"
+      ]}
+    ],
+    infections:[
+      {lead:"Siphoning Infection (Blood) → Feed or absorb pre-decided", subs:[
+        "Infected needs bodies in circle to leech through heal block",
+        "Pre-decide feed vs absorb — don't split-call"
+      ]},
+      {lead:"Stygian Infection (Shadow) → Spread for Burst clip", subs:[
+        "Healable infection, but spread for Stygian Burst clip — movement job",
+        "Don't clump"
+      ]},
+      {lead:"Exploding Infection (Fire) → Stagger dispels", subs:[
+        "Hold if raid low — each dispel is a raid hit",
+        "Stagger dispels, don't chain"
+      ]}
+    ],
+    passive:[
+      {lead:"Dripping Fangs → Hard tank swap", subs:[
+        "Hard tank swap every cast — 100% phys amp, can't take twice"
+      ]},
+      {lead:"Malignant Catalyst → Cover every Bile", subs:[
+        "Cover every Catalytic Bile with 1+ body, spread to catch",
+        "Don't stack — one body per puddle"
+      ]},
+      {lead:"Plague Froth → Get out, respect cardinal plus-wave", subs:[
+        "Get out of Froth, then respect cardinal plus-wave Plague Wave direction",
+        "Read wave arrow early"
+      ]},
+      {lead:"Toxic Vapor → Permanent soft enrage", subs:[
+        "Permanent soft enrage climbs per Imbibe — cleaner = slower Vapor",
+        "Efficient rotation slows enrage"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/vashnik-fountain.jpg",cap:"Fountain rotation — tanks control pairs"},
+      {src:"assets/raid/vashnik-add-control.jpg",cap:"Add control group — kill before Hardened"},
+      {src:"assets/raid/vashnik-burning.jpg",cap:"Burning Venom — staggered kills"},
+      {src:"assets/raid/vashnik-siphoning.jpg",cap:"Siphoning Infection — feed circle"},
+      {src:"assets/raid/vashnik-plague.jpg",cap:"Plague Froth → Wave plus pattern"}
+    ]
+  },
+  "Sszorak":{
+    short:"Wind physics damage check",
+    bossNum:5,
+    tldr:"Damage check + wind physics. Loop: Apex Predator, Venomous Surge, Raging Crosswinds repeat ×2 → intermission at 100 energy. Background Ula'tek's Presence constant damage.",
+    setup:"2 / 4(+1) / 14 · Two soak groups 5+ · Markers at 6 tunnel edges · Lust Pull or Intermission amp",
+    apex:[
+      {lead:"Apex Predator combo → 2 Ravage, 2 Mutilate, 1 Tempest random order", subs:[
+        "Tank edge, raid behind — prepare for random combo",
+        "Call order loudly each time"
+      ]},
+      {lead:"Ravage → Tank frontal +400% 25s, swap between casts", subs:[
+        "Tank frontal +400% damage taken 25s",
+        "Tanks swap between casts edge-away from raid"
+      ]},
+      {lead:"Mutilate → Raid frontal split 5+, alternate groups, no double-dip", subs:[
+        "Raid frontal split 5+ soakers required",
+        "22s DoT makes next Mutilate +500% — two groups alternate",
+        "No double-dip same group twice"
+      ]},
+      {lead:"Tempest → Dodge tornadoes", subs:[
+        "Roaming tornadoes — constant dodge",
+        "Keep lane clear"
+      ]}
+    ],
+    surge:[
+      {lead:"Venomous Surge → 2 players DoT + Cyst spawn", subs:[
+        "2 players 10s venom DoT → raid falloff on expiry",
+        "Viscous Cyst spawns where they stood — manage placement"
+      ]},
+      {lead:"Cysts → Wind resist goo, place opposite active tunnels", subs:[
+        "Place at markers opposite active tunnels — read white orbs 1/2/3 fire order",
+        "4 cysts for 3 winds = 1 spare, 2 misplacements = wipe",
+        "Be precise"
+      ]},
+      {lead:"Caustic Claws → Tank moves boss to clean slice", subs:[
+        "Tank moves boss to clean slice between puddles",
+        "Don't cleave raid"
+      ]}
+    ],
+    crosswinds:[
+      {lead:"Raging Crosswinds → Arrow pair collision mid-air safe drop", subs:[
+        "Arrow circles → pair collision mid-air safe drop",
+        "Generous hitbox, but miss = slow drift off platform — death"
+      ]},
+      {lead:"Immunities → Coordinate who griefs", subs:[
+        "Immunities can grief partner — coordinate who immunes and who still collides",
+        "Don't immune without comms"
+      ]}
+    ],
+    intermission:[
+      {lead:"Dig In → 30% increased taken, stack mid", subs:[
+        "Dig In 30% increased taken on boss — burn window",
+        "Stack pixel mid, wind pushes to cyst opposite active tunnel",
+        "Pop knocks back to boss + coats wind resist"
+      ]},
+      {lead:"Winds → 3 sequential, third as amp + failsafe", subs:[
+        "3 winds sequential, third as amp",
+        "Final walk to failsafe cyst pop, restart loop",
+        "5th healer helps through constant pressure"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/sszorak-markers.jpg",cap:"Marker positioning at tunnel edges"},
+      {src:"assets/raid/sszorak-mutilate.jpg",cap:"Mutilate soak groups — 5+ split"},
+      {src:"assets/raid/sszorak-cysts.jpg",cap:"Cyst placement opposite active winds"},
+      {src:"assets/raid/sszorak-crosswinds.jpg",cap:"Crosswinds — pair arrow collision"}
+    ]
+  },
+  "The Twin Fangs":{
+    short:"Dual-target venom economy",
+    bossNum:6,
+    tldr:"Dual target resource management. Eternal Venom permanent — 10 = death, only removed 1 per Ravenous Feast soak. Kill together before 3rd Submerge (100 energy hard enrage) or Uncoiled Wrath ramps 25%/4s infinite.",
+    setup:"2 / 4 / 14 · 2-target cleave premium · 3 soak groups 7+ (or 2 + immunes) · Loose spread · Lust Pull",
+    core:[
+      {lead:"Toxic Fumes → Constant raid tick", subs:[
+        "Constant raid tick — healing baseline high"
+      ]},
+      {lead:"Caustic Deluge (Vexhul) → Tank trade on 10% Envenomed 90s", subs:[
+        "Tank channel 5s, 10% stacking Envenomed 90s → forces tank trade",
+        "Splash spawns Caustic Globule — one player soak each (low venom), unsoaked = raid venom all",
+        "Vexhul trade serpents, not same spot"
+      ]},
+      {lead:"Venomous Emergence → Unavoidable venom + 3 fixate adds", subs:[
+        "Unavoidable raid venom + 3 adds fixate → spit Corrosive Spit line",
+        "Dodge/angle away, kill fast before Spit"
+      ]},
+      {lead:"Coiling Ichor (Ithraz) → Shrinking circles, slow pools at edge", subs:[
+        "Shrinking circles increasing damage",
+        "Drop 2m 50% slow pools at edge — not mid"
+      ]},
+      {lead:"Stone Breaker (Ithraz) → Tank soaks swirlies", subs:[
+        "Roar knockback + 3 swirlies 4y sequential — must be soaked by tank (33% stacking 90s)",
+        "Or raid takes armor-ignoring hit — tanks alt every other set"
+      ]},
+      {lead:"Stir Depths → Raid damage + green waves venom", subs:[
+        "Raid damage + green waves apply venom — weave between",
+        "Don't get clipped twice"
+      ]},
+      {lead:"Clotted Bolt → Don't kite out of range", subs:[
+        "Range checks — don't kite bosses out of range",
+        "Clotted Bolt / Concentrated Spittle enrage if out of range"
+      ]}
+    ],
+    feast:[
+      {lead:"Ravenous Feast → 3 explosions, venom refund, Feasted debuff", subs:[
+        "3 explosions fast, 14y split heavy physical",
+        "Each hit removes 1 venom stack, applies Feasted 800% Feast damage 8s — can't reuse group",
+        "3 groups one per explosion, no greed"
+      ]},
+      {lead:"Phase cadence → 2× per phase set", subs:[
+        "2× per phase: Deluge, Stone Breaker, Emergence, Ichor, Stir, Feast",
+        "Consistent rhythm — prep groups"
+      ]}
+    ],
+    submerge:[
+      {lead:"Submerge 100 energy → Noxious Slick dirties platform", subs:[
+        "100 energy after second Feast: Dive spawns Noxious Slick floor (dmg +30% taken)",
+        "Platform gets dirtier each cycle — space dwindles"
+      ]},
+      {lead:"Combined assault → Flood laser + Sanguine Storm", subs:[
+        "14s Vile Flood laser sweeps with orb rotation — run against direction, cross early behind safe",
+        "18s Sanguine Storm gore globs 4y circles leave Congealed Gore slow debuff",
+        "Survive both overlapping"
+      ]},
+      {lead:"Loop → Restart with higher venom baseline", subs:[
+        "Survive, then restart loop with higher venom baseline",
+        "Kill before 3rd Submerge or Uncoiled Wrath 25%/4s infinite enrage"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/fangs-positioning.jpg",cap:"Raid spread — loose dual target"},
+      {src:"assets/raid/fangs-globules.jpg",cap:"Caustic Globules — one soak each"},
+      {src:"assets/raid/fangs-spit.jpg",cap:"Corrosive Spit lines — angle away"},
+      {src:"assets/raid/fangs-ichor.jpg",cap:"Coiling Ichor puddles — edge drop"},
+      {src:"assets/raid/fangs-feast.jpg",cap:"Ravenous Feast — 3 groups, venom refund"},
+      {src:"assets/raid/fangs-flood.jpg",cap:"Vile Flood laser — run against rotation"}
+    ]
+  }
+};
+
+
+
+const qs=(s,r=document)=>r.querySelector(s);
+
+// --- Icons / slug helpers ---
+const RAID_ICONS={
+  "Nek'zali the Soulcoiler":"assets/raid/icons/nekzali.webp",
+  "Entombed Sentinels":"assets/raid/icons/entombed.webp",
+  "The Lost Explorers":"assets/raid/icons/lost-explorers.webp",
+  "Vashnik the Malignant":"assets/raid/icons/vashnik.webp",
+  "Sszorak":"assets/raid/icons/sszorak.webp",
+  "The Twin Fangs":"assets/raid/icons/twin-fangs.webp"
+};
+const RAID_SHORT_SLUG={
+  "Nek'zali the Soulcoiler":"nekzali",
+  "Entombed Sentinels":"entombed-sentinels",
+  "The Lost Explorers":"lost-explorers",
+  "Vashnik the Malignant":"vashnik",
+  "Sszorak":"sszorak",
+  "The Twin Fangs":"twin-fangs"
+};
+const RAID_SHORT_TO_NAME={
+  "nekzali":"Nek'zali the Soulcoiler",
+  "entombed-sentinels":"Entombed Sentinels",
+  "lost-explorers":"The Lost Explorers",
+  "vashnik":"Vashnik the Malignant",
+  "sszorak":"Sszorak",
+  "twin-fangs":"The Twin Fangs"
+};
+function resolveRaidName(n){ const map={"Vashnik the Water-Gazer":"Vashnik the Malignant","Sszorak the Ascended":"Sszorak","Ithrax & Vexhul - The Twin Fangs":"The Twin Fangs","Lost Explorers (Iku'nal & Nama'jin)":"The Lost Explorers"}; return map[n]||n; }
+
+function dungeonSlug(name){
+  return (name||'').toLowerCase().normalize('NFKD').replace(/[\u2019\u2018']/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').replace(/-+/g,'-');
+}
+function raidShort(name){ return RAID_SHORT_SLUG[name]||dungeonSlug(name); }
+function raidHash(name){ return "raid-"+raidShort(name); }
+function dungeonHash(name){ return "dungeon-"+dungeonSlug(name); }
+const DUNGEON_SLUG_TO_NAME=(function(){
+  const m={};
+  const all=[...SEASON_2,...SEASON_1];
+  all.forEach(n=>{ m[dungeonSlug(n)]=n; });
+  return m;
+})();
+const DUNGEON_ORDER=[...SEASON_2,...SEASON_1];
+const DEFAULT_HASH="raid-nekzali";
+
+function parseHashToTarget(rawHash){
+  if(!rawHash) return null;
+  let h=rawHash.trim().toLowerCase();
+  try{ h=decodeURIComponent(h);}catch(e){}
+  h=h.replace(/^#/,'').trim();
+  if(!h) return null;
+  if(h.includes(':')){
+    const idx=h.indexOf(':');
+    const m=h.slice(0,idx).toLowerCase();
+    let nm=h.slice(idx+1);
+    try{ nm=decodeURIComponent(nm);}catch(e){}
+    if(m==='raid'){
+      const found=RAID_ORDER.find(r=>r.toLowerCase()===nm.toLowerCase());
+      if(found) return {mode:'raid',name:found};
+      const rn=RAID_SHORT_TO_NAME[nm.toLowerCase()]||RAID_SHORT_TO_NAME[dungeonSlug(nm)];
+      if(rn) return {mode:'raid',name:rn};
+      const r2=RAID_ORDER.find(r=>dungeonSlug(r)===dungeonSlug(nm));
+      if(r2) return {mode:'raid',name:r2};
+    }
+    if(m==='dungeon'){
+      const found=Object.keys(DUNGEONS).find(d=>d.toLowerCase()===nm.toLowerCase());
+      if(found) return {mode:'dungeon',name:found};
+      const dn=DUNGEON_SLUG_TO_NAME[dungeonSlug(nm)]||DUNGEON_SLUG_TO_NAME[nm.toLowerCase()];
+      if(dn) return {mode:'dungeon',name:dn};
+    }
+  }
+  if(h.startsWith('raid-')){
+    const short=h.slice(5);
+    if(RAID_SHORT_TO_NAME[short]) return {mode:'raid',name:RAID_SHORT_TO_NAME[short]};
+    if(short.includes('nekzali')) return {mode:'raid',name:RAID_SHORT_TO_NAME['nekzali']};
+    if(short.includes('entombed')) return {mode:'raid',name:RAID_SHORT_TO_NAME['entombed-sentinels']};
+    if(short.includes('lost')||short.includes('explor')) return {mode:'raid',name:RAID_SHORT_TO_NAME['lost-explorers']};
+    if(short.includes('vashnik')) return {mode:'raid',name:RAID_SHORT_TO_NAME['vashnik']};
+    if(short.includes('sszorak')) return {mode:'raid',name:RAID_SHORT_TO_NAME['sszorak']};
+    if(short.includes('twin')||short.includes('fangs')) return {mode:'raid',name:RAID_SHORT_TO_NAME['twin-fangs']};
+    const raidBySlug=RAID_ORDER.find(r=>dungeonSlug(r)===short);
+    if(raidBySlug) return {mode:'raid',name:raidBySlug};
+  }
+  if(h.startsWith('dungeon-')){
+    const short=h.slice(8);
+    if(DUNGEON_SLUG_TO_NAME[short]) return {mode:'dungeon',name:DUNGEON_SLUG_TO_NAME[short]};
+    const direct=Object.keys(DUNGEON_SLUG_TO_NAME).find(k=>k===short||k.includes(short)||short.includes(k));
+    if(direct) return {mode:'dungeon',name:DUNGEON_SLUG_TO_NAME[direct]};
+  }
+  if(RAID_SHORT_TO_NAME[h]) return {mode:'raid',name:RAID_SHORT_TO_NAME[h]};
+  if(DUNGEON_SLUG_TO_NAME[h]) return {mode:'dungeon',name:DUNGEON_SLUG_TO_NAME[h]};
+  for(const [short,name] of Object.entries(RAID_SHORT_TO_NAME)){
+    if(short.includes(h)||h.includes(short)) return {mode:'raid',name:name};
+  }
+  let best=null;
+  for(const [slug,name] of Object.entries(DUNGEON_SLUG_TO_NAME)){
+    if(slug.startsWith(h)||slug.includes(h)||h.includes(slug)){
+      if(!best || slug.length < best.slug.length) best={slug,name};
+    }
+  }
+  if(best) return {mode:'dungeon',name:best.name};
+  const exactDungeon=Object.keys(DUNGEONS).find(d=>d.toLowerCase()===h||dungeonSlug(d)===h);
+  if(exactDungeon) return {mode:'dungeon',name:exactDungeon};
+  const exactRaid=RAID_ORDER.find(r=>r.toLowerCase()===h);
+  if(exactRaid) return {mode:'raid',name:exactRaid};
+  return null;
+}
+
+function canonicalHashForTarget(t){
+  if(!t) return DEFAULT_HASH;
+  if(t.mode==='raid') return raidHash(t.name);
+  return dungeonHash(t.name);
+}
+
+function getCurrentTargetFromHash(){
+  let own=(location.hash||'').trim();
+  let target=parseHashToTarget(own);
+  if(target) return target;
+  try{
+    if(window.parent && window.parent!==window){
+      const ph=window.parent.location.hash;
+      if(ph){
+        const pt=parseHashToTarget(ph);
+        if(pt) return pt;
+      }
+    }
+  }catch(e){}
+  return null;
+}
+
+let query="";
+
+const SPELL_TIPS={
+  "Possession Barrage":"30-yard line attack after Soul Channel that charms the first target hit, if no target hit Nek'zali gains Possession",
+  "Hollowing Strikes":"Physical tank melee combo applying stacking 10% healing absorption for 30s",
+  "Gravebound Advance":"Magic absorb shield on Restless Amani equal to 25% health",
+  "Soulcoil Rite":"Raid-wide shadow damage plus DoT when Restless Amani reaches Well, applies stacking 15% increased damage from next Rites",
+  "Ritual Burn":"Stacking 15% increased damage taken from Soulcoil Rite",
+  "Soulcoil Ignition":"Four simultaneous Soulcoil Rites plus Anguished Echoes ground circles",
+  "Anguished Echoes":"8-yard shadow ground zones during Ignition, pulsing raid damage",
+  "Soul Transfer":"50% health channel creating Echo of Jawae, lethal beam on completion",
+  "Hungering Pyre":"10-yard group fire damage split, applies Slithering Flame to non-hit targets",
+  "Slithering Flame":"Fire circle detonating after 6s into 4-yard incineration, Cremation burns nearby Vessel corpses",
+  "Vessel of Awakening":"Corpse of Restless Amani that reanimates as empowered add if not destroyed",
+  "Uncoiling":"Periodic raid-wide shadow damage tick, permanent for remainder of fight",
+  "Entwined Step":"Repositions all Essence Rend puddles orbiting the Well",
+  "Toxic Droplets":"Venom orbs applying 16-second raid-wide nature DoT per orb",
+  "Noxious Blast":"16-second nature DoT from Toxic Droplets, pulses every 2 seconds",
+  "Venom Coagulation":"Large slime pulsing raid-wide nature damage while alive",
+  "Living Venom":"Nature lines traveling out and back after 4 seconds",
+  "Empowering Slam":"Heavy physical hit on current target, +15% physical damage taken per stack for 20s, resets on new target",
+  "Unstable Miasma":"8-second debuff exploding into 8-yard area damage plus short DoT",
+  "Clinging Murk":"6-second shadow DoT after Unstable Miasma",
+  "Blood Venom":"Stacking nature DoT leaving pool on expiry or dispel, pool size scales with stacks",
+  "Bloodvenom Injection":"Stacking physical DoT on tank leaving large puddle on expiry",
+  "Vitriolic Stasis":"Both Sentinels gain 99% damage reduction for 30s while health equalizes to higher",
+  "Helical Toxins":"4 orbs per player mixing red and green, contact merges orb counts",
+  "Cultivated Burst":"Lethal nature explosion plus lingering pool on failed Helical pairing",
+  "Shredding Shards":"Physical bleed on current tank for 8 seconds",
+  "Steady Strikes":"Physical tank hits applying stacking increased physical damage taken",
+  "United Defense":"Turtles immune to damage while within 40 yards of each other",
+  "Relic Rupture":"Raid-wide 25-second nature explosion if boxes not opened",
+  "Disgusting Fish":"Relic interrupting Final Ascension resetting energy to 0, triggers raid nature damage",
+  "Final Ascension":"100 energy raid-wide lethal nature damage",
+  "Fishy Feedback":"Raid-wide nature damage and heal absorb after using Fish",
+  "Mighty Thud":"Leap to 3 targets in distance order dealing physical area damage and creating craters",
+  "Frostfire Volley":"Two sets of fire and frost zones applying 60-second fire or frost DoT",
+  "Elemental Explosion":"Lethal explosion if Frostfire Volley DoT not cleansed in opposite element",
+  "Explosive Surprise":"Bomb at edge leaving shrinking pool into lethal Blast Wave",
+  "Blast Wave":"Lethal fire shockwave after Explosive Surprise pool shrinks",
+  "Bouncy Mushroom":"Mushroom launching player high, brief flight of 4 seconds",
+  "Dripping Fangs":"Massive physical tank hit applying 100% increased physical damage taken for 30s",
+  "Malignant Burst":"Raid-wide poison DoT if any add reaches center pool",
+  "Hardened Venom":"At 60s adds become CC-immune and sprint to center with 80% haste",
+  "Blood Clotting":"Add immune to CC, melee cleave, splits at 50% health",
+  "Umbral Ejection":"8-yard shadow death circle on Shadow add death",
+  "Catalytic Bile":"3-yard bile puddles, unhandled puddle deals raid damage",
+  "Plague Froth":"6-yard poison puddle pulsing damage under player",
+  "Plague Wave":"Cardinal-direction plus-shaped poison wave after Froth",
+  "Toxic Vapor":"Stacking raid-wide nature damage increasing per Imbibe",
+  "Siphoning Infection":"Blood magic debuff blocking healing, leeches health from players within 6 yards",
+  "Stygian Burst":"8-yard shadow splash from Stygian Infection",
+  "Stygian Infection":"6-second shadow magic heal absorb plus periodic splash damage",
+  "Exploding Infection":"10-second fire debuff dealing raid damage on dispel or expiry, 8 yards",
+  "Apex Predator":"Random order combo of 2 Ravage, 2 Mutilate, 1 Tempest",
+  "Venomous Surge":"10-second poison DoT on 2 players plus Viscous Cyst spawn at feet on expiry, raid falloff damage",
+  "Viscous Cyst":"5-yard wind-resist slime providing 90% wind knockback reduction inside",
+  "Caustic Claws":"Frontal physical cleave leaving 10-second poison strip",
+  "Raging Crosswinds":"Paired 6-yard wind circles stacking to safe descent on mid-air collision",
+  "Caustic Deluge":"5-second tank channel spawning 2 Caustic Globules",
+  "Envenomed":"10% stacking magic damage taken for 90s",
+  "Venomous Emergence":"Unavoidable raid poison damage plus 3 fixated adds",
+  "Corrosive Spit":"8-yard line attack from fixated adds dealing nature damage",
+  "Coiling Ichor":"Shrinking toxin circles leaving 2-meter 50% slow pool for 30s",
+  "Stone Breaker":"Roar knockback plus 3 sequential 4-yard swirlies, applies 33% stacking physical taken for 90s",
+  "Stir Depths":"Raid-wide water damage plus traveling green venom waves",
+  "Concentrated Spittle":"Single-target nature bolt punishing out-of-range targets",
+  "Clotted Bolt":"Single-target shadow bolt punishing out-of-range targets",
+  "Vile Flood":"14-second sweeping laser with rotating orbs",
+  "Sanguine Storm":"18-second barrage of 4-yard gore circles leaving slow pools",
+  "Ravenous Feast":"Three 14-yard physical area attacks removing 1 Eternal Venom per hit, applies 800% increased Feast damage for 8s",
+  "Noxious Slick":"Floor toxin pulsing nature damage plus 30% increased damage taken while on it",
+  "Congealed Gore":"4-yard lingering gore leaving 30% slow for 12s",
+  "Uncoiled Wrath":"25% stacking damage increase every 4 seconds infinitely after 3rd Submerge",
+  "Eternal Venom":"Permanent stacking poison, 10 stacks results in death, refreshes 60s",
+  "Cremation":"4-yard fire incineration from Slithering Flame expiry destroying Vessel corpses",
+  "Ula'tek's Dominance":"99% damage reduction while Sentinels within 40 yards",
+  "Ula'tek's Presence":"Constant raid-wide shadow damage aura",
+  "Ravage":"Tank frontal applying 400% increased physical taken for 25s",
+  "Mutilate":"Raid frontal needing 5+ targets to split, 22s poison DoT increasing next Mutilate damage by 500%",
+  "Tempest":"Roaming tornadoes dealing nature damage on contact",
+  "Imbibe":"Empowers boss with two fountain buffs, one carried over plus new one",
+  "Dig In":"Boss rooted gaining 30% increased damage taken while wind pushes",
+  "Feasted":"800% increased damage from Ravenous Feast for 8 seconds"
+};
+
+const TANK_SWAP={
+  "Nek'zali the Soulcoiler":`<ul>
+    <li><span class="role role-tank">Tank</span> far 30+ yards for <span class="spell" data-tooltip="30-yard line attack after Soul Channel that charms the first target hit, if no target hit Nek'zali gains Possession" tabindex="0">Possession Barrage</span> — line dodge, nobody between.</li>
+    <li><span class="action">Taunt swap</span> at 30-40% <span class="spell" data-tooltip="Physical tank melee combo applying stacking 10% healing absorption for 30s" tabindex="0">Hollowing Strikes</span> (healing absorb stacking).</li>
+  </ul>`,
+  "Entombed Sentinels":`<ul>
+    <li>No same-side <span class="role role-tank">tank</span> swap possible — <span class="action">trade golems every intermission</span> to drop Mark stacks.</li>
+    <li><span class="entity">Green</span> (Breath): <span class="spell" data-tooltip="Heavy physical hit on current target, +15% physical damage taken per stack for 20s, resets on new target" tabindex="0">Empowering Slam</span> ramps +15% per same target, reset on new target.</li>
+    <li><span class="entity">Red</span> (Blood): <span class="spell" data-tooltip="Stacking physical DoT on tank leaving large puddle on expiry" tabindex="0">Bloodvenom Injection</span> ramp + drops huge puddle on expiry — outgoing <span class="role role-tank">tank</span> walks it to wall/corner.</li>
+  </ul>`,
+  "The Lost Explorers":`<ul>
+    <li>2 <span class="role role-tank">tanks</span> separate: <span class="entity">Iku</span> swaps on <span class="spell" data-tooltip="Physical bleed on current tank for 8 seconds" tabindex="0">Shredding Shards</span> ramp, <span class="entity">Nama</span> swaps on <span class="spell" data-tooltip="Physical tank hits applying stacking increased physical damage taken" tabindex="0">Steady Strikes</span> ramp.</li>
+    <li><span class="action">Position turtles 40y+ apart</span> (<span class="spell" data-tooltip="Turtles immune to damage while within 40 yards of each other" tabindex="0">United Defense</span> immunity).</li>
+  </ul>`,
+  "Vashnik the Malignant":`<ul>
+    <li><span class="spell" data-tooltip="Massive physical tank hit applying 100% increased physical damage taken for 30s" tabindex="0">Dripping Fangs</span> = hard <span class="role role-tank">tank</span> swap every cast (100% phys amp, can't take twice).</li>
+    <li><span class="role role-tank">Tanks</span> also control fountain rotation by <span class="action">walking boss to correct pair before Imbibe</span>.</li>
+  </ul>`,
+  "Sszorak":`<ul>
+    <li><span class="spell" data-tooltip="Random order combo of 2 Ravage, 2 Mutilate, 1 Tempest" tabindex="0">Apex Predator</span> random — <span class="role role-tank">tanks</span> call order: <span class="spell" data-tooltip="Tank frontal applying 400% increased physical taken for 25s" tabindex="0">Ravage</span> x2 (<span class="role role-tank">tank</span> frontal +400% amp 25s, swap between casts, edge away), <span class="spell" data-tooltip="Raid frontal needing 5+ targets to split, 22s poison DoT increasing next Mutilate damage by 500%" tabindex="0">Mutilate</span> x2 (raid soak alternation, <span class="role role-tank">tanks</span> stay).</li>
+    <li>90s debuffs from Emergence/Tang timing require trade planning.</li>
+  </ul>`,
+  "The Twin Fangs":`<ul>
+    <li><span class="entity">Vexhul</span> <span class="spell" data-tooltip="5-second tank channel spawning 2 Caustic Globules" tabindex="0">Caustic Deluge</span> 10% stacking <span class="spell" data-tooltip="10% stacking magic damage taken for 90s" tabindex="0">Envenomed</span> 90s forces <span class="role role-tank">tank</span> trade (trade serpents, not same spot).</li>
+    <li><span class="entity">Ithraz</span> <span class="spell" data-tooltip="Roar knockback plus 3 sequential 4-yard swirlies, applies 33% stacking physical taken for 90s" tabindex="0">Stone Breaker</span> 33% stacking 90s + 3 swirlies must be soaked by <span class="role role-tank">tank</span> — tanks alt every other set.</li>
+    <li>Both bosses can't be kited out of range (<span class="spell" data-tooltip="Single-target nature bolt punishing out-of-range targets" tabindex="0">Concentrated Spittle</span> / <span class="spell" data-tooltip="Single-target shadow bolt punishing out-of-range targets" tabindex="0">Clotted Bolt</span> enrage).</li>
+  </ul>`
+};
+
+function imgSrc(n){if(!n) return null; const m=(IMAGE_MAP[n]||n); return `assets/${m}`}
+
+// Internal state – no hash
+let mode = (function(){ try{ return localStorage.getItem('midnight:mode')||'raid'; }catch(e){return 'raid';}})();
+let selectedDungeon = (function(){ try{ return localStorage.getItem('midnight:dungeon')||DUNGEON_ORDER[0]; }catch(e){return DUNGEON_ORDER[0];}})();
+let selectedRaid = (function(){ try{ return localStorage.getItem('midnight:raid')||RAID_ORDER[0]; }catch(e){return RAID_ORDER[0];}})();
+if(!DUNGEONS[selectedDungeon]) selectedDungeon=DUNGEON_ORDER[0];
+if(!RAID_DATA[selectedRaid]) selectedRaid=RAID_ORDER[0];
+if(mode!=='dungeon' && mode!=='raid') mode='raid';
+// Force default to raid Nek'zali if fresh (ignore previous dungeon default for this product)
+if(!((function(){try{return localStorage.getItem('midnight:mode');}catch(e){return null;}})())){
+  mode='raid'; selectedRaid=RAID_ORDER[0];
+}
+
+function buildSidebar(){
+  const list=qs('#dungeonList'); const mobileSel=qs('#mobileSelect');
+  const q=query.toLowerCase().trim();
+  qs('#swDungeon').classList.toggle('active',mode==="dungeon");
+  qs('#swRaid').classList.toggle('active',mode==="raid");
+  qs('#swDungeon').setAttribute('aria-selected',mode==="dungeon");
+  qs('#swRaid').setAttribute('aria-selected',mode==="raid");
+
+  if(mode==="dungeon"){
+    const isMatch=(name)=>{
+      if(!q) return true;
+      if(name.toLowerCase().includes(q)) return true;
+      const d=DUNGEONS[name]; if(!d) return false;
+      return d.bosses.some(b=>{if(b.name.toLowerCase().includes(q)) return true; return b.tips.some(t=>t.text.toLowerCase().includes(q))})
+    };
+    const btnHtml=(name)=>{
+      const d=DUNGEONS[name]; if(!d) return '';
+      const active=name===selectedDungeon?'active':'';
+      const count=d.bosses.length;
+      const matchCount=q?d.bosses.reduce((acc,b)=>acc+(b.name.toLowerCase().includes(q)?1:0)+b.tips.filter(t=>t.text.toLowerCase().includes(q)).length,0):0;
+      return `<button class="dungeon-btn ${active}" data-name="${escapeAttr(name)}"><span class="name">${escapeHtml(name)}${q&&matchCount? ` <span style="color:var(--gold2);font-size:11px">· ${matchCount}</span>`:''}</span><span class="count">${count}</span></button>`
+    };
+    const s2=SEASON_2.filter(isMatch); const s1=SEASON_1.filter(isMatch);
+    if(!q){
+      list.innerHTML=`<div class="season-head">Season 2</div>${SEASON_2.map(n=>btnHtml(n)).join('')}<div class="season-head">Season 1</div>${SEASON_1.map(n=>btnHtml(n)).join('')}`;
+    }else{
+      const parts=[]; if(s2.length){parts.push(`<div class="season-head">Season 2</div>`); parts.push(s2.map(n=>btnHtml(n)).join(''))} if(s1.length){parts.push(`<div class="season-head">Season 1</div>`); parts.push(s1.map(n=>btnHtml(n)).join(''))} list.innerHTML=parts.join('')||`<div class="no-results" style="margin:8px">No dungeons match “${escapeHtml(query)}”</div>`;
+    }
+    mobileSel.innerHTML=`<optgroup label="Season 2">${SEASON_2.map(n=>`<option value="d:${escapeAttr(n)}" ${selectedDungeon===n?'selected':''}>${escapeHtml(n)}</option>`).join('')}</optgroup><optgroup label="Season 1">${SEASON_1.map(n=>`<option value="d:${escapeAttr(n)}" ${selectedDungeon===n?'selected':''}>${escapeHtml(n)}</option>`).join('')}</optgroup>`;
+    list.querySelectorAll('.dungeon-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ selectedDungeon=btn.dataset.name; mode='dungeon'; try{localStorage.setItem('midnight:dungeon',selectedDungeon); localStorage.setItem('midnight:mode','dungeon');}catch(e){} render(); }) });
+  }else{
+    const isRaidMatch=(n)=>{
+      if(!q) return true; const lower=q; if(n.toLowerCase().includes(lower)) return true; const d=RAID_DATA[n]; if(!d) return false; return (d.tldr&&d.tldr.toLowerCase().includes(lower)) || JSON.stringify(d).toLowerCase().includes(lower);
+    };
+    const filtered=RAID_ORDER.filter(isRaidMatch);
+    const btnHtml=(name)=>{
+      const d=RAID_DATA[name]; const active=name===selectedRaid?'raid-active':''; const iconSrc=RAID_ICONS[name]; const fallbackLetter=escapeHtml(name.trim().charAt(0)||'R'); const iconHtml=iconSrc?`<img class="raid-ico" src="${escapeAttr(iconSrc)}" alt="${escapeAttr(name)}" loading="lazy" data-fallback="${fallbackLetter}" onerror="this.outerHTML='<span class=&quot;raid-ico&quot; style=&quot;width:32px;height:32px;display:grid;place-items:center;background:var(--panel3);border:1px solid var(--line);border-radius:9px;font-size:13px;font-weight:800;color:var(--muted)&quot;>${fallbackLetter}</span>'"/>`:`<span style="width:32px;height:32px;display:grid;place-items:center;background:var(--panel3);border:1px solid var(--line);border-radius:9px;font-size:13px;font-weight:800;color:var(--muted)">${fallbackLetter}</span>`;
+      return `<button class="dungeon-btn ${active}" data-rname="${escapeAttr(name)}"><span style="display:flex;align-items:center;gap:10px;min-width:0"><span style="display:flex">${iconHtml}</span><span class="name" style="display:flex;flex-direction:column;line-height:1.2"><span>${escapeHtml(name)}</span><span style="font-size:11px;opacity:.7;font-weight:400">${escapeHtml(d.short)}</span></span></span><span class="count">S2</span></button>`
+    };
+    list.innerHTML=`<div class="season-head raid-head">The Venomous Abyss — Season 2 Raid</div>${filtered.map(n=>btnHtml(n)).join('')}${!filtered.length?`<div class="no-results" style="margin:8px">No raid bosses match “${escapeHtml(query)}”</div>`:''}`;
+    mobileSel.innerHTML=`<optgroup label="The Venomous Abyss">${RAID_ORDER.map(n=>`<option value="r:${escapeAttr(n)}" ${n===selectedRaid?'selected':''}>${escapeHtml(n)}</option>`).join('')}</optgroup>`;
+    list.querySelectorAll('[data-rname]').forEach(btn=>{ btn.addEventListener('click',()=>{ selectedRaid=btn.dataset.rname; mode='raid'; try{localStorage.setItem('midnight:raid',selectedRaid); localStorage.setItem('midnight:mode','raid');}catch(e){} render(); }) });
+  }
+  mobileSel.onchange=(e)=>{
+    const v=e.target.value;
+    if(v.startsWith('r:')){ selectedRaid=v.slice(2); mode='raid'; try{localStorage.setItem('midnight:raid',selectedRaid); localStorage.setItem('midnight:mode','raid');}catch(e){} render(); }
+    else { selectedDungeon=v.slice(2); mode='dungeon'; try{localStorage.setItem('midnight:dungeon',selectedDungeon); localStorage.setItem('midnight:mode','dungeon');}catch(e){} render(); }
+  };
+}
+
+function tipHtml(tip,idx,bossName){
+  const src=tip.image?imgSrc(tip.image):null; const hasImg=!!tip.image;
+  return `<div class="tip-row"><div class="tip-text"><div class="tip-num">${idx+1}</div><div>${enrichText(tip.text)}</div></div><div class="tip-media ${hasImg?'':'empty'}" ${hasImg?'':'style="display:none"'}>${hasImg?`<img loading="lazy" src="${src}" alt="${escapeAttr(bossName)} mechanic ${idx+1}: ${escapeAttr(tip.image)}" onerror="this.parentElement.style.display='none'; this.closest('.tip-row').style.gridTemplateColumns='1fr'" /> <span class="img-badge">📸 ${escapeHtml(tip.image)}</span>`:''}</div></div>`;
+}
+
+function enrichText(s){
+  if(!s) return "";
+  let h=escapeHtml(s);
+  const entities=["Nek'zali","Restless Amani","Echo of Jawae","Breath of Ula'tek","Vessel of Awakening","Restless Heart","Avatar of Sethraliss","Iku","Nama","Gebbo","Mor'zahi","Vashnik","Sszorak","Vexhul","Ithraz","Twin Fangs","Entombed Sentinels","Lost Explorers","Adderis","Aspix","Merektha","Galvazzt","Mchimba","Dazar","Melidrussa","Kokia","Kyrakka","Erkhart","Taz'Rah","Atroxus","Charonus","Hoardmonger","Nalorakk","Kystia","Zaen","Xathuux","Lithiel","Ruia","Ziekket","Zul'jan","Muro'jin","Nekraxx","Vordaza","Rak'tul","Garfrost","Tyrannus","Ranji","Araknath","Rukhran","Viryx","Seranel","Gemellus","Degentrius","Kasreth","Nysarra","Lothraxion","Zuraal","Saprish","Nezhar","L'ura","Emberdawn","Kroluk"];
+  entities.sort((a,b)=>b.length-a.length);
+  entities.forEach(ent=>{ const re=new RegExp('\\b'+escapeReg(ent)+'\\b','gi'); h=h.replace(re, (m)=>{ if(m.startsWith('<')) return m; return `<span class="entity">${m}</span>`; }); });
+  h=h.replace(/\btanks\b/gi,'<span class="role role-tank">tanks</span>'); h=h.replace(/\btank\b/gi,'<span class="role role-tank">tank</span>'); h=h.replace(/\bhealers\b/gi,'<span class="role role-healer">healers</span>'); h=h.replace(/\bhealer\b/gi,'<span class="role role-healer">healer</span>'); h=h.replace(/\bdps\b/gi,'<span class="role role-dps">dps</span>');
+  const actions=["Soak as group","Drop puddle at edge","Touch exactly 1 partner","Pair greens to 4","Jump mushroom","Drop puddles","Group soak","Spread out","Loosely spread","Stack","Soak","Dodge","Interrupt","Dispel","Kite","Taunt swap","Drop puddle","Walk it out","Swap","Soak orbs"]; actions.sort((a,b)=>b.length-a.length); actions.forEach(act=>{ const re=new RegExp('\\b'+escapeReg(act)+'\\b','gi'); h=h.replace(re, m=>`<span class="action">${m}</span>`); });
+  const spells=["Possession Barrage","Hollowing Strikes","Gravebound Advance","Soulcoil Rite","Ritual Burn","Soulcoil Ignition","Anguished Echoes","Soul Transfer","Hungering Pyre","Slithering Flame","Vessel of Awakening","Uncoiling","Entwined Step","Toxic Droplets","Noxious Blast","Venom Coagulation","Living Venom","Empowering Slam","Unstable Miasma","Clinging Murk","Blood Venom","Bloodvenom Injection","Vitriolic Stasis","Helical Toxins","Cultivated Burst","Shredding Shards","Steady Strikes","United Defense","Relic Rupture","Disgusting Fish","Final Ascension","Fishy Feedback","Mighty Thud","Frostfire Volley","Elemental Explosion","Explosive Surprise","Blast Wave","Bouncy Mushroom","Dripping Fangs","Malignant Burst","Hardened Venom","Blood Clotting","Umbral Ejection","Catalytic Bile","Plague Froth","Plague Wave","Toxic Vapor","Siphoning Infection","Stygian Burst","Stygian Infection","Exploding Infection","Apex Predator","Venomous Surge","Viscous Cyst","Caustic Claws","Raging Crosswinds","Caustic Deluge","Envenomed","Venomous Emergence","Corrosive Spit","Coiling Ichor","Stone Breaker","Stir Depths","Concentrated Spittle","Clotted Bolt","Vile Flood","Sanguine Storm","Ravenous Feast","Noxious Slick","Congealed Gore","Uncoiled Wrath","Eternal Venom","Cremation","Ula'tek's Dominance","Ula'tek's Presence","Ravage","Mutilate","Tempest","Imbibe","Dig In","Feasted"]; spells.sort((a,b)=>b.length-a.length); const spellPattern = spells.map(escapeReg).join('|'); const spellRe = new RegExp('('+spellPattern+')','gi'); h = h.replace(spellRe, (m)=>{ const key = spells.find(k=>k.toLowerCase()===m.toLowerCase()) || m; const tip = SPELL_TIPS[key]||SPELL_TIPS[m]||""; const tt = tip?` data-tooltip="${escapeAttr(tip)}" tabindex="0" aria-describedby="spellTooltip"`:""; return `<span class="spell"${tt}>${m}</span>`; }); return h;
+}
+function escapeReg(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+
+function renderDungeonContent(){
+  const toName=selectedDungeon||DUNGEON_ORDER[0]; const d=DUNGEONS[toName]||DUNGEONS[Object.keys(DUNGEONS)[0]]; const finalName=Object.keys(DUNGEONS).find(k=>k===toName)||toName;
+  qs('#dungeonTitle').className=''; qs('#dungeonTitle').textContent=finalName;
+  qs('#headerMeta').innerHTML=`<span class="pill">Season ${SEASON_2.includes(finalName)?'2':'1'} • ${d.bosses.length} bosses</span> <span class="pill"><kbd>/</kbd> to search • <kbd>Esc</kbd> closes image</span>`;
+  const __notice2=qs('#notice'); if(__notice2){ __notice2.style.display='flex'; __notice2.removeAttribute('aria-hidden'); } qs('#noticeTitle').textContent='How to use:'; qs('#noticeText').textContent=' pick a dungeon left, then skim boss cards. Each tip has mechanic text and — when available — inline reference screenshot. Click any image to zoom.';
+  const grid=qs('#bossGrid'); const q=query.toLowerCase().trim(); let bosses=d.bosses; if(q){ bosses=bosses.map(b=>{ const bossMatch=b.name.toLowerCase().includes(q); const tips=b.tips.filter(t=>!q||t.text.toLowerCase().includes(q)||bossMatch); if(bossMatch||tips.length) return {...b,tips:tips.length?tips:b.tips,_highlight:bossMatch}; return null }).filter(Boolean); if(!bosses.length){grid.innerHTML=`<div class="no-results">No tips in <b>${escapeHtml(finalName)}</b> match “${escapeHtml(query)}”. Try clearing search or pick another dungeon.</div>`; return} } grid.innerHTML=bosses.map((boss,bi)=>{ const filteredTips=boss.tips; return `<div class="boss-card" id="boss-${slug(boss.name)}"><div class="boss-head"><h3><span class="boss-icon">${bi+1}</span>${escapeHtml(boss.name)}</h3><span class="mini">${filteredTips.length} mechanics • ${boss.tips.length===filteredTips.length?'all':'filtered'}</span></div><div class="tips">${filteredTips.map((t,i)=>tipHtml(t,i,boss.name)).join('')}</div></div>` }).join(''); grid.querySelectorAll('.tip-media img').forEach(img=>{img.addEventListener('click',()=>openLightbox(img.src,img.alt))});
+}
+
+function renderMechItem(it){
+  if(!it) return ""; if(typeof it==="string"){ return `<li class="mech-item"><div class="mech-lead">${enrichText(it)}</div></li>`; } const iconFor=(()=>{ const key=(it.lead||"").toLowerCase(); if(key.includes("toxic")||key.includes("droplets")) return RAID_ICONS["Entombed Sentinels"]; if(key.includes("mighty")||key.includes("thud")) return "assets/raid/lost-mighty-thud.jpg"; if(key.includes("frostfire")) return "assets/raid/lost-frostfire.jpg"; if(key.includes("bomb")||key.includes("explosive")) return "assets/raid/lost-bomb-mushroom.jpg"; if(key.includes("cyst")||key.includes("surge")) return "assets/raid/sszorak-cysts.jpg"; if(key.includes("crosswind")) return "assets/raid/sszorak-crosswinds.jpg"; if(key.includes("mutilate")) return "assets/raid/sszorak-mutilate.jpg"; if(key.includes("deluge")||key.includes("glob")) return "assets/raid/fangs-globules.jpg"; if(key.includes("flood")) return "assets/raid/fangs-flood.jpg"; if(key.includes("spit")||key.includes("emergence")) return "assets/raid/fangs-spit.jpg"; if(key.includes("ichor")) return "assets/raid/fangs-ichor.jpg"; return null; })(); const ico=iconFor?`<img class="mech-ico" src="${escapeAttr(iconFor)}" alt="" loading="lazy" onerror="this.style.display='none'"/>`:""; const subs=(it.subs||[]).map(s=>`<li>${enrichText(s)}</li>`).join(''); return `<li class="mech-item"><div class="mech-lead">${ico}<strong>${enrichText(it.lead)}</strong></div>${subs?`<ul class="mech-subs">${subs}</ul>`:''}</li>`;
+}
+
+function renderRaidContent(){
+  const realName=selectedRaid; const data=RAID_DATA[realName]; if(!data){ qs('#bossGrid').innerHTML=`<div class="no-results">Raid boss not found: ${escapeHtml(realName||'')}</div>`; return; }
+  qs('#dungeonTitle').className='raid-title'; qs('#dungeonTitle').textContent=realName;
+  qs('#headerMeta').innerHTML=`<span class="pill venom">Boss ${data.bossNum} / 6 • Season 2 Raid</span> <span class="pill">2/4/14 • Heroic summaries</span> <span class="pill"><kbd>click</kbd> images to zoom</span>`;
+  const __notice=qs('#notice'); if(__notice){ __notice.style.display='none'; __notice.setAttribute('aria-hidden','true'); } const q=query.toLowerCase().trim();
+  let html=`<div class="boss-card"><div class="boss-head raid-head"><h3><span class="boss-icon raid">${data.bossNum}</span>${escapeHtml(realName)}<span style="margin-left:10px;font-size:12px;color:var(--muted);font-weight:500">— ${escapeHtml(data.short)}</span></h3><span class="mini">TL;DR + Setup + Strat</span></div><div class="raid-body">`;
+  html+=`<div class="tldr venom-tldr"><strong>TL;DR:</strong> ${escapeHtml(data.tldr)}</div>`; if(TANK_SWAP[realName]){ html+=`<div class="tank-box"><div class="tank-box-head"><span class="tb-icon">🛡️</span> Tank Swap / Taunt</div>${TANK_SWAP[realName]}</div>`; } html+=`<div class="setup-line"><span class="pill venom">${escapeHtml(data.setup)}</span>${data.bossNum===1?`<span class="pill">Tower-defense • 100 energy enrage</span>`:''}${data.bossNum===2?`<span class="pill">40y DR • Even HP</span>`:''}${data.bossNum===6?`<span class="pill">Eternal Venom 10 = death</span>`:''}</div>`;
+  const section=(title,items)=>{ if(!items||!items.length) return ""; if(q && !JSON.stringify(items).toLowerCase().includes(q) && !title.toLowerCase().includes(q)) return ""; const inner=Array.isArray(items)?items.map(it=>renderMechItem(it)).join(''):`<li class="mech-item"><div class="mech-lead">${enrichText(items)}</div></li>`; return `<div class="strat"><h4 class="raid-h">${escapeHtml(title)}</h4><ul>${inner}</ul><div class="mech-divider"></div></div>`; };
+  if(data.strategy) html+=section("Core — Phase 1 loop",data.strategy); if(data.green) html+=section("Green Golem (Breath)",data.green); if(data.red) html+=section("Red Golem (Blood)",data.red); if(data.intermission) html+=section(data.bossNum===1?"Intermission — 50% cleanup":"Intermission — Energy 100",data.intermission); if(data.p2) html+=section("Phase 2 — Burn",data.p2); if(data.tanks) html+=section("Tanks",[data.tanks]); if(data.boxes) html+=section("Box / Fish Economy",[data.boxes]); if(data.feed) html+=section("Feed Order",[data.feed]); if(data.ultimates) html+=section("Ultimates",data.ultimates); if(data.enrage) html+=section("Enrage / Kill Together",[data.enrage]); if(data.rotation) html+=section("Rotation",data.rotation); if(data.adds) html+=section("Add Control",data.adds); if(data.infections) html+=section("Infections (telegraphed by Fountain)",data.infections); if(data.passive) html+=section("Passive Checklist",data.passive); if(data.apex) html+=section("Apex Predator",data.apex); if(data.surge) html+=section("Venomous Surge + Cysts",data.surge); if(data.crosswinds) html+=section("Raging Crosswinds",data.crosswinds); if(data.core) html+=section("Core Rotation",data.core); if(data.feast) html+=section("Ravenous Feast — Venom Refund",data.feast); if(data.submerge) html+=section("Submerge 100 — Combined Assault",data.submerge);
+  if(data.images && data.images.length){ const matches = q? data.images.filter(img=>img.cap.toLowerCase().includes(q)): data.images; if(matches.length){ html+=`<div class="strat"><h4 class="raid-h">Maps & Positions — click to zoom</h4><div class="img-grid">`; matches.forEach(img=>{ html+=`<div class="img-card"><img loading="lazy" src="${escapeAttr(img.src)}" alt="${escapeAttr(img.cap)}" onerror="this.parentElement.style.display='none'"/><div class="cap">${escapeHtml(img.cap)}</div></div>`; }); html+=`</div></div>`; } } html+=`</div></div>`; qs('#bossGrid').innerHTML=html; qs('#bossGrid').querySelectorAll('.img-card img').forEach(im=>im.addEventListener('click',()=>openLightbox(im.src,im.alt)));
+}
+
+function getDungeonNav(){ const idx=DUNGEON_ORDER.indexOf(selectedDungeon); const prev=idx>0?DUNGEON_ORDER[idx-1]:null; const next=idx>=0&&idx<DUNGEON_ORDER.length-1?DUNGEON_ORDER[idx+1]:null; return {idx,prev,next}; }
+function getRaidNav(){ const raw=RAID_ORDER.indexOf(selectedRaid); const idx=raw>=0?raw:0; const prev=idx>0?RAID_ORDER[idx-1]:null; const next=idx>=0&&idx<RAID_ORDER.length-1?RAID_ORDER[idx+1]:null; return {idx,prev,next}; }
+
+function renderPrevNext(){
+  const top=qs('#topPrevNext'); if(!top) return; let prev=null,next=null,isRaid=mode==='raid'; if(mode==="dungeon"){ const nav=getDungeonNav(); prev=nav.prev; next=nav.next; } else { const nav=getRaidNav(); prev=nav.prev; next=nav.next; }
+  const mkBtn=(label,size,dir)=>{ if(!label){return `<button class="pn-btn ${size} ${isRaid?'venom':'gold'} disabled" disabled aria-disabled="true"><span class="pn-hint">${dir==='prev'?'Prev':'Next'}</span><span class="pn-label">—</span></button>`} const arrow=dir==='prev'?'←':'→'; const txt=dir==='prev'?`${arrow} ${label}`:`${label} ${arrow}`; return `<button class="pn-btn ${size} ${isRaid?'venom':'gold'}" data-go="${escapeAttr(label)}" data-dir="${dir}"><span class="pn-hint">${dir==='prev'?'Prev':'Next'}</span><span class="pn-label">${escapeHtml(txt)}</span></button>`; }; const mkHidden=()=>`<span style="opacity:.22;font-size:12px;color:var(--muted2)">— end —</span>`; if(mode==="dungeon"){ const {prev:pr,next:nx}=getDungeonNav(); top.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex:1;justify-content:flex-start">${pr?mkBtn(pr,'small','prev'):mkHidden()}</div><div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;flex:1">${nx?mkBtn(nx,'small','next'):mkHidden()}</div>`; } else { const {prev:pr,next:nx}=getRaidNav(); top.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex:1;justify-content:flex-start">${pr?mkBtn(pr,'small','prev'):mkHidden()}</div><div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;flex:1">${nx?mkBtn(nx,'small','next'):mkHidden()}</div>`; } top.querySelectorAll('[data-go]').forEach(btn=>{ btn.addEventListener('click',()=>{ const dest=btn.getAttribute('data-go'); if(mode==="dungeon"){ selectedDungeon=dest; mode='dungeon'; try{localStorage.setItem('midnight:dungeon',dest); localStorage.setItem('midnight:mode','dungeon');}catch(e){} render(); }else{ selectedRaid=dest; mode='raid'; try{localStorage.setItem('midnight:raid',dest); localStorage.setItem('midnight:mode','raid');}catch(e){} render(); } const g=qs('#bossGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'}); }); });
+}
+
+function render(){
+  buildSidebar(); if(mode==="dungeon") renderDungeonContent(); else renderRaidContent(); renderPrevNext();
+}
+
+function escapeHtml(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function escapeAttr(s){return (s||'').replace(/"/g,'&quot;')}
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function openLightbox(src,alt){const lb=qs('#lightbox'); const img=qs('#lbImg'); img.src=src; img.alt=alt||'Screenshot'; lb.classList.add('open'); lb.setAttribute('aria-hidden','false')}
+function closeLightbox(){const lb=qs('#lightbox'); lb.classList.remove('open'); lb.setAttribute('aria-hidden','true')}
+
+qs('#q').addEventListener('input',(e)=>{query=e.target.value; qs('#clearQ').classList.toggle('show',!!query); buildSidebar(); if(mode==="dungeon") renderDungeonContent(); else renderRaidContent(); renderPrevNext();});
+qs('#clearQ').addEventListener('click',()=>{query=''; qs('#q').value=''; qs('#clearQ').classList.remove('show'); buildSidebar(); if(mode==="dungeon") renderDungeonContent(); else renderRaidContent(); renderPrevNext(); qs('#q').focus()});
+qs('#lbClose').addEventListener('click',closeLightbox); qs('#lightbox').addEventListener('click',(e)=>{if(e.target.id==='lightbox') closeLightbox()});
+qs('#swDungeon').addEventListener('click',()=>{mode="dungeon"; try{localStorage.setItem('midnight:mode','dungeon');}catch(e){} render()}); qs('#swRaid').addEventListener('click',()=>{mode="raid"; try{localStorage.setItem('midnight:mode','raid');}catch(e){} render()});
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ closeLightbox(); return; } if(e.key==='/'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='SELECT'){e.preventDefault(); qs('#q').focus(); return;} if((e.key==='ArrowLeft'||e.key==='ArrowRight') && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){ if(mode==="dungeon"){ const {prev,next}=getDungeonNav(); if(e.key==='ArrowLeft'&&prev){ e.preventDefault(); selectedDungeon=prev; try{localStorage.setItem('midnight:dungeon',prev);}catch(e){} render(); } if(e.key==='ArrowRight'&&next){ e.preventDefault(); selectedDungeon=next; try{localStorage.setItem('midnight:dungeon',next);}catch(e){} render(); } }else{ const {prev,next}=getRaidNav(); if(e.key==='ArrowLeft'&&prev){ e.preventDefault(); selectedRaid=prev; try{localStorage.setItem('midnight:raid',prev);}catch(e){} render(); } if(e.key==='ArrowRight'&&next){ e.preventDefault(); selectedRaid=next; try{localStorage.setItem('midnight:raid',next);}catch(e){} render(); } } } });
+
+// Initial render – no hash, pure internal
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', ()=>{ render(); }, {once:true});
+}else{
+  render();
+}
+
+// ---- Spell tooltips - desktop only ----
+(function(){
+  const tipEl=qs('#spellTooltip'); if(!tipEl) return; let activeSpell=null; let hideTimer=null;
+  const isDesktopTooltipEnabled=()=>{ if(window.innerWidth<=768) return false; try{ if(window.matchMedia){ if(!window.matchMedia('(hover: hover)').matches) return false; if(!window.matchMedia('(pointer: fine)').matches) return false; } }catch(e){} return true; };
+  const curModeIsRaid=()=> mode==='raid';
+  const placeTooltip=(spellEl)=>{ if(!isDesktopTooltipEnabled()) return; const text=spellEl.getAttribute('data-tooltip'); if(!text) return; tipEl.textContent=text; tipEl.setAttribute('aria-hidden','false'); tipEl.style.left='0px'; tipEl.style.top='0px'; tipEl.classList.add('show'); const rect=spellEl.getBoundingClientRect(); const tipRect=tipEl.getBoundingClientRect(); const vpW=window.innerWidth; const vpH=window.innerHeight; const gap=10; let top=rect.top - tipRect.height - gap; let left=rect.left + rect.width/2 - tipRect.width/2; let flip=false; if(top < 8){ top=rect.bottom + gap; flip=true; } const pad=8; if(left < pad) left=pad; if(left + tipRect.width > vpW - pad) left=vpW - tipRect.width - pad; if(top + tipRect.height > vpH - pad){ if(flip){ const altTop=rect.top - tipRect.height - gap; if(altTop>=pad) top=altTop, flip=false; else top=vpH - tipRect.height - pad; } else top=vpH - tipRect.height - pad; } if(top < pad) top=pad; tipEl.style.left=left+'px'; tipEl.style.top=top+'px'; tipEl.classList.toggle('flip-above', flip); };
+  const hideTooltip=()=>{ tipEl.classList.remove('show'); tipEl.setAttribute('aria-hidden','true'); activeSpell=null; }; const scheduleHide=()=>{ clearTimeout(hideTimer); hideTimer=setTimeout(hideTooltip, 80); };
+  document.addEventListener('mouseover',(e)=>{ if(!isDesktopTooltipEnabled()) return; const sp=e.target.closest && e.target.closest('.spell[data-tooltip]'); if(!sp) return; if(!curModeIsRaid()) return; clearTimeout(hideTimer); activeSpell=sp; placeTooltip(sp); });
+  document.addEventListener('mouseout',(e)=>{ const sp=e.target.closest && e.target.closest('.spell[data-tooltip]'); if(!sp) return; const rel=e.relatedTarget; if(rel && rel.closest && rel.closest('#spellTooltip')) return; if(sp===activeSpell) scheduleHide(); });
+  tipEl.addEventListener('mouseenter',()=>{ clearTimeout(hideTimer); }); tipEl.addEventListener('mouseleave',scheduleHide);
+  document.addEventListener('focusin',(e)=>{ if(!isDesktopTooltipEnabled()) return; const sp=e.target.closest && e.target.closest('.spell[data-tooltip]'); if(!sp) return; if(!curModeIsRaid()) return; activeSpell=sp; placeTooltip(sp); });
+  document.addEventListener('focusout',(e)=>{ const sp=e.target.closest && e.target.closest('.spell[data-tooltip]'); if(sp) scheduleHide(); });
+  window.addEventListener('scroll', hideTooltip, {passive:true}); window.addEventListener('resize', hideTooltip); document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') hideTooltip(); });
+  const bg=qs('#bossGrid'); if(bg && window.MutationObserver){ const obs=new MutationObserver(()=>hideTooltip()); obs.observe(bg,{childList:true, subtree:false}); }
+})();
+
+</script>
+</body>
+</html>
