@@ -28,7 +28,7 @@
     --shadow:0 2px 12px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
-  html{-webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scrollbar-color:var(--line2) var(--bg)}
+  html{-webkit-font-smoothing:antialiased; scrollbar-color:var(--line2) var(--bg)}
   body{
     margin:0; background:var(--bg); color:var(--ink);
     font-family: ui-sans-system, -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "SF Pro Text", Roboto, Helvetica, Arial, sans-serif;
@@ -47,7 +47,7 @@
 
   .side{
     position:sticky; top:0; align-self:start; height:100dvh; overflow:auto; contain:paint;
-    background:linear-gradient(180deg,var(--bg2) 0%, var(--bg) 100%);
+    background:var(--bg2);
     border-right:1px solid var(--line);
     display:flex; flex-direction:column;
   }
@@ -56,15 +56,15 @@
   .brand{display:flex; align-items:center; gap:12px; margin-bottom:14px}
   .brand-mark{
     width:36px; height:36px; border-radius:10px; display:grid; place-items:center;
-    background:linear-gradient(135deg,var(--gold),#ff8a2a); color:#111; font-weight:800;
+    background:var(--gold); color:#111; font-weight:800;
     font-family: ui-serif, Georgia, serif; font-size:18px; letter-spacing:-.02em;
-    box-shadow:0 4px 18px rgba(245,197,24,.35);
+
   }
   .brand h1{margin:0; font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight:700; letter-spacing:-.02em; font-size:19px; line-height:.95; color:var(--ink)}
   .brand h1 span{display:block; color:var(--gold); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; margin-top:3px; font-family: ui-sans-system, system-ui, sans-serif; font-weight:600}
   .switch{display:flex; gap:6px; padding:6px; background:var(--panel); border:1px solid var(--line); border-radius:12px; margin-bottom:12px}
   .switch-btn{flex:1; padding:9px 8px; border-radius:9px; border:1px solid transparent; background:transparent; color:var(--muted); font-weight:600; font-size:12.8px; cursor:pointer; transition:.14s; letter-spacing:.02em}
-  .switch-btn.active{background:linear-gradient(90deg,var(--gold),#ffb73a); color:#101010; border-color:rgba(255,255,255,.12); box-shadow:0 2px 12px rgba(245,197,24,.35)}
+  .switch-btn.active{background:var(--gold); color:#101010; border-color:rgba(255,255,255,.12)}
   .switch-btn:hover:not(.active){background:var(--panel2); color:var(--ink); border-color:var(--line2)}
   .search-wrap{position:relative}
   .search-wrap input{
@@ -73,7 +73,7 @@
     font-size:13.2px; transition:.15s;
   }
   .search-wrap input::placeholder{color:var(--muted2)}
-  .search-wrap input:focus{border-color:var(--line2); background:var(--panel2); box-shadow:0 0 0 3px var(--gold-dim)}
+  .search-wrap input:focus{border-color:var(--line2); background:var(--panel2)}
   .search-wrap svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--muted2)}
   .clear-btn{position:absolute; right:8px; top:50%; transform:translateY(-50%); background:transparent; border:0; color:var(--muted2); cursor:pointer; padding:4px; border-radius:6px; display:none}
   .clear-btn.show{display:block}
@@ -83,8 +83,8 @@
   .season-head.raid-head{color:var(--accent-venom); border-top-color:rgba(110,132,255,.15)}
   .dungeon-btn{text-align:left; padding:11px 12px; border-radius:10px; border:1px solid transparent; background:transparent; color:var(--muted); cursor:pointer; transition:.14s; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13.6px; font-weight:500}
   .dungeon-btn:hover{background:var(--panel); color:var(--ink); border-color:var(--line)}
-  .dungeon-btn.active{background:linear-gradient(90deg,var(--gold-dim),rgba(245,197,24,.06)); color:var(--ink); border-color:rgba(245,197,24,.28); box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
-  .dungeon-btn.raid-active{background:linear-gradient(90deg,rgba(110,132,255,.16),rgba(110,132,255,.05)); border-color:rgba(110,132,255,.35); color:var(--ink)}
+  .dungeon-btn.active{background:rgba(245,197,24,.10); color:var(--ink); border-color:rgba(245,197,24,.28)}
+  .dungeon-btn.raid-active{background:rgba(110,132,255,.12); border-color:rgba(110,132,255,.35); color:var(--ink)}
   .dungeon-btn.active .count{background:var(--gold); color:#111}
   .dungeon-btn.raid-active .count{background:var(--accent-venom); color:white}
   .dungeon-btn .name{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
@@ -100,12 +100,12 @@
   .pill{display:inline-flex; align-items:center; gap:7px; padding:7px 11px; border-radius:999px; background:var(--panel); border:1px solid var(--line); color:var(--muted); font-size:12.1px; font-weight:600; flex-wrap:wrap}
   .pill.gold{border-color:rgba(245,197,24,.28); background:rgba(245,197,24,.08); color:var(--gold2)}
   .pill.venom{border-color:rgba(110,132,255,.28); background:rgba(110,132,255,.10); color:#b9c3ff}
-  .notice{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:14px; padding:14px 16px; color:var(--muted); font-size:13px; display:flex; gap:12px; margin-bottom:22px}
+  .notice{background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:14px 16px; color:var(--muted); font-size:13px; display:flex; gap:12px; margin-bottom:22px}
   .notice strong{color:var(--ink)}
   .boss-grid{display:grid; gap:18px}
-  .boss-card{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
-  .boss-head{padding:18px 20px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); background:linear-gradient(90deg,rgba(245,197,24,.08),transparent 60%)}
-  .boss-head.raid-head{background:linear-gradient(90deg,rgba(110,132,255,.14),transparent 70%)}
+  .boss-card{background:var(--panel2); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .boss-head{padding:18px 20px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); background:var(--panel2)}
+  .boss-head.raid-head{background:var(--panel2)}
   .boss-head h3{margin:0; font-family: ui-serif, Georgia, serif; font-size:18.5px; letter-spacing:-.01em; display:flex; align-items:center; gap:10px}
   .boss-icon{width:28px; height:28px; border-radius:9px; display:grid; place-items:center; background:var(--panel3); border:1px solid var(--line); font-size:13px; color:var(--gold)}
   .boss-icon.raid{color:var(--accent-venom)}
@@ -125,8 +125,8 @@
 
   /* RAID specifics */
   .raid-body{padding:16px 18px 18px}
-  .tldr{background:linear-gradient(90deg,rgba(245,197,24,.12),rgba(245,197,24,.02)); border-left:3px solid var(--gold); border-radius:10px; padding:12px 14px; font-size:13.8px; line-height:1.55; color:var(--ink); margin-bottom:14px}
-  .tldr.venom-tldr{background:linear-gradient(90deg,rgba(110,132,255,.15),rgba(110,132,255,.02)); border-left-color:var(--accent-venom)}
+  .tldr{background:rgba(245,197,24,.06); border-left:3px solid var(--gold); border-radius:10px; padding:12px 14px; font-size:13.8px; line-height:1.55; color:var(--ink); margin-bottom:14px}
+  .tldr.venom-tldr{background:rgba(110,132,255,.08); border-left-color:var(--accent-venom)}
   .tldr strong{color:var(--gold); margin-right:6px}
   .tldr.venom-tldr strong{color:#b9c3ff}
   .setup-line{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
@@ -150,7 +150,7 @@
   }
   .lightbox{position:fixed; inset:0; z-index:60; display:none; place-items:center; padding:20px; background:rgba(5,6,10,.86);}
   .lightbox.open{display:grid}
-  .lightbox img{max-width:min(1100px,92vw); max-height:86vh; border-radius:14px; border:1px solid rgba(255,255,255,.12); box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .lightbox img{max-width:min(1100px,92vw); max-height:86vh; border-radius:14px; border:1px solid rgba(255,255,255,.12)}
   .lightbox .close{position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:99px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:white; cursor:pointer; display:grid; place-items:center}
   kbd{font-family:ui-monospace,monospace; font-size:11px; background:var(--panel3); border:1px solid var(--line); border-bottom-width:2px; padding:2px 6px; border-radius:6px; color:var(--muted)}
 
@@ -158,10 +158,9 @@
   .spell{
     display:inline-flex; align-items:center; gap:4px;
     padding:2px 8px; border-radius:999px;
-    background:linear-gradient(180deg, rgba(122, 236, 236, .18), rgba(122, 236, 236, .08));
+    background:rgba(122,236,236,.12);
     border:1px solid rgba(122,236,236,.36);
     color:#8ef6f6; font-weight:700; font-size:12.4px; letter-spacing:.01em;
-    box-shadow:0 0 0 1px rgba(122,236,236,.06) inset;
     white-space:nowrap;
   }
   .entity{
@@ -186,24 +185,22 @@
   strong.action{color:#ffe68f; font-weight:800}
   .dungeon-btn .raid-ico{
     width:32px; height:32px; border-radius:9px; object-fit:cover; flex:0 0 32px;
-    border:1px solid rgba(255,255,255,.14); background:radial-gradient(120% 120% at 30% 20%, var(--panel3), var(--panel));
-    box-shadow:0 2px 10px rgba(0,0,0,.36), 0 0 0 1px rgba(0,0,0,.18) inset;
+    border:1px solid rgba(255,255,255,.14); background:var(--panel3);
     image-rendering:-webkit-optimize-contrast;
   }
   .dungeon-btn.raid-active .raid-ico{
     border-color:rgba(110,132,255,.42);
-    box-shadow:0 2px 12px rgba(110,132,255,.22), 0 0 0 1px rgba(110,132,255,.18) inset;
   }
   .tank-box{
     margin:12px 0 14px; padding:12px 12px 10px 12px;
     border-radius:12px;
     border:1.5px solid #f0a500; border-left-width:4px;
-    background:linear-gradient(180deg, rgba(240,165,0,.12), rgba(240,165,0,.04));
-    box-shadow:0 6px 24px rgba(240,165,0,.12), inset 0 1px 0 rgba(255,255,255,.05);
+    background:rgba(240,165,0,.08);
+    box-shadow:none;
     color:var(--ink);
   }
   .tank-box-head{display:flex; align-items:center; gap:10px; margin-bottom:8px; font-weight:800; letter-spacing:.02em; font-size:13.5px; color:#ffd27a}
-  .tank-box-head .tb-icon{width:26px; height:26px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(135deg,#ffb84d,#ffd27a); color:#1a1200; font-size:14px; font-weight:900; border:1px solid rgba(255,255,255,.18)}
+  .tank-box-head .tb-icon{width:26px; height:26px; border-radius:8px; display:grid; place-items:center; background:var(--gold); color:#1a1200; font-size:14px; font-weight:900; border:1px solid rgba(255,255,255,.18)}
   .tank-box ul{margin:6px 0 0 18px; padding:0; font-size:13.2px; line-height:1.52}
   .tank-box li{margin:5px 0}
   .tank-box li::marker{color:#ffb84d}
@@ -224,8 +221,8 @@
   .pn-btn[disabled], .pn-btn.disabled{
     opacity:.32; pointer-events:none; border-style:dashed;
   }
-  .pn-btn.venom:hover{border-color:rgba(110,132,255,.45); box-shadow:0 0 0 3px rgba(110,132,255,.12)}
-  .pn-btn.gold:hover{border-color:rgba(245,197,24,.42); box-shadow:0 0 0 3px var(--gold-dim)}
+  .pn-btn.venom:hover{border-color:rgba(110,132,255,.45)}
+  .pn-btn.gold:hover{border-color:rgba(245,197,24,.42)}
   .pn-label{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:22ch}
   .pn-hint{font-size:10.5px; color:var(--muted2); letter-spacing:.06em; text-transform:uppercase; font-weight:700; margin-right:4px}
 
@@ -249,7 +246,6 @@
     background:#1c2236; color:#dbe3ff; border:1px solid rgba(110,132,255,.35);
     border-left:2px solid var(--accent-venom);
     padding:8px 14px; border-radius:10px; font-size:12.5px; font-weight:600;
-    box-shadow:0 8px 24px rgba(0,0,0,.45);
     opacity:0; pointer-events:none; transition: opacity .18s, transform .18s; z-index:99999;
   }
   #copyFeedback.show{ opacity:1; transform:translateX(-50%) translateY(0); }
@@ -258,7 +254,7 @@
   .strat ul{list-style:none; padding-left:0}
   .strat ul li.mech-item{
     padding:11px 12px; border:1px solid rgba(255,255,255,.06); border-radius:11px;
-    background:linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.005));
+    background:var(--panel);
     margin:10px 0;
   }
   .strat ul li.mech-item + li.mech-item{margin-top:12px}
@@ -267,7 +263,7 @@
   .mech-subs{margin:6px 0 0 0; padding-left:16px !important; list-style:disc !important}
   .mech-subs li{padding:3px 0; margin:3px 0 !important; border:0 !important; background:transparent !important; font-size:12.9px; color:var(--muted); line-height:1.45}
   .mech-subs li::marker{color:var(--muted2); font-size:11px}
-  .mech-divider{height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:18px 0 8px; opacity:.8}
+  .mech-divider{height:1px; background:var(--line); margin:18px 0 8px; opacity:.6}
   .mech-ico{width:22px; height:22px; border-radius:7px; object-fit:cover; border:1px solid var(--line); vertical-align:middle; margin-right:6px; background:var(--panel3); display:inline-block}
 
   /* Spell tooltips - desktop only */
@@ -277,7 +273,7 @@
   @media (hover: hover) and (pointer: fine){
     .spell{cursor:help}
     .spell:hover,.spell:focus{opacity:.92; outline:none}
-    .spell:focus-visible{box-shadow:0 0 0 2px rgba(122,236,236,.5), 0 0 0 4px rgba(122,236,236,.18)}
+    .spell:focus-visible{outline:2px solid rgba(122,236,236,.5); outline-offset:2px}
   }
   #spellTooltip{
     position:fixed;
@@ -285,7 +281,7 @@
     max-width:320px;
     width:max-content;
     max-width:min(320px, calc(100vw - 24px));
-    background:linear-gradient(180deg, #1b1f2e 0%, #141824 100%);
+    background:#1b1f2e;
     color:#e9ecf6;
     border:1px solid rgba(122,236,236,.38);
     border-left:3px solid #7aecec;
@@ -294,7 +290,6 @@
     font-size:12.7px;
     line-height:1.45;
     font-weight:500;
-    box-shadow:0 12px 36px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.06) inset;
     z-index:9999;
     opacity:0;
     transform:translateY(4px) scale(.98);
