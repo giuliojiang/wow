@@ -386,95 +386,95 @@ document.addEventListener('click', (e)=>{
 const IMAGE_MAP={"flp6.png":"rlp6.png"};
 const DUNGEONS={
   "Temple of Sethraliss":{bosses:[
-    {name:"Adderis and Aspix",tips:[{text:"1 boss has immunity. Always target the one that takes damage"},{image:"tos1.png",text:"2 players targeted, drop puddles. Drop them away. Center is a good place"},{image:"tos2.png",text:"Line attacks with knockbacks"},{image:"tos4.png",text:"Group soak after knockback"}]},
-    {name:"Merektha",tips:[{text:"Alternates between boss phase and adds phase"},{image:"tos5.png",text:"Knot of snakes. Group in melee range. 2 targeted players are stunned until snakes CCd. Then lots of snakes spawn"},{image:"tos6.png",text:"2 targeted players start dropping puddles"},{image:"tos7.png",text:"Adds phase. Interrupt cast. Storm puddles spawn. Tank near existing puddles"}]},
+    {name:"Adderis and Aspix",tips:[{text:"1 boss has immunity. Always target the one that takes damage"},{image:"tos1.png",text:"2 players targeted, <span class=\"action\">drop puddles</span>. Drop them away. Center is a good place"},{image:"tos2.png",text:"Line attacks with knockbacks"},{image:"tos4.png",text:"<span class=\"action\">Group <span class=\"action\">soak</span></span> after knockback"}]},
+    {name:"Merektha",tips:[{text:"Alternates between boss phase and adds phase"},{image:"tos5.png",text:"Knot of snakes. Group in melee range. 2 targeted players are stunned until snakes CCd. Then lots of snakes spawn"},{image:"tos6.png",text:"2 targeted players start dropping puddles"},{image:"tos7.png",text:"Adds phase. <span class=\"action\">Interrupt</span> cast. Storm puddles spawn. <span class=\"role role-tank\">Tank</span> near existing puddles"}]},
     {name:"Galvazzt",tips:[{text:"Similar to the Skyreach boss"},{image:"tos8.png",text:"3 beams to be soaked"},{image:"tos9.png",text:"Then boss hits and drops puddle"}]},
-    {name:"Avatar of Sethraliss",tips:[{text:"Trash based fight. Heal boss to win"},{image:"tos10.png",text:"Phase 1. Adds channel healing prevention. Don't heal the boss now."},{image:"tos11.png",text:"Avoid AOE on some mob death"},{image:"tos12.png",text:"3 Soaks. You have 4.5s to soak them or they explode. Soak ASAP. Successful soaks heal the boss"},{image:"tos13.png",text:"Drop puddles away"},{image:"tos14.png",text:"Phase 2. Healer now can heal boss. Adds fixate healer. Healer needs to kite and heal. Each wave you kill heals the boss."}]}
+    {name:"Avatar of Sethraliss",tips:[{text:"Trash based fight. Heal boss to win"},{image:"tos10.png",text:"Phase 1. Adds channel healing prevention. Don't heal the boss now."},{image:"tos11.png",text:"Avoid AOE on some mob death"},{image:"tos12.png",text:"3 Soaks. You have 4.5s to <span class=\"action\">soak</span> them or they explode. <span class=\"action\">Soak</span> ASAP. Successful soaks heal the boss"},{image:"tos13.png",text:"<span class=\"action\">Drop puddles</span> away"},{image:"tos14.png",text:"Phase 2. <span class=\"role role-healer\">Healer</span> now can heal boss. Adds fixate <span class=\"role role-healer\">healer</span>. <span class=\"role role-healer\">Healer</span> needs to <span class=\"action\">kite</span> and heal. Each wave you kill heals the boss."}]}
   ]},
   "King's Rest":{bosses:[
-    {name:"The Golden Serpent",tips:[{image:"kr1.png",text:"2 players targeted. Drop puddles together and near existing ones"},{image:"kr2.png",text:"Puddles turn into mobs trying to reach boss. Kill them before they reach boss"}]},
-    {name:"Mchimba the Embalmer",tips:[{text:"Drain fluids. Healer remove debuff by healing to over 90%"},{image:"kr3.png",text:"2 mummy adds spawn. Tank grab aggro. Cleave under boss"},{text:"Entombed player: spam special action button to shake the tomb, so other players can free"},{image:"kr4.png",text:"Drops large puddle"}]},
-    {name:"Council of Tribes",tips:[{image:"kr5.png",text:"First boss, spinnig axes. Fight this boss in the center"},{image:"kr6.png",text:"Second boss. Group soak. All stay close"},{image:"kr7.png",text:"Third boss spawns totems. Explosive Totem prio. Then Thundering Totem. Then Torrent Totem."}]},
-    {name:"the Shade of Zul Miniboss",tips:[{image:"kr8.png",text:"2 soaks. Tank soaks one. Anyone else soaks the other."},{image:"kr9.png",text:"2 players targeted. Spread out"}]},
-    {name:"Dazar, The First King",tips:[{image:"kr10.png",text:"Dodge falling spears. Tank face boss away from group"},{text:"Focus Reban first"},{image:"kr11.png",text:"Quaking leap. Move away if you are targeted. Moving further reduces damage. Combat drops remove all remaining leaps"}]}
+    {name:"The Golden Serpent",tips:[{image:"kr1.png",text:"2 players targeted. <span class=\"action\">Drop puddles</span> together and near existing ones"},{image:"kr2.png",text:"Puddles turn into mobs trying to reach boss. Kill them before they reach boss"}]},
+    {name:"Mchimba the Embalmer",tips:[{text:"Drain fluids. <span class=\"role role-healer\">Healer</span> remove debuff by healing to over 90%"},{image:"kr3.png",text:"2 mummy adds spawn. <span class=\"role role-tank\">Tank</span> grab aggro. Cleave under boss"},{text:"Entombed player: spam special action button to shake the tomb, so other players can free"},{image:"kr4.png",text:"Drops large puddle"}]},
+    {name:"Council of Tribes",tips:[{image:"kr5.png",text:"First boss, spinnig axes. Fight this boss in the center"},{image:"kr6.png",text:"Second boss. <span class=\"action\">Group <span class=\"action\">soak</span></span>. All stay close"},{image:"kr7.png",text:"Third boss spawns totems. Explosive Totem prio. Then Thundering Totem. Then Torrent Totem."}]},
+    {name:"the Shade of Zul Miniboss",tips:[{image:"kr8.png",text:"2 soaks. <span class=\"role role-tank\">Tank</span> soaks one. Anyone else soaks the other."},{image:"kr9.png",text:"2 players targeted. <span class=\"action\">Spread out</span>"}]},
+    {name:"Dazar, The First King",tips:[{image:"kr10.png",text:"<span class=\"action\">Dodge</span> falling spears. <span class=\"role role-tank\">Tank</span> face boss away from group"},{text:"Focus Reban first"},{image:"kr11.png",text:"Quaking leap. Move away if you are targeted. Moving further reduces damage. Combat drops remove all remaining leaps"}]}
   ]},
   "Ruby Life Pools":{bosses:[
-    {name:"Melidrussa Chillworn",tips:[{text:"Interrupt Frigid Shard. Group should stack"},{image:"rlp1.png",text:"Spawn crystals all close"},{image:"rlp2.png",text:"Player targeted run away from group to spawn the tornado"},{image:"rlp3.png",text:"That player spawns the tornado that pulls everyone in"},{image:"rlp4.png",text:"Adds spawn. Tanks get ready to get aggro. Break boss shield"}]},
-    {name:"Kokia Blazehoof",tips:[{image:"rlp5.png",text:"Targeted player spawns add. Drop new add near existing puddle. They leave big puddle on death"},{text:"Interrupt Blaze volley. Kick late"},{image:"flp6.png",text:"Dodge the boulder. Aim it away"}]},
+    {name:"Melidrussa Chillworn",tips:[{text:"<span class=\"action\">Interrupt</span> Frigid Shard. Group should <span class=\"action\">stack</span>"},{image:"rlp1.png",text:"Spawn crystals all close"},{image:"rlp2.png",text:"Player targeted run away from group to spawn the tornado"},{image:"rlp3.png",text:"That player spawns the tornado that pulls everyone in"},{image:"rlp4.png",text:"Adds spawn. <span class=\"role role-tank\">Tanks</span> get ready to get aggro. Break boss shield"}]},
+    {name:"Kokia Blazehoof",tips:[{image:"rlp5.png",text:"Targeted player spawns add. Drop new add near existing puddle. They leave big puddle on death"},{text:"<span class=\"action\">Interrupt</span> Blaze volley. Kick late"},{image:"flp6.png",text:"<span class=\"action\">Dodge</span> the boulder. Aim it away"}]},
     {name:"Kyrakka and Erkhart",tips:[{image:"rlp7.png",text:"2 players debuffed. Put puddles away. Puddles will move"},{text:"When dragon is on ground, dmg dragon"},{text:"Wind order: NW edge, SW statue, SE entrace, NE statue. That's where to drop the puddles"}]}
   ]},
   "Voidscar Arena":{bosses:[
-    {name:"Taz'Rah",tips:[{image:"vsa1.png",text:"Line attacks that apply dot. Loosely spread. Shades will leave puddles after the attack"},{image:"vsa2.png",text:"Orbs shoot from puddles"}]},
-    {name:"Atroxus",tips:[{image:"vsa3.png",text:"Poison puddles. Dodge"},{image:"vsa4.png",text:"Random target frontal. Dodge. Ranged players don't play too far"},{image:"vsa5.png",text:"Roar spawns add that fixates tank. Tank kites. Dps focus add"}]},
-    {name:"Charonus",tips:[{image:"vsa6.png",text:"3 singularities pull players in. Avoid"},{image:"vsa7.png",text:"Circle around each player. Loosely spread"},{image:"vsa8.png",text:"Orbs fixate random players. Kite to destroy singularities. DPS pre position near a singularity. Tank point boss away from DPS players"}]}
+    {name:"Taz'Rah",tips:[{image:"vsa1.png",text:"Line attacks that apply dot. <span class=\"action\">Loosely spread</span>. Shades will leave puddles after the attack"},{image:"vsa2.png",text:"Orbs shoot from puddles"}]},
+    {name:"Atroxus",tips:[{image:"vsa3.png",text:"Poison puddles. <span class=\"action\">Dodge</span>"},{image:"vsa4.png",text:"Random target frontal. <span class=\"action\">Dodge</span>. Ranged players don't play too far"},{image:"vsa5.png",text:"Roar spawns add that fixates <span class=\"role role-tank\">tank</span>. <span class=\"role role-tank\">Tank</span> kites. <span class=\"role role-dps\">Dps</span> focus add"}]},
+    {name:"Charonus",tips:[{image:"vsa6.png",text:"3 singularities pull players in. Avoid"},{image:"vsa7.png",text:"Circle around each player. <span class=\"action\">Loosely spread</span>"},{image:"vsa8.png",text:"Orbs fixate random players. <span class=\"action\">Kite</span> to destroy singularities. <span class=\"role role-dps\">DPS</span> pre position near a singularity. <span class=\"role role-tank\">Tank</span> point boss away from <span class=\"role role-dps\">DPS</span> players"}]}
   ]},
   "Den of Nalorakk":{bosses:[
-    {name:"Hoardmonger",tips:[{image:"den1.png",text:"At 90, 70, 40% health boss runs to resources pile. Empowers a boss ability. Order: Meat at entrance, bone pile, mushrooms"},{image:"den2.png",text:"AOE with knockback"},{image:"den3.png",text:"Dodge frontal. Leaves spikes"},{image:"den4.png",text:"Mushrooms that explode. SOAK"}]},
-    {name:"Sentinel of Winter",tips:[{text:"Dispel Glacial Torment"},{image:"den5.png",text:"Rotating tornado spawns under players. Stack before spawn"},{image:"den6.png",text:"Stationary adds. Interrupt. Drag boss to them one at a time."},{image:"den7.png",text:"Soak when add dies"},{image:"den8.png",text:"During tempest stay near boss. Constant pushbacks"},{image:"den9.png",text:"Stand on snowpile during pushback"}]},
-    {name:"Nalorakk",tips:[{image:"den10.png",text:"Echoes spawn under 3 players. Drop near existing echoes. Don't get too close to them"},{image:"den11.png",text:"Intercept charging echoes"},{image:"den12.png",text:"Step into the shield. Ends with knockback"},{image:"den13.png",text:"Tank soak, right after shield"}]}
+    {name:"Hoardmonger",tips:[{image:"den1.png",text:"At 90, 70, 40% health boss runs to resources pile. Empowers a boss ability. Order: Meat at entrance, bone pile, mushrooms"},{image:"den2.png",text:"AOE with knockback"},{image:"den3.png",text:"<span class=\"action\">Dodge</span> frontal. Leaves spikes"},{image:"den4.png",text:"Mushrooms that explode. <span class=\"action\">SOAK</span>"}]},
+    {name:"Sentinel of Winter",tips:[{text:"<span class=\"action\">Dispel</span> Glacial Torment"},{image:"den5.png",text:"Rotating tornado spawns under players. <span class=\"action\">Stack</span> before spawn"},{image:"den6.png",text:"Stationary adds. <span class=\"action\">Interrupt</span>. Drag boss to them one at a time."},{image:"den7.png",text:"<span class=\"action\">Soak</span> when add dies"},{image:"den8.png",text:"During tempest stay near boss. Constant pushbacks"},{image:"den9.png",text:"Stand on snowpile during pushback"}]},
+    {name:"Nalorakk",tips:[{image:"den10.png",text:"Echoes spawn under 3 players. Drop near existing echoes. Don't get too close to them"},{image:"den11.png",text:"Intercept charging echoes"},{image:"den12.png",text:"Step into the shield. Ends with knockback"},{image:"den13.png",text:"<span class=\"role role-tank\">Tank</span> <span class=\"action\">soak</span>, right after shield"}]}
   ]},
   "Murder Row":{bosses:[
-    {name:"Kystia Manaheart",tips:[{image:"row1.png",text:"Focus Nibbles down to 20%. Then boss takes double damage."},{text:"Dispel Corroding Spittle"},{image:"row2.png",text:"Dodge frontal. Starts with tank"},{image:"row3.png",text:"Dodge this"},{image:"row4.png",text:"Interrupt or CC mirror images"}]},
+    {name:"Kystia Manaheart",tips:[{image:"row1.png",text:"Focus Nibbles down to 20%. Then boss takes double damage."},{text:"<span class=\"action\">Dispel</span> Corroding Spittle"},{image:"row2.png",text:"<span class=\"action\">Dodge</span> frontal. Starts with <span class=\"role role-tank\">tank</span>"},{image:"row3.png",text:"<span class=\"action\">Dodge</span> this"},{image:"row4.png",text:"<span class=\"action\">Interrupt</span> or CC mirror images"}]},
     {name:"Zaen Bladesorrow",tips:[{image:"row5.png",text:"1 of the barrels is fel infused"},{image:"row6.png",text:"Fire bombs. One player targets the fel infused. Do not hit normal barrels."},{image:"row7.png",text:"Murder in a row. Intercept line with a barrel."}]},
-    {name:"Xathuux the Annihilator",tips:[{image:"row8.png",text:"Tank on edge of arena. Face boss outwards."},{image:"row9.png",text:"Player targeted by axe, run melee. Swap to the add"},{image:"row10.png",text:"Demonic rage. Takes 30% more damage, makes puddles. Use 1/3 of arena per phase"}]},
-    {name:"Lithiel Cinderfury",tips:[{image:"row11.png",text:"First infernal doesn't die. Tank to kite it."},{image:"row12.png",text:"AOE hit + spawns. Get circles close. Use CCs and cleave."},{text:"Kick Chaos Bolt"},{image:"row13.png",text:"Gate and shockwave. Kill adds before shockwave reaches them. Avoid shockwave taking teleport"}]}
+    {name:"Xathuux the Annihilator",tips:[{image:"row8.png",text:"<span class=\"role role-tank\">Tank</span> on edge of arena. Face boss outwards."},{image:"row9.png",text:"Player targeted by axe, run melee. <span class=\"action\">Swap</span> to the add"},{image:"row10.png",text:"Demonic rage. Takes 30% more damage, makes puddles. Use 1/3 of arena per phase"}]},
+    {name:"Lithiel Cinderfury",tips:[{image:"row11.png",text:"First infernal doesn't die. <span class=\"role role-tank\">Tank</span> to <span class=\"action\">kite</span> it."},{image:"row12.png",text:"AOE hit + spawns. Get circles close. Use CCs and cleave."},{text:"Kick Chaos Bolt"},{image:"row13.png",text:"Gate and shockwave. Kill adds before shockwave reaches them. Avoid shockwave taking teleport"}]}
   ]},
   "Blinding Vale":{bosses:[
-    {name:"Lightblossom Trinity",tips:[{image:"vale1.png",text:"Interrupt Kezkitt"},{image:"vale2.png",text:"Dodge line attack through the 3 circles"},{image:"vale3.png",text:"When turned into flowers, soak. Step out of puddle at the end"},{image:"vale4.png",text:"Big circle, move away from group"}]},
-    {name:"Ikuzz",tips:[{image:"vale5.png",text:"Thorns will root you"},{image:"vale6.png",text:"Knockback. Don't get pushed into roots. Roots after 4 seconds. If melee, reach melee range before auto root but don't stack"},{image:"vale7.png",text:"Fixated player leads boss to walk over roots to destroy them"},{image:"vale8.png",text:"Frenzy. Pulses damage. Group defensives and healing cooldowns"}]},
-    {name:"Lightwarden Ruia",tips:[{image:"vale9.png",text:"Phase1. Interrupt"},{image:"vale10.png",text:"Phase1. Tornadoes shoot out, silence on hit. Do not stack. Spread out and dodge"},{image:"vale12.png",text:"Phase2. Frontal to 3 players. Don't get hit twice. Loosely spread"},{text:"Phase3. All spells active. Use cooldowns"}]},
-    {name:"Ziekket",tips:[{image:"vale13.png",text:"Interrupt, CC, kill adds"},{image:"vale14.png",text:"Aim beam at dead adds"},{image:"vale15.png",text:"Soak orbs"}]}
+    {name:"Lightblossom Trinity",tips:[{image:"vale1.png",text:"<span class=\"action\">Interrupt</span> Kezkitt"},{image:"vale2.png",text:"<span class=\"action\">Dodge</span> line attack through the 3 circles"},{image:"vale3.png",text:"When turned into flowers, <span class=\"action\">soak</span>. Step out of puddle at the end"},{image:"vale4.png",text:"Big circle, move away from group"}]},
+    {name:"Ikuzz",tips:[{image:"vale5.png",text:"Thorns will root you"},{image:"vale6.png",text:"Knockback. Don't get pushed into roots. Roots after 4 seconds. If melee, reach melee range before auto root but don't <span class=\"action\">stack</span>"},{image:"vale7.png",text:"Fixated player leads boss to walk over roots to destroy them"},{image:"vale8.png",text:"Frenzy. Pulses damage. Group defensives and healing cooldowns"}]},
+    {name:"Lightwarden Ruia",tips:[{image:"vale9.png",text:"Phase1. <span class=\"action\">Interrupt</span>"},{image:"vale10.png",text:"Phase1. Tornadoes shoot out, silence on hit. Do not <span class=\"action\">stack</span>. <span class=\"action\">Spread out</span> and <span class=\"action\">dodge</span>"},{image:"vale12.png",text:"Phase2. Frontal to 3 players. Don't get hit twice. <span class=\"action\">Loosely spread</span>"},{text:"Phase3. All spells active. Use cooldowns"}]},
+    {name:"Ziekket",tips:[{image:"vale13.png",text:"<span class=\"action\">Interrupt</span>, CC, kill adds"},{image:"vale14.png",text:"Aim beam at dead adds"},{image:"vale15.png",text:"<span class=\"action\"><span class=\"action\">Soak</span> orbs</span>"}]}
   ]},
   "Altar of Fangs":{bosses:[
-    {name:"Rav'i",tips:[{image:"altar1.png",text:"2 piles have a corpse. Tank drag boss on pile without corpse"},{image:"altar2.png",text:"Loosely spread"}]},
-    {name:"The Writing Coil",tips:[{text:"Keep dmg cooldowns for phase 2"},{image:"altar3.png",text:"Phase 1. Interrupt Toxic Atrophy"},{image:"altar4.png",text:"Dodge line attack"},{image:"altar5.png",text:"Dodge frontal"},{image:"altar6.png",text:"Intermission. Pull tethers"},{image:"altar7.png",text:"Random fixates. Keep them grouped up. Avoid center of arena at end of phase"}]},
-    {name:"Ascendant Serpent (miniboss)",tips:[{image:"altar8.png",text:"Circle and dot that spawn hatchlings. Loosely spread, then AOE"},{image:"altar9.png",text:"Avoid tornadoes and line attack"}]},
-    {name:"Zul'jan",tips:[{image:"altar10.png",text:"Soak the 4 beams. Beams add stacks. If stacks end you die. Stacks removed by physical damage, which drops puddles"},{image:"altar11.png",text:"You can use this to clear stacks. Cast twice per phase. You just need to use it once. Tanks get cleared by melee attacks"},{image:"altar12.png",text:"Axegrinder. Dodge spinning axes"}]}
+    {name:"Rav'i",tips:[{image:"altar1.png",text:"2 piles have a corpse. <span class=\"role role-tank\">Tank</span> drag boss on pile without corpse"},{image:"altar2.png",text:"<span class=\"action\">Loosely spread</span>"}]},
+    {name:"The Writing Coil",tips:[{text:"Keep dmg cooldowns for phase 2"},{image:"altar3.png",text:"Phase 1. <span class=\"action\">Interrupt</span> Toxic Atrophy"},{image:"altar4.png",text:"<span class=\"action\">Dodge</span> line attack"},{image:"altar5.png",text:"<span class=\"action\">Dodge</span> frontal"},{image:"altar6.png",text:"Intermission. Pull tethers"},{image:"altar7.png",text:"Random fixates. Keep them grouped up. Avoid center of arena at end of phase"}]},
+    {name:"Ascendant Serpent (miniboss)",tips:[{image:"altar8.png",text:"Circle and dot that spawn hatchlings. <span class=\"action\">Loosely spread</span>, then AOE"},{image:"altar9.png",text:"Avoid tornadoes and line attack"}]},
+    {name:"Zul'jan",tips:[{image:"altar10.png",text:"<span class=\"action\">Soak</span> the 4 beams. Beams add stacks. If stacks end you die. Stacks removed by physical damage, which drops puddles"},{image:"altar11.png",text:"You can use this to clear stacks. Cast twice per phase. You just need to use it once. <span class=\"role role-tank\">Tanks</span> get cleared by melee attacks"},{image:"altar12.png",text:"Axegrinder. <span class=\"action\">Dodge</span> spinning axes"}]}
   ]},
   "Algeth’ar Academy":{bosses:[
-    {name:"Overgrown Ancient",tips:[{text:"The tree"},{image:"academy1.png",text:"All players stack closely to spawn adds close."},{text:"Cleave adds"}]},
+    {name:"Overgrown Ancient",tips:[{text:"The tree"},{image:"academy1.png",text:"All players <span class=\"action\">stack</span> closely to spawn adds close."},{text:"Cleave adds"}]},
     {name:"Crawth",tips:[{text:"Mostly just dodging"},{image:"academy2.png",text:"3 balls to Air first."},{text:"3 balls to Fire"}]},
-    {name:"Vexamus",tips:[{image:"academy3.png",text:"Soak the orbs."},{image:"academy4.png",text:"Drop puddles on the outside."}]},
+    {name:"Vexamus",tips:[{image:"academy3.png",text:"<span class=\"action\">Soak</span> the orbs."},{image:"academy4.png",text:"<span class=\"action\">Drop puddles</span> on the outside."}]},
     {name:"Echo of Doragosa",tips:[{image:"academy5.png",text:"Start taking at entrance."},{text:"Being hit by any ability, at 3 stacks, opens another Rift"}]}
   ]},
   "Maisara Caverns":{bosses:[
     {name:"Muro'jin and Nekraxx",tips:[{text:"Shared health pool, damage evenly"},{image:"maisara1.png",text:"Position around boss to avoid barrage."},{image:"maisara2.png",text:"Self-freeze on trap when targeted."}]},
-    {name:"Vordaza",tips:[{text:"Healing check boss"},{image:"maisara3.png",text:"Phantom adds. Make phantoms collide."},{text:"Do not collide 2 pairs of phantoms too quickly (big group DoT)"},{image:"maisara4.png",text:"Intermission: burst boss shield and interrupt channel."}]},
-    {name:"Rak'tul",tips:[{image:"maisara5.png",text:"3 players targeted, drop totems close."},{text:"3rd totem can be dropped on top of 1st totem!"},{image:"maisara6.png",text:"Focus totems."},{text:"Tank: stay opposite side of players (to drop puddle away)"},{image:"maisara7.png",text:"Intermission: silence/kick adds."}]}
+    {name:"Vordaza",tips:[{text:"Healing check boss"},{image:"maisara3.png",text:"Phantom adds. Make phantoms collide."},{text:"Do not collide 2 pairs of phantoms too quickly (big group DoT)"},{image:"maisara4.png",text:"Intermission: burst boss shield and <span class=\"action\">interrupt</span> channel."}]},
+    {name:"Rak'tul",tips:[{image:"maisara5.png",text:"3 players targeted, drop totems close."},{text:"3rd totem can be dropped on top of 1st totem!"},{image:"maisara6.png",text:"Focus totems."},{text:"<span class=\"role role-tank\">Tank</span>: stay opposite side of players (to <span class=\"action\">drop puddle</span> away)"},{image:"maisara7.png",text:"Intermission: silence/kick adds."}]}
   ]},
   "Pit of Saron":{bosses:[
-    {name:"Forgemaster Garfrost",tips:[{image:"saron01.png",text:"2 chunks created."},{image:"saron02.png",text:"Tank destroy 1 chunk"},{image:"saron03.png",text:"Hide behind other chunk. Tank near it."},{text:"Then move to other forge."}]},
-    {name:"Ick and Krick",tips:[{text:"Duo, shared health pool"},{image:"saron04.png",text:"Tank drag boss to adds"},{text:"Interrupt Death Bolt"},{image:"saron05.png",text:"Get 'em Ick phase. Fixates a player. Kite"}]},
-    {name:"Scourgelord Tyrannus",tips:[{image:"saron06.png",text:"Defuse illuminated piles"},{image:"saron07.png",text:"Tank on remaining pile"},{image:"saron08.png",text:"Interrupt Plague Bolt"}]}
+    {name:"Forgemaster Garfrost",tips:[{image:"saron01.png",text:"2 chunks created."},{image:"saron02.png",text:"<span class=\"role role-tank\">Tank</span> destroy 1 chunk"},{image:"saron03.png",text:"Hide behind other chunk. <span class=\"role role-tank\">Tank</span> near it."},{text:"Then move to other forge."}]},
+    {name:"Ick and Krick",tips:[{text:"Duo, shared health pool"},{image:"saron04.png",text:"<span class=\"role role-tank\">Tank</span> drag boss to adds"},{text:"<span class=\"action\">Interrupt</span> Death Bolt"},{image:"saron05.png",text:"Get 'em Ick phase. Fixates a player. <span class=\"action\">Kite</span>"}]},
+    {name:"Scourgelord Tyrannus",tips:[{image:"saron06.png",text:"Defuse illuminated piles"},{image:"saron07.png",text:"<span class=\"role role-tank\">Tank</span> on remaining pile"},{image:"saron08.png",text:"<span class=\"action\">Interrupt</span> Plague Bolt"}]}
   ]},
   "Skyreach":{bosses:[
-    {name:"Ranji",tips:[{image:"skyreach01.png",text:"Lots of dodging. Tank on edge and move around."},{image:"skyreach02.png",text:"Dodge Chakram, marked by arrow."}]},
-    {name:"Araknath",tips:[{image:"skyreach03.png",text:"Tank melee, stationary boss."},{image:"skyreach04.png",text:"Intercept beams."},{image:"skyreach05.png",text:"Avoid big beams."}]},
-    {name:"Rukhran",tips:[{image:"skyreach06.png",text:"Stationary, tank melee."},{image:"skyreach07.png",text:"DPS focus add. Drops an egg."},{image:"skyreach08.png",text:"Do NOT kill new adds on eggs."},{image:"skyreach09.png",text:"Searing Quills, hide behind pillar. Tank return to boss ASAP after."}]},
-    {name:"High Sage Viryx",tips:[{image:"skyreach10.png",text:"Tank at entrance platform."},{image:"skyreach11.png",text:"Focus add (drags player away). CCs: stuns work."},{image:"skyreach12.png",text:"Lens flare: run away from it. Place puddles away."}]}
+    {name:"Ranji",tips:[{image:"skyreach01.png",text:"Lots of dodging. <span class=\"role role-tank\">Tank</span> on edge and move around."},{image:"skyreach02.png",text:"<span class=\"action\">Dodge</span> Chakram, marked by arrow."}]},
+    {name:"Araknath",tips:[{image:"skyreach03.png",text:"<span class=\"role role-tank\">Tank</span> melee, stationary boss."},{image:"skyreach04.png",text:"Intercept beams."},{image:"skyreach05.png",text:"Avoid big beams."}]},
+    {name:"Rukhran",tips:[{image:"skyreach06.png",text:"Stationary, <span class=\"role role-tank\">tank</span> melee."},{image:"skyreach07.png",text:"<span class=\"role role-dps\">DPS</span> focus add. Drops an egg."},{image:"skyreach08.png",text:"Do NOT kill new adds on eggs."},{image:"skyreach09.png",text:"Searing Quills, hide behind pillar. <span class=\"role role-tank\">Tank</span> return to boss ASAP after."}]},
+    {name:"High Sage Viryx",tips:[{image:"skyreach10.png",text:"<span class=\"role role-tank\">Tank</span> at entrance platform."},{image:"skyreach11.png",text:"Focus add (drags player away). CCs: stuns work."},{image:"skyreach12.png",text:"Lens flare: run away from it. Place puddles away."}]}
   ]},
   "Magister's Terrace":{bosses:[
-    {name:"Arcanotron Custos",tips:[{image:"magister01.png",text:"Puddles space management."},{image:"magister02.png",text:"Intermission: soak orbs."}]},
+    {name:"Arcanotron Custos",tips:[{image:"magister01.png",text:"Puddles space management."},{image:"magister02.png",text:"Intermission: <span class=\"action\"><span class=\"action\">soak</span> orbs</span>."}]},
     {name:"Seranel Sunlash",tips:[{text:"Silencing suppression zones."},{image:"magister03.png",text:"Runic Mark: remove by entering suppression. (do not do at same time)"},{image:"magister04.png",text:"Wave of Silence: enter suppression at end of cast."}]},
     {name:"Gemellus",tips:[{text:"Copies share health"},{image:"magister05.png",text:"Neural link: follow arrow to remove shield to a copy."}]},
-    {name:"Degentrius",tips:[{text:"Volleyball match. Players spread around"},{image:"magister06.png",text:"Intercept ball."},{image:"magister07.png",text:"Hulking Fragment for tank, leaves puddle on expiration."}]}
+    {name:"Degentrius",tips:[{text:"Volleyball match. Players spread around"},{image:"magister06.png",text:"Intercept ball."},{image:"magister07.png",text:"Hulking Fragment for <span class=\"role role-tank\">tank</span>, leaves puddle on expiration."}]}
   ]},
   "Nexus Point Xenas":{bosses:[
     {name:"Chief Corewright Kasreth",tips:[{image:"nexus01.png",text:"Remove rays when targeted"},{image:"nexus02.png",text:"Corespark detonation: knockback and puddle. Bait at edge"}]},
-    {name:"Corewarden Nysarra",tips:[{image:"nexus03.png",text:"Avoid first beam"},{image:"nexus04.png",text:"Stand in second beam for 300% damage"},{image:"nexus05.png",text:"Away from other players when targeted"},{text:"Focus adds. Interrupt nullifiers. Must kill before intermission end."}]},
-    {name:"Lothraxion",tips:[{image:"nexus06.png",text:"Loosely spread when targeted"},{image:"nexus07.png",text:"Intermission: interrupt clone WITHOUT horns. Or use Hunter's Mark"}]}
+    {name:"Corewarden Nysarra",tips:[{image:"nexus03.png",text:"Avoid first beam"},{image:"nexus04.png",text:"Stand in second beam for 300% damage"},{image:"nexus05.png",text:"Away from other players when targeted"},{text:"Focus adds. <span class=\"action\">Interrupt</span> nullifiers. Must kill before intermission end."}]},
+    {name:"Lothraxion",tips:[{image:"nexus06.png",text:"<span class=\"action\">Loosely spread</span> when targeted"},{image:"nexus07.png",text:"Intermission: <span class=\"action\">interrupt</span> clone WITHOUT horns. Or use Hunter's Mark"}]}
   ]},
   "Seat of the Triumvirate":{bosses:[
-    {name:"Zuraal the Ascended",tips:[{image:"seat01.png",text:"Drop puddle at edges"},{image:"seat02.png",text:"Adds: don't let them reach boss. Use CCs"}]},
-    {name:"Saprish",tips:[{text:"Boss and 2 pets share health"},{image:"seat03.png",text:"Remove bombs with circle. TANK to soak remaining bombs."},{text:"Interrupt Dread Screech"}]},
-    {name:"Viceroy Nezhar",tips:[{image:"seat04.png",text:"Gates shoot orbs"},{text:"Interrupt Mind Blast"},{image:"seat05.png",text:"Focus tentacle adds"},{image:"seat06.png",text:"Intermission: run to center"}]},
+    {name:"Zuraal the Ascended",tips:[{image:"seat01.png",text:"<span class=\"action\">Drop puddle</span> at edges"},{image:"seat02.png",text:"Adds: don't let them reach boss. Use CCs"}]},
+    {name:"Saprish",tips:[{text:"Boss and 2 pets share health"},{image:"seat03.png",text:"Remove bombs with circle. <span class=\"role role-tank\">TANK</span> to <span class=\"action\">soak</span> remaining bombs."},{text:"<span class=\"action\">Interrupt</span> Dread Screech"}]},
+    {name:"Viceroy Nezhar",tips:[{image:"seat04.png",text:"Gates shoot orbs"},{text:"<span class=\"action\">Interrupt</span> Mind Blast"},{image:"seat05.png",text:"Focus tentacle adds"},{image:"seat06.png",text:"Intermission: run to center"}]},
     {name:"L'ura",tips:[{image:"seat07.png",text:"Aim beams to notes"},{text:"Intermission: boss takes 200% more damage"}]}
   ]},
   "Windrunner Spire":{bosses:[
-    {name:"Emberdawn",tips:[{image:"windrunner01.png",text:"Flaming updraft: drop puddles away"},{image:"windrunner02.png",text:"Intermission: dodge stuff"}]},
-    {name:"Derelict Duo",tips:[{text:"Cleave down duo evenly"},{image:"windrunner03.png",text:"Drop puddles on edges"},{image:"windrunner04.png",text:"Go behind other boss when targeted by hook"},{text:"Adds cannot be killed. CC"}]},
-    {name:"Commander Kroluk",tips:[{image:"windrunner05.png",text:"Reckless Leap: targets furthest player. TANK can bait second leap."},{image:"windrunner06.png",text:"Intimidating Shout: stack near boss. (Or 1 stack for melee, 1 stack for ranged)"},{image:"windrunner07.png",text:"Intermission: focus adds"}]},
-    {name:"The Restless Heart",tips:[{image:"windrunner08.png",text:"DoT stack when boss repositions. Using arrow removes DoT"},{image:"windrunner09.png",text:"Circle removes puddles"},{image:"windrunner10.png",text:"Bolt Gale: stand still"},{image:"windrunner11.png",text:"Windblast: jump with arrow"}]}
+    {name:"Emberdawn",tips:[{image:"windrunner01.png",text:"Flaming updraft: <span class=\"action\">drop puddles</span> away"},{image:"windrunner02.png",text:"Intermission: <span class=\"action\">dodge</span> stuff"}]},
+    {name:"Derelict Duo",tips:[{text:"Cleave down duo evenly"},{image:"windrunner03.png",text:"<span class=\"action\">Drop puddles</span> on edges"},{image:"windrunner04.png",text:"Go behind other boss when targeted by hook"},{text:"Adds cannot be killed. CC"}]},
+    {name:"Commander Kroluk",tips:[{image:"windrunner05.png",text:"Reckless Leap: targets furthest player. <span class=\"role role-tank\">TANK</span> can bait second leap."},{image:"windrunner06.png",text:"Intimidating Shout: <span class=\"action\">stack</span> near boss. (Or 1 <span class=\"action\">stack</span> for melee, 1 <span class=\"action\">stack</span> for ranged)"},{image:"windrunner07.png",text:"Intermission: focus adds"}]},
+    {name:"The Restless Heart",tips:[{image:"windrunner08.png",text:"DoT <span class=\"action\">stack</span> when boss repositions. Using arrow removes DoT"},{image:"windrunner09.png",text:"Circle removes puddles"},{image:"windrunner10.png",text:"Bolt Gale: stand still"},{image:"windrunner11.png",text:"Windblast: jump with arrow"}]}
   ]}
 };
 const SEASON_2=["Temple of Sethraliss","King's Rest","Ruby Life Pools","Voidscar Arena","Den of Nalorakk","Murder Row","Blinding Vale","Altar of Fangs"];
@@ -497,15 +497,15 @@ const RAID_DATA={
     tldr:"Tower-defense opener. Nothing may reach Soulcoil Well or boss races to 100 energy enrage. Keep all puddles intentional — they haunt you later.",
     setup:"2 / 4 / 14 · Dispels (Magic) · Strong AoE · Lust P2",
     strategy:[
-      {lead:"Possession Barrage + Hollowing Strikes → Entrance tank, far off-tank, swap on stacks", subs:[
-        "Hold boss at entrance, off-tank 30+ yd away for Possession Barrage line — no one between",
-        "Swap at 30-40% Hollowing Strikes (stacking heal absorb)",
-        "Tank role coordination high"
+      {lead:"Possession Barrage + Hollowing Strikes → Entrance <span class=\"role role-tank\">tank</span>, far off-<span class=\"role role-tank\">tank</span>, <span class=\"action\">swap</span> on stacks", subs:[
+        "Hold boss at entrance, off-<span class=\"role role-tank\">tank</span> 30+ yd away for Possession Barrage line — no one between",
+        "<span class=\"action\">Swap</span> at 30-40% Hollowing Strikes (stacking heal absorb)",
+        "<span class=\"role role-tank\">Tank</span> role coordination high"
       ]},
-      {lead:"Essence Rend → Move side for dispel", subs:[
+      {lead:"Essence Rend → Move side for <span class=\"action\">dispel</span>", subs:[
         "Targeted players move side, get dispelled in lane",
         "Leaves Latent Cultist — permanent slow puddle",
-        "Stack dispels intentionally off main lanes to keep path clear"
+        "<span class=\"action\">Stack</span> dispels intentionally off main lanes to keep path clear"
       ]},
       {lead:"Restless Amani march → Break shields, kill before Well", subs:[
         "March from sarcophagi → Soulcoil Well",
@@ -523,8 +523,8 @@ const RAID_DATA={
         "Beam channels 50% Soul Transfer creating Echo of Jawae",
         "Don't stand in beam finish — lethal"
       ]},
-      {lead:"Hungering Pyre + Slithering Flame → Soak & burn corpses", subs:[
-        "Melee soak Hungering Pyre — group 10y split",
+      {lead:"Hungering Pyre + Slithering Flame → <span class=\"action\">Soak</span> & burn corpses", subs:[
+        "Melee <span class=\"action\">soak</span> Hungering Pyre — group 10y split",
         "Non-soakers get Slithering Flame circles — both burn Vessel of Awakening corpses (dead Amani)",
         "On expiry Flame → Cremation incinerates corpses in 4y radius",
         "Fewer Vessels = fewer empowered re-awakened Amani"
@@ -540,8 +540,8 @@ const RAID_DATA={
         "Uncoiling ticks raid damage rest of fight — permanent soft enrage",
         "No wasted damage"
       ]},
-      {lead:"Entwined Step → Dodge orbit of P1 puddles", subs:[
-        "Invoke repositions all P1 Cultist puddles around well via Entwined Step — dodge orbit",
+      {lead:"Entwined Step → <span class=\"action\">Dodge</span> orbit of P1 puddles", subs:[
+        "Invoke repositions all P1 Cultist puddles around well via Entwined Step — <span class=\"action\">dodge</span> orbit",
         "Fewer P1 puddles = trivial P2 positioning"
       ]},
       {lead:"Timer → Kill before 100 energy", subs:[
@@ -559,43 +559,43 @@ const RAID_DATA={
   "Entombed Sentinels":{
     short:"Split council math test",
     bossNum:2,
-    tldr:"Council: 2 even teams 40+ yd apart (Ula'tek's Dominance = 99% DR when close). Keep HP even — Vitriolic Stasis heals weaker to match stronger — and swap sides every intermission to drop Mark stacks.",
+    tldr:"Council: 2 even teams 40+ yd apart (Ula'tek's Dominance = 99% DR when close). Keep HP even — Vitriolic Stasis heals weaker to match stronger — and <span class=\"action\">swap</span> sides every intermission to drop Mark stacks.",
     setup:"2 / 4 / 14 · Magic dispels · Immunities cheat math · Lust Pull",
     green:[
-      {lead:"Toxic Droplets → Soak orbs to spread Noxious Blast", subs:[
+      {lead:"Toxic Droplets → <span class=\"action\"><span class=\"action\">Soak</span> orbs</span> to spread Noxious Blast", subs:[
         "Orbs → 16s Noxious Blast raid hit per orb",
-        "Soak 1-2 per player, distribute damage evenly"
+        "<span class=\"action\">Soak</span> 1-2 per player, distribute damage evenly"
       ]},
       {lead:"Venom Coagulation → Big slime #1 prio", subs:[
         "Pulses Contaminate raid damage while alive",
         "Kill ASAP before raid damage ramps"
       ]},
-      {lead:"Living Venom (Heroic) → Dodge lines both ways", subs:[
+      {lead:"Living Venom (Heroic) → <span class=\"action\">Dodge</span> lines both ways", subs:[
         "Lines shoot out and return after 4s",
-        "Dodge both directions — don't get clipped on return"
+        "<span class=\"action\">Dodge</span> both directions — don't get clipped on return"
       ]},
-      {lead:"Empowering Slam → Swap golems each intermission", subs:[
-        "15% amp per stack on same target, resets on new target",
-        "Tank with Mark out, new tank pulls other golem",
-        "Reset via intermission swap"
+      {lead:"Empowering Slam → <span class=\"action\">Swap</span> golems each intermission", subs:[
+        "15% amp per <span class=\"action\">stack</span> on same target, resets on new target",
+        "<span class=\"role role-tank\">Tank</span> with Mark out, new <span class=\"role role-tank\">tank</span> pulls other golem",
+        "Reset via intermission <span class=\"action\">swap</span>"
       ]}
     ],
     red:[
       {lead:"Floor control → Start corner, everything puddles", subs:[
-        "Start in corner — all mechanics drop puddles",
+        "Start in corner — all mechanics <span class=\"action\">drop puddles</span>",
         "Control floor deliberately"
       ]},
-      {lead:"Unstable Miasma → Group soak then walk as group", subs:[
-        "8s timer → 8y group soak + Clinging Murk short DoT",
-        "Stack, soak, then walk as group to designated puddle dump"
+      {lead:"Unstable Miasma → <span class=\"action\">Group <span class=\"action\">soak</span></span> then walk as group", subs:[
+        "8s timer → 8y <span class=\"action\">group <span class=\"action\">soak</span></span> + Clinging Murk short DoT",
+        "<span class=\"action\">Stack</span>, <span class=\"action\">soak</span>, then walk as group to designated puddle dump"
       ]},
-      {lead:"Blood Venom → Edge dispel only", subs:[
-        "On dispel/expiry drops pool — size scales with stacks",
-        "Dispel at edge only — not in middle"
+      {lead:"Blood Venom → Edge <span class=\"action\">dispel</span> only", subs:[
+        "On <span class=\"action\">dispel</span>/expiry drops pool — size scales with stacks",
+        "<span class=\"action\">Dispel</span> at edge only — not in middle"
       ]},
-      {lead:"Bloodvenom Injection → Tank walks puddle out", subs:[
+      {lead:"Bloodvenom Injection → <span class=\"role role-tank\">Tank</span> walks puddle out", subs:[
         "Stacking DoT + drops massive puddle on expiry",
-        "Outgoing tank walks it corner-ward before expiry"
+        "Outgoing <span class=\"role role-tank\">tank</span> walks it corner-ward before expiry"
       ]}
     ],
     intermission:[
@@ -606,7 +606,7 @@ const RAID_DATA={
       ]},
       {lead:"Helical Toxins → Pair greens to exactly 4", subs:[
         "Each player gets 4 orbs (mix red/green)",
-        "Touch exactly 1 partner so combined greens = exactly 4 — e.g. 1+3, 2+2",
+        "<span class=\"action\">Touch exactly 1 partner</span> so combined greens = exactly 4 — e.g. 1+3, 2+2",
         "Only 1 partner collision"
       ]},
       {lead:"Cultivated Burst → Punish mis-pairs", subs:[
@@ -614,8 +614,8 @@ const RAID_DATA={
         "Assign punishment corner for mis-pairs",
         "Immunities survive it clean — cheat"
       ]},
-      {lead:"Swap → Sides + tanks after intermission", subs:[
-        "Swap sides + tanks after every intermission",
+      {lead:"<span class=\"action\">Swap</span> → Sides + <span class=\"role role-tank\">tanks</span> after intermission", subs:[
+        "<span class=\"action\">Swap</span> sides + <span class=\"role role-tank\">tanks</span> after every intermission",
         "Repeat loop"
       ]}
     ],
@@ -635,9 +635,9 @@ const RAID_DATA={
     boxes:"Permanent cleanup crew: Physical resist / Evoker dispel for Splinters bleed. Pop every box before 25s Relic Rupture raid explosion. One box contains Disgusting Fish — Fish interrupts Mor'zahi Final Ascension 100 energy (resets to 0) but triggers Fishy Feedback raid hit.",
     feed:"Recommended: Iku → Nama → Gebbo (choice, run what you handle). Feeding empowers that turtle's ultimate. Fish count forces kill all 3 before 4th Ascension.",
     ultimates:[
-      {lead:"Mighty Thud (Nama) → 3 soak groups distance-ordered", subs:[
+      {lead:"Mighty Thud (Nama) → 3 <span class=\"action\">soak</span> groups distance-ordered", subs:[
         "3 marked players — Nama leaps in distance order (closest first)",
-        "3 soak groups, one per marker, no empty soak (raid hit)",
+        "3 <span class=\"action\">soak</span> groups, one per marker, no empty <span class=\"action\">soak</span> (raid hit)",
         "Avoid Aftershock craters after landing"
       ]},
       {lead:"Frostfire Volley (Iku) → Clear DoT in opposite element", subs:[
@@ -663,7 +663,7 @@ const RAID_DATA={
   "Vashnik the Malignant":{
     short:"Fountain rotation add control",
     bossNum:4,
-    tldr:"Single-phase fountain rotation controls whole fight. Tanks decide imbibe pairs — one wrong pair drifts to triple-buffed lethal.",
+    tldr:"Single-phase fountain rotation controls whole fight. <span class=\"role role-tank\">Tanks</span> decide imbibe pairs — one wrong pair drifts to triple-buffed lethal.",
     setup:"2 / 4 / 14 · CC for Shadow/Fire · Staggered dispels · Add-kill squad",
     rotation:[
       {lead:"Default rotation → Blood+Shadow, Shadow+Fire, Fire+Blood repeat", subs:[
@@ -671,8 +671,8 @@ const RAID_DATA={
         "Logic = one new fountain per cycle, one carried over — avoids triple-buff",
         "Makes callouts predictable"
       ]},
-      {lead:"Tank execution → Walk boss to correct pair before Imbibe", subs:[
-        "Tanks physically walk boss to correct pair before each Imbibe",
+      {lead:"<span class=\"role role-tank\">Tank</span> execution → Walk boss to correct pair before Imbibe", subs:[
+        "<span class=\"role role-tank\">Tanks</span> physically walk boss to correct pair before each Imbibe",
         "Call loud every time — rotation failure = wipe"
       ]}
     ],
@@ -704,17 +704,17 @@ const RAID_DATA={
         "Don't clump"
       ]},
       {lead:"Exploding Infection (Fire) → Stagger dispels", subs:[
-        "Hold if raid low — each dispel is a raid hit",
+        "Hold if raid low — each <span class=\"action\">dispel</span> is a raid hit",
         "Stagger dispels, don't chain"
       ]}
     ],
     passive:[
-      {lead:"Dripping Fangs → Hard tank swap", subs:[
-        "Hard tank swap every cast — 100% phys amp, can't take twice"
+      {lead:"Dripping Fangs → Hard <span class=\"role role-tank\">tank</span> <span class=\"action\">swap</span>", subs:[
+        "Hard <span class=\"role role-tank\">tank</span> <span class=\"action\">swap</span> every cast — 100% phys amp, can't take twice"
       ]},
       {lead:"Malignant Catalyst → Cover every Bile", subs:[
         "Cover every Catalytic Bile with 1+ body, spread to catch",
-        "Don't stack — one body per puddle"
+        "Don't <span class=\"action\">stack</span> — one body per puddle"
       ]},
       {lead:"Plague Froth → Get out, respect cardinal plus-wave", subs:[
         "Get out of Froth, then respect cardinal plus-wave Plague Wave direction",
@@ -737,23 +737,23 @@ const RAID_DATA={
     short:"Wind physics damage check",
     bossNum:5,
     tldr:"Damage check + wind physics. Loop: Apex Predator, Venomous Surge, Raging Crosswinds repeat ×2 → intermission at 100 energy. Background Ula'tek's Presence constant damage.",
-    setup:"2 / 4(+1) / 14 · Two soak groups 5+ · Markers at 6 tunnel edges · Lust Pull or Intermission amp",
+    setup:"2 / 4(+1) / 14 · Two <span class=\"action\">soak</span> groups 5+ · Markers at 6 tunnel edges · Lust Pull or Intermission amp",
     apex:[
       {lead:"Apex Predator combo → 2 Ravage, 2 Mutilate, 1 Tempest random order", subs:[
-        "Tank edge, raid behind — prepare for random combo",
+        "<span class=\"role role-tank\">Tank</span> edge, raid behind — prepare for random combo",
         "Call order loudly each time"
       ]},
-      {lead:"Ravage → Tank frontal +400% 25s, swap between casts", subs:[
-        "Tank frontal +400% damage taken 25s",
-        "Tanks swap between casts edge-away from raid"
+      {lead:"Ravage → <span class=\"role role-tank\">Tank</span> frontal +400% 25s, <span class=\"action\">swap</span> between casts", subs:[
+        "<span class=\"role role-tank\">Tank</span> frontal +400% damage taken 25s",
+        "<span class=\"role role-tank\">Tanks</span> <span class=\"action\">swap</span> between casts edge-away from raid"
       ]},
       {lead:"Mutilate → Raid frontal split 5+, alternate groups, no double-dip", subs:[
         "Raid frontal split 5+ soakers required",
         "22s DoT makes next Mutilate +500% — two groups alternate",
         "No double-dip same group twice"
       ]},
-      {lead:"Tempest → Dodge tornadoes", subs:[
-        "Roaming tornadoes — constant dodge",
+      {lead:"Tempest → <span class=\"action\">Dodge</span> tornadoes", subs:[
+        "Roaming tornadoes — constant <span class=\"action\">dodge</span>",
         "Keep lane clear"
       ]}
     ],
@@ -767,8 +767,8 @@ const RAID_DATA={
         "4 cysts for 3 winds = 1 spare, 2 misplacements = wipe",
         "Be precise"
       ]},
-      {lead:"Caustic Claws → Tank moves boss to clean slice", subs:[
-        "Tank moves boss to clean slice between puddles",
+      {lead:"Caustic Claws → <span class=\"role role-tank\">Tank</span> moves boss to clean slice", subs:[
+        "<span class=\"role role-tank\">Tank</span> moves boss to clean slice between puddles",
         "Don't cleave raid"
       ]}
     ],
@@ -783,15 +783,15 @@ const RAID_DATA={
       ]}
     ],
     intermission:[
-      {lead:"Dig In → 30% increased taken, stack mid", subs:[
+      {lead:"Dig In → 30% increased taken, <span class=\"action\">stack</span> mid", subs:[
         "Dig In 30% increased taken on boss — burn window",
-        "Stack pixel mid, wind pushes to cyst opposite active tunnel",
+        "<span class=\"action\">Stack</span> pixel mid, wind pushes to cyst opposite active tunnel",
         "Pop knocks back to boss + coats wind resist"
       ]},
       {lead:"Winds → 3 sequential, third as amp + failsafe", subs:[
         "3 winds sequential, third as amp",
         "Final walk to failsafe cyst pop, restart loop",
-        "5th healer helps through constant pressure"
+        "5th <span class=\"role role-healer\">healer</span> helps through constant pressure"
       ]}
     ],
     images:[
@@ -804,42 +804,42 @@ const RAID_DATA={
   "The Twin Fangs":{
     short:"Dual-target venom economy",
     bossNum:6,
-    tldr:"Dual target resource management. Eternal Venom permanent — 10 = death, only removed 1 per Ravenous Feast soak. Kill together before 3rd Submerge (100 energy hard enrage) or Uncoiled Wrath ramps 25%/4s infinite.",
-    setup:"2 / 4 / 14 · 2-target cleave premium · 3 soak groups 7+ (or 2 + immunes) · Loose spread · Lust Pull",
+    tldr:"Dual target resource management. Eternal Venom permanent — 10 = death, only removed 1 per Ravenous Feast <span class=\"action\">soak</span>. Kill together before 3rd Submerge (100 energy hard enrage) or Uncoiled Wrath ramps 25%/4s infinite.",
+    setup:"2 / 4 / 14 · 2-target cleave premium · 3 <span class=\"action\">soak</span> groups 7+ (or 2 + immunes) · Loose spread · Lust Pull",
     core:[
       {lead:"Toxic Fumes → Constant raid tick", subs:[
         "Constant raid tick — healing baseline high"
       ]},
-      {lead:"Caustic Deluge (Vexhul) → Tank trade on 10% Envenomed 90s", subs:[
-        "Tank channel 5s, 10% stacking Envenomed 90s → forces tank trade",
-        "Splash spawns Caustic Globule — one player soak each (low venom), unsoaked = raid venom all",
+      {lead:"Caustic Deluge (Vexhul) → <span class=\"role role-tank\">Tank</span> trade on 10% Envenomed 90s", subs:[
+        "<span class=\"role role-tank\">Tank</span> channel 5s, 10% stacking Envenomed 90s → forces <span class=\"role role-tank\">tank</span> trade",
+        "Splash spawns Caustic Globule — one player <span class=\"action\">soak</span> each (low venom), unsoaked = raid venom all",
         "Vexhul trade serpents, not same spot"
       ]},
       {lead:"Venomous Emergence → Unavoidable venom + 3 fixate adds", subs:[
         "Unavoidable raid venom + 3 adds fixate → spit Corrosive Spit line",
-        "Dodge/angle away, kill fast before Spit"
+        "<span class=\"action\">Dodge</span>/angle away, kill fast before Spit"
       ]},
       {lead:"Coiling Ichor (Ithraz) → Shrinking circles, slow pools at edge", subs:[
         "Shrinking circles increasing damage",
         "Drop 2m 50% slow pools at edge — not mid"
       ]},
-      {lead:"Stone Breaker (Ithraz) → Tank soaks swirlies", subs:[
-        "Roar knockback + 3 swirlies 4y sequential — must be soaked by tank (33% stacking 90s)",
-        "Or raid takes armor-ignoring hit — tanks alt every other set"
+      {lead:"Stone Breaker (Ithraz) → <span class=\"role role-tank\">Tank</span> soaks swirlies", subs:[
+        "Roar knockback + 3 swirlies 4y sequential — must be soaked by <span class=\"role role-tank\">tank</span> (33% stacking 90s)",
+        "Or raid takes armor-ignoring hit — <span class=\"role role-tank\">tanks</span> alt every other set"
       ]},
       {lead:"Stir Depths → Raid damage + green waves venom", subs:[
         "Raid damage + green waves apply venom — weave between",
         "Don't get clipped twice"
       ]},
-      {lead:"Clotted Bolt → Don't kite out of range", subs:[
-        "Range checks — don't kite bosses out of range",
+      {lead:"Clotted Bolt → Don't <span class=\"action\">kite</span> out of range", subs:[
+        "Range checks — don't <span class=\"action\">kite</span> bosses out of range",
         "Clotted Bolt / Concentrated Spittle enrage if out of range"
       ]}
     ],
     feast:[
       {lead:"Ravenous Feast → 3 explosions, venom refund, Feasted debuff", subs:[
         "3 explosions fast, 14y split heavy physical",
-        "Each hit removes 1 venom stack, applies Feasted 800% Feast damage 8s — can't reuse group",
+        "Each hit removes 1 venom <span class=\"action\">stack</span>, applies Feasted 800% Feast damage 8s — can't reuse group",
         "3 groups one per explosion, no greed"
       ]},
       {lead:"Phase cadence → 2× per phase set", subs:[
@@ -875,42 +875,42 @@ const RAID_DATA={
   "The Coiled Altar":{
     short:"Duo council — Zul'jan & Malacrass",
     bossNum:7,
-    tldr:"Three-phase duo + intermission vessel. P1 Zul'jan orb eco + Guillotine soak, P2 Malacrass Boo ghosts + Gravebound fragments + shield break, Intermission burn boss double-damage while blocking fragment heals, P3 both mechanics at once - keep stacked DPS even kill together or 500% enrage.",
-    setup:"2 / 4 / 14 · 5+ soak (Guillotine) alternating Heroic 2 groups · 3 Markers ghosts + orb stack · Lust P3 (alt Intermission for Ghastly)",
+    tldr:"Three-phase duo + intermission vessel. P1 Zul'jan orb eco + Guillotine <span class=\"action\">soak</span>, P2 Malacrass Boo ghosts + Gravebound fragments + shield break, Intermission burn boss double-damage while blocking fragment heals, P3 both mechanics at once - keep stacked DPS even kill together or 500% enrage.",
+    setup:"2 / 4 / 14 · 5+ <span class=\"action\">soak</span> (Guillotine) alternating Heroic 2 groups · 3 Markers ghosts + orb <span class=\"action\">stack</span> · Lust P3 (alt Intermission for Ghastly)",
     strategy:[
       {lead:"Fangs of the Coiled Altar + Noxious Ground → Stay stacked near boss, side overflow", subs:[
-        "Raid-wide nature from Fangs hits tanks with Twinfang Toxin auto tax",
+        "Raid-wide nature from Fangs hits <span class=\"role role-tank\">tanks</span> with Twinfang Toxin auto tax",
         "Noxious Ground area-denial from side mouths - keep center clear, drop at sides"
       ]},
       {lead:"Toxic Deluge → Coalesced Venom eco", subs:[
-        "Green poison circles leave Coalesced Venom orbs - assigned players step to pick up and move to designated stack point",
+        "Green poison circles leave Coalesced Venom orbs - assigned players step to pick up and move to designated <span class=\"action\">stack</span> point",
         "Volatile Venom debuff expires dropping orb fresh - don't chain expire",
         "Each destroyed orb triggers Venom Rupture raid-wide - Heroic: stacking DoT, avoid simultaneous pops",
         "Mythic: some warp Virulent Mutation (pulses 1s, Mutagenic Venom respawn), one mutates Virulent Cyst expelling 2 orbs every 6s 70 nature 4y"
       ]},
-      {lead:"Sever → Tank frontal cone destroys orbs", subs:[
-        "Sever heavy physical cone - debuff increased next Sever - taunt swap every cast",
-        "Any Coalesced Venom inside frontal destroyed - aim through stack point to control raid stacks",
-        "Tank edge-aim not raid"
+      {lead:"Sever → <span class=\"role role-tank\">Tank</span> frontal cone destroys orbs", subs:[
+        "Sever heavy physical cone - debuff increased next Sever - <span class=\"action\">taunt <span class=\"action\">swap</span></span> every cast",
+        "Any Coalesced Venom inside frontal destroyed - aim through <span class=\"action\">stack</span> point to control raid stacks",
+        "<span class=\"role role-tank\">Tank</span> edge-aim not raid"
       ]},
-      {lead:"Guillotine → 5+ soak then Widow's Kiss run-out", subs:[
-        "Soak must hit at least 5 players - 5.4M physical split",
+      {lead:"Guillotine → 5+ <span class=\"action\">soak</span> then Widow's Kiss run-out", subs:[
+        "<span class=\"action\">Soak</span> must hit at least 5 players - 5.4M physical split",
         "If fails Execution 1.6M nature lethal raid",
         "Widow's Kiss plume 1.25M nature around axe - run outside circle using Stampeding Roar / Gateway",
         "Widow's Touch 208k nature to 40+ yard far players - far group tucked",
         "Heroic: Guillotined 500% increased next Guillotine - two groups half-raid alternate"
       ]},
-      {lead:"Venomfang → Loosely spread dispellable poison", subs:[
-        "Random players poison DoT - dispel quickly, Shaman Poison Cleansing Totem great"
+      {lead:"Venomfang → <span class=\"action\">Loosely spread</span> dispellable poison", subs:[
+        "Random players poison DoT - <span class=\"action\">dispel</span> quickly, Shaman Poison Cleansing Totem great"
       ]},
-      {lead:"Axegrinder → Spinning axes dodge", subs:[
+      {lead:"Axegrinder → Spinning axes <span class=\"action\">dodge</span>", subs:[
         "Axes travel leaving spinning hitboxes 583k physical 4y - watch while moving with Kiss or Venom",
         "Mythic: no despawn - early axis placement critical, preserve lanes"
       ]}
     ],
     p2:[
       {lead:"Positioning → Behind Malacrass slightly to side, stacked", subs:[
-        "Stack behind boss to one side - instead of poison orbs now Boo ghosts, same Soul Sever clear"
+        "<span class=\"action\">Stack</span> behind boss to one side - instead of poison orbs now Boo ghosts, same Soul Sever clear"
       ]},
       {lead:"Dreadmarch → Mind-control walk-off, break fast", subs:[
         "Multiple players MC'd gain absorb shield walk to nearest edge and jump off",
@@ -920,18 +920,18 @@ const RAID_DATA={
       ]},
       {lead:"Manifestation of Dread → Boo ghost stare-freeze", subs:[
         "Fixates random player - moves only when player NOT looking directly at it - stare to freeze",
-        "Guide to assigned stack point then face to hold before Soul Sever",
+        "Guide to assigned <span class=\"action\">stack</span> point then face to hold before Soul Sever",
         "Immune to damage/control otherwise",
         "Heroic: if reaches target reapplies Dreadmarch - never let contact",
         "Mythic: only visible to fixated target, refixates every 15s, Malevolent Resonance when 2 touch both pulse damage to fixated 5s"
       ]},
       {lead:"Despair → Fixated shadow bite", subs:[
-        "333k shadow while ghost lives - heal / dispel lane"
+        "333k shadow while ghost lives - heal / <span class=\"action\">dispel</span> lane"
       ]},
-      {lead:"Soul Sever → Tank frontal destroys ghosts + Gravebound collection", subs:[
+      {lead:"Soul Sever → <span class=\"role role-tank\">Tank</span> frontal destroys ghosts + Gravebound collection", subs:[
         "500k shadow cone same as Sever plus applies Gravebound to hit players",
         "Gravebound fractures soul into 3 Soul Fragments fading 10s - must reclaim all or die",
-        "Active tank must collect fragments immediately after cast, other tank taunts",
+        "Active <span class=\"role role-tank\">tank</span> must collect fragments immediately after cast, other <span class=\"role role-tank\">tank</span> taunts",
         "Destroys all Manifestations of Dread - dump ghosts before cast"
       ]},
       {lead:"Gloombomb → Spread far purple circles", subs:[
@@ -939,15 +939,15 @@ const RAID_DATA={
         "Hit players need 3 Soul Fragments before expiry or die",
         "Heroic: explosion itself applies Gravebound making accidental overlaps lethal"
       ]},
-      {lead:"Spiritcackle → Interrupt add Heroic+", subs:[
+      {lead:"Spiritcackle → <span class=\"action\">Interrupt</span> add Heroic+", subs:[
         "Repeatedly casts Wail of Terror 5s fear and Retaliatory Malice random dark blasts",
-        "Assign 2-3 interrupters toward end of cast - interrupt causes teleport and recast",
+        "Assign 2-3 interrupters toward end of cast - <span class=\"action\">interrupt</span> causes teleport and recast",
         "If teleports into melee gets cleaved, ranged prioritize"
       ]},
       {lead:"Eternal Nightfall → Veil of Twilight 12M shield break", subs:[
         "Malacrass gains Veil 12M absorb and begins casting deadly raid wipe",
-        "Break shield then interrupt before completion - avoid purple shadow circles",
-        "Delay interrupt to last seconds for max DPS if safe"
+        "Break shield then <span class=\"action\">interrupt</span> before completion - avoid purple shadow circles",
+        "Delay <span class=\"action\">interrupt</span> to last seconds for max DPS if safe"
       ]}
     ],
     intermission:[
@@ -956,11 +956,11 @@ const RAID_DATA={
         "Zul'jan takes 100% increased damage during - Bloodlust / cooldowns / potions window",
         "Wowhead vs Icy conflict: Wowhead TLDR says BL P3, Icy says BL here for double-damage - choose P3 unless heal check failing then use here"
       ]},
-      {lead:"Fragment of Malacrass → Soak before boss heals", subs:[
+      {lead:"Fragment of Malacrass → <span class=\"action\">Soak</span> before boss heals", subs:[
         "Fragments slowly move to Zul'jan and trigger Reclaim Essence healing 10% each if reaches",
         "Spread around Zul'jan and intercept every Fragment before boss",
         "Stepping triggers Spirit Erasure 166k shadow raid - stagger soaks, don't simultaneous",
-        "Tanks prioritise soaking, healers rotate CDs and delay soaks when raid low"
+        "<span class=\"role role-tank\">Tanks</span> prioritise soaking, <span class=\"role role-healer\">healers</span> rotate CDs and delay soaks when raid low"
       ]},
       {lead:"Deathguard → Don't let stunned ghosts clog", subs:[
         "Baleful energies absorb any stunned Manifestations - number held = enrage timer, clear all remaining before phase ends",
@@ -977,7 +977,7 @@ const RAID_DATA={
         "Overflow Defiled Ground absorbs 5 healing per sec while standing"
       ]},
       {lead:"Corrupted Toxin → P3 Twinfang tax", subs:[
-        "Melee consuming stacks inflicts 41670 shadow DoT stacking - swap near 20+"
+        "Melee consuming stacks inflicts 41670 shadow DoT stacking - <span class=\"action\">swap</span> near 20+"
       ]},
       {lead:"Toxic Deluge eco persists → Same P1 orb handling but faster with raid damage overlay", subs:[
         "Crucible still spews 541k nature - same Coalesced / Volatile rotation, Heroic stacking Rupture, Mythic Tainted Blood",
@@ -990,7 +990,7 @@ const RAID_DATA={
         "Death's Whisper 208k shadow 40y+ far punishment"
       ]},
       {lead:"Gravebound + Dreadmarch + Eternal Nightfall → All P2 still active", subs:[
-        "All P2 mechanics still fire in P3 - Soul Fragments still must be recovered, Boo ghosts still need stare-kite, Veil shield still must be broken to interrupt Nightfall",
+        "All P2 mechanics still fire in P3 - Soul Fragments still must be recovered, Boo ghosts still need stare-<span class=\"action\">kite</span>, Veil shield still must be broken to <span class=\"action\">interrupt</span> Nightfall",
         "Synchronise Sever / Soul Sever cleans for both orb + ghost piles"
       ]},
       {lead:"Soft enrage → Soulbound failure + Axegrinder clutter + Venom Rupture stacking", subs:[
@@ -1283,35 +1283,35 @@ const SPELL_TIPS={
 
 const TANK_SWAP={
   "Nek'zali the Soulcoiler":`<ul>
-    <li><span class="role role-tank">Tank</span> far 30+ yards for <span class="spell" data-tooltip="30-yard line attack after Soul Channel that charms the first target hit, if no target hit Nek'zali gains Possession" tabindex="0">Possession Barrage</span> — line dodge, nobody between.</li>
-    <li><span class="action">Taunt swap</span> at 30-40% <span class="spell" data-tooltip="Physical tank melee combo applying stacking 10% healing absorption for 30s" tabindex="0">Hollowing Strikes</span> (healing absorb stacking).</li>
+    <li><span class=\"role role-tank\">Tank</span> far 30+ yards for <span class=\"spell\" data-tooltip=\"30-yard line attack after Soul Channel that charms the first target hit, if no target hit Nek'zali gains Possession\" tabindex=\"0\">Possession Barrage</span> — line dodge, nobody between.</li>
+    <li><span class=\"action\">Taunt swap</span> at 30-40% <span class=\"spell\" data-tooltip=\"Physical tank melee combo applying stacking 10% healing absorption for 30s\" tabindex=\"0\">Hollowing Strikes</span> (healing absorb stacking).</li>
   </ul>`,
   "Entombed Sentinels":`<ul>
-    <li>No same-side <span class="role role-tank">tank</span> swap possible — <span class="action">trade golems every intermission</span> to drop Mark stacks.</li>
-    <li><span class="entity">Green</span> (Breath): <span class="spell" data-tooltip="Heavy physical hit on current target, +15% physical damage taken per stack for 20s, resets on new target" tabindex="0">Empowering Slam</span> ramps +15% per same target, reset on new target.</li>
-    <li><span class="entity">Red</span> (Blood): <span class="spell" data-tooltip="Stacking physical DoT on tank leaving large puddle on expiry" tabindex="0">Bloodvenom Injection</span> ramp + drops huge puddle on expiry — outgoing <span class="role role-tank">tank</span> walks it to wall/corner.</li>
+    <li>No same-side <span class=\"role role-tank\">tank</span> swap possible — <span class=\"action\">trade golems every intermission</span> to drop Mark stacks.</li>
+    <li><span class=\"entity\">Green</span> (Breath): <span class=\"spell\" data-tooltip=\"Heavy physical hit on current target, +15% physical damage taken per stack for 20s, resets on new target\" tabindex=\"0\">Empowering Slam</span> ramps +15% per same target, reset on new target.</li>
+    <li><span class=\"entity\">Red</span> (Blood): <span class=\"spell\" data-tooltip=\"Stacking physical DoT on tank leaving large puddle on expiry\" tabindex=\"0\">Bloodvenom Injection</span> ramp + drops huge puddle on expiry — outgoing <span class=\"role role-tank\">tank</span> walks it to wall/corner.</li>
   </ul>`,
   "The Lost Explorers":`<ul>
-    <li>2 <span class="role role-tank">tanks</span> separate: <span class="entity">Iku</span> swaps on <span class="spell" data-tooltip="Physical bleed on current tank for 8 seconds" tabindex="0">Shredding Shards</span> ramp, <span class="entity">Nama</span> swaps on <span class="spell" data-tooltip="Physical tank hits applying stacking increased physical damage taken" tabindex="0">Steady Strikes</span> ramp.</li>
-    <li><span class="action">Position turtles 40y+ apart</span> (<span class="spell" data-tooltip="Turtles immune to damage while within 40 yards of each other" tabindex="0">United Defense</span> immunity).</li>
+    <li>2 <span class=\"role role-tank\">tanks</span> separate: <span class=\"entity\">Iku</span> swaps on <span class=\"spell\" data-tooltip=\"Physical bleed on current tank for 8 seconds\" tabindex=\"0\">Shredding Shards</span> ramp, <span class=\"entity\">Nama</span> swaps on <span class=\"spell\" data-tooltip=\"Physical tank hits applying stacking increased physical damage taken\" tabindex=\"0\">Steady Strikes</span> ramp.</li>
+    <li><span class=\"action\">Position turtles 40y+ apart</span> (<span class=\"spell\" data-tooltip=\"Turtles immune to damage while within 40 yards of each other\" tabindex=\"0\">United Defense</span> immunity).</li>
   </ul>`,
   "Vashnik the Malignant":`<ul>
-    <li><span class="spell" data-tooltip="Massive physical tank hit applying 100% increased physical damage taken for 30s" tabindex="0">Dripping Fangs</span> = hard <span class="role role-tank">tank</span> swap every cast (100% phys amp, can't take twice).</li>
-    <li><span class="role role-tank">Tanks</span> also control fountain rotation by <span class="action">walking boss to correct pair before Imbibe</span>.</li>
+    <li><span class=\"spell\" data-tooltip=\"Massive physical tank hit applying 100% increased physical damage taken for 30s\" tabindex=\"0\">Dripping Fangs</span> = hard <span class=\"role role-tank\">tank</span> swap every cast (100% phys amp, can't take twice).</li>
+    <li><span class=\"role role-tank\">Tanks</span> also control fountain rotation by <span class=\"action\">walking boss to correct pair before Imbibe</span>.</li>
   </ul>`,
   "Sszorak":`<ul>
-    <li><span class="spell" data-tooltip="Random order combo of 2 Ravage, 2 Mutilate, 1 Tempest" tabindex="0">Apex Predator</span> random — <span class="role role-tank">tanks</span> call order: <span class="spell" data-tooltip="Tank frontal applying 400% increased physical taken for 25s" tabindex="0">Ravage</span> x2 (<span class="role role-tank">tank</span> frontal +400% amp 25s, swap between casts, edge away), <span class="spell" data-tooltip="Raid frontal needing 5+ targets to split, 22s poison DoT increasing next Mutilate damage by 500%" tabindex="0">Mutilate</span> x2 (raid soak alternation, <span class="role role-tank">tanks</span> stay).</li>
+    <li><span class=\"spell\" data-tooltip=\"Random order combo of 2 Ravage, 2 Mutilate, 1 Tempest\" tabindex=\"0\">Apex Predator</span> random — <span class=\"role role-tank\">tanks</span> call order: <span class=\"spell\" data-tooltip=\"Tank frontal applying 400% increased physical taken for 25s\" tabindex=\"0\">Ravage</span> x2 (<span class=\"role role-tank\">tank</span> frontal +400% amp 25s, swap between casts, edge away), <span class=\"spell\" data-tooltip=\"Raid frontal needing 5+ targets to split, 22s poison DoT increasing next Mutilate damage by 500%\" tabindex=\"0\">Mutilate</span> x2 (raid soak alternation, <span class=\"role role-tank\">tanks</span> stay).</li>
     <li>90s debuffs from Emergence/Tang timing require trade planning.</li>
   </ul>`,
   "The Twin Fangs":`<ul>
-    <li><span class="entity">Vexhul</span> <span class="spell" data-tooltip="5-second tank channel spawning 2 Caustic Globules" tabindex="0">Caustic Deluge</span> 10% stacking <span class="spell" data-tooltip="10% stacking magic damage taken for 90s" tabindex="0">Envenomed</span> 90s forces <span class="role role-tank">tank</span> trade (trade serpents, not same spot).</li>
-    <li><span class="entity">Ithraz</span> <span class="spell" data-tooltip="Roar knockback plus 3 sequential 4-yard swirlies, applies 33% stacking physical taken for 90s" tabindex="0">Stone Breaker</span> 33% stacking 90s + 3 swirlies must be soaked by <span class="role role-tank">tank</span> — tanks alt every other set.</li>
-    <li>Both bosses can't be kited out of range (<span class="spell" data-tooltip="Single-target nature bolt punishing out-of-range targets" tabindex="0">Concentrated Spittle</span> / <span class="spell" data-tooltip="Single-target shadow bolt punishing out-of-range targets" tabindex="0">Clotted Bolt</span> enrage).</li>
+    <li><span class=\"entity\">Vexhul</span> <span class=\"spell\" data-tooltip=\"5-second tank channel spawning 2 Caustic Globules\" tabindex=\"0\">Caustic Deluge</span> 10% stacking <span class=\"spell\" data-tooltip=\"10% stacking magic damage taken for 90s\" tabindex=\"0\">Envenomed</span> 90s forces <span class=\"role role-tank\">tank</span> trade (trade serpents, not same spot).</li>
+    <li><span class=\"entity\">Ithraz</span> <span class=\"spell\" data-tooltip=\"Roar knockback plus 3 sequential 4-yard swirlies, applies 33% stacking physical taken for 90s\" tabindex=\"0\">Stone Breaker</span> 33% stacking 90s + 3 swirlies must be soaked by <span class=\"role role-tank\">tank</span> — tanks alt every other set.</li>
+    <li>Both bosses can't be kited out of range (<span class=\"spell\" data-tooltip=\"Single-target nature bolt punishing out-of-range targets\" tabindex=\"0\">Concentrated Spittle</span> / <span class=\"spell\" data-tooltip=\"Single-target shadow bolt punishing out-of-range targets\" tabindex=\"0\">Clotted Bolt</span> enrage).</li>
   </ul>`,
   "The Coiled Altar":`<ul>
-    <li><span class="role role-tank">Tank</span> <span class="action">swap</span> on <span class="spell" data-tooltip="Frontal physical cleave; destroys Coalesced Venom inside cone" tabindex="0">Sever</span> / <span class="spell" data-tooltip="Shadow cone 500k on tank; destroys Manifestations; applies Gravebound" tabindex="0">Soul Sever</span> — both destroy adds; don't cleave raid.</li>
-    <li><span class="spell" data-tooltip="Axe throw requiring 5+ to split 5.4M physical; else Execution raid lethal" tabindex="0">Guillotine</span> / <span class="spell" data-tooltip="P3 shadow axe throw requiring 5+ to split 5.4M; else Grim Execution" tabindex="0">Grim Guillotine</span> — tanks edge-away; raid stacks; far players avoid <span class="spell" data-tooltip="Nature damage to players 40+ yards from axe impact" tabindex="0">Widow's Touch</span> / <span class="spell" data-tooltip="Shadow damage to 40+ yard players after P3 axe" tabindex="0">Death's Whisper</span>.</li>
-    <li><span class="action">Kite</span> <span class="spell" data-tooltip="Spinning axe hitbox; 583k physical within 4 yards, persists" tabindex="0">Axegrinder</span> — tanks carve lane; Mythic no despawn.</li>
+    <li><span class=\"role role-tank\">Tank</span> <span class=\"action\">swap</span> on <span class=\"spell\" data-tooltip=\"Frontal physical cleave; destroys Coalesced Venom inside cone\" tabindex=\"0\">Sever</span> / <span class=\"spell\" data-tooltip=\"Shadow cone 500k on tank; destroys Manifestations; applies Gravebound\" tabindex=\"0\">Soul Sever</span> — both destroy adds; don't cleave raid.</li>
+    <li><span class=\"spell\" data-tooltip=\"Axe throw requiring 5+ to split 5.4M physical; else Execution raid lethal\" tabindex=\"0\">Guillotine</span> / <span class=\"spell\" data-tooltip=\"P3 shadow axe throw requiring 5+ to split 5.4M; else Grim Execution\" tabindex=\"0\">Grim Guillotine</span> — tanks edge-away; raid stacks; far players avoid <span class=\"spell\" data-tooltip=\"Nature damage to players 40+ yards from axe impact\" tabindex=\"0\">Widow's Touch</span> / <span class=\"spell\" data-tooltip=\"Shadow damage to 40+ yard players after P3 axe\" tabindex=\"0\">Death's Whisper</span>.</li>
+    <li><span class=\"action\">Kite</span> <span class=\"spell\" data-tooltip=\"Spinning axe hitbox; 583k physical within 4 yards, persists\" tabindex=\"0\">Axegrinder</span> — tanks carve lane; Mythic no despawn.</li>
   </ul>`,
 
 };
@@ -1387,38 +1387,28 @@ function tipHtml(tip,idx,bossName){
 
 function enrichText(s){
   if(!s) return "";
-  let h=escapeHtml(s);
-  const entities=["Nek'zali","Restless Amani","Echo of Jawae","Breath of Ula'tek","Vessel of Awakening","Restless Heart","Avatar of Sethraliss","Iku","Nama","Gebbo","Mor'zahi","Vashnik","Sszorak","Vexhul","Ithraz","Twin Fangs","Entombed Sentinels","Lost Explorers","Adderis","Aspix","Merektha","Galvazzt","Mchimba","Dazar","Melidrussa","Kokia","Kyrakka","Erkhart","Taz'Rah","Atroxus","Charonus","Hoardmonger","Nalorakk","Kystia","Zaen","Xathuux","Lithiel","Ruia","Ziekket","Zul'jan","Muro'jin","Nekraxx","Vordaza","Rak'tul","Garfrost","Tyrannus","Ranji","Araknath","Rukhran","Viryx","Seranel","Gemellus","Degentrius","Kasreth","Nysarra","Lothraxion","Zuraal","Saprish","Nezhar","L'ura","Emberdawn","Kroluk"];
-  entities.sort((a,b)=>b.length-a.length);
-  entities.forEach(ent=>{ const re=new RegExp('\\b'+escapeReg(ent)+'\\b','gi'); h=h.replace(re, (m)=>{ if(m.startsWith('<')) return m; return `<span class="entity">${m}</span>`; }); });
-  h=(function(text){
-    // Only format DPS/Tank/Healer when they clearly refer to the role (players), not the metric/verb
-    return text.replace(/\b(tanks|tank|healers|healer|dps)\b/gi,function(orig,_,off,full){
-      var low=orig.toLowerCase();
-      var before=(full.slice(0,off).match(/([A-Za-z0-9']+)\s*$/)||[])[1]||"";
-      var bw=before.toLowerCase();
-      var after=(full.slice(off+orig.length).match(/^\s*([A-Za-z0-9']+)/)||[])[1]||"";
-      var aw=after.toLowerCase();
-      if(low==='dps'){
-        var metricPre=["more","less","higher","lower","extra","increase","increased","deal","dealing","do","doing","to","gain","lose","max","high","low","overall","pure","total","raw","big","huge","insane"];
-        var metricPost=["check","loss","meter","meters","numbers","race","increase","losses","parse"];
-        if(metricPre.indexOf(bw)!==-1||metricPost.indexOf(aw)!==-1) return orig;
-        var rolePre=["melee","ranged","all","both","your","the","our","two","three","2","3","each"];
-        var rolePost=["should","must","need","needs","soak","soaks","move","stack","swap","kill","interrupt","focus","bait","spread","position","kite","cleave","stay","run","group","taunt","grab","pick","handle","soak"];
-        // allow second word back for "melee dps" where first capture is melee already as bw, but also check two words back for safety
-        if(rolePre.indexOf(bw)!==-1||rolePost.indexOf(aw)!==-1) return '<span class="role role-dps">'+orig+'</span>';
-        // Be conservative: only format DPS when we have a role hint; otherwise leave plain (avoids "more DPS" false positives)
-        return orig;
-      }else{
-        // tank / tanks / healer / healers — still pretty clearly role, but avoid obvious non-role like "more tank" (nonsense)
-        if(["more","less"].indexOf(bw)!==-1) return orig;
-        var role=low.indexOf('tank')!==-1?'tank':'healer';
-        return '<span class="role role-'+role+'">'+orig+'</span>';
-      }
+  let h = s;
+  const hasHtml = h.indexOf('<')!==-1 && h.indexOf('>')!==-1;
+  if(hasHtml){
+    // Hardcoded true-meaning markup already present — preserve exactly
+    return h;
+  }
+  h = escapeHtml(h);
+  try{
+    const spells=["Fangs of the Coiled Altar","Twinfang Toxin","Noxious Ground","Toxic Deluge","Coalesced Venom","Venom Rupture","Volatile Venom","Virulent Cyst","Virulent Mutation","Mutagenic Venom","Tainted Blood","Guillotine","Execution","Widow's Kiss","Widow's Touch","Sever","Venomfang","Axegrinder","Guillotined","Dreadmarch","Manifestation of Dread","Unnerving Fixation","Despair","Soul Sever","Gravebound","Soul Fragment","Eternal Nightfall","Veil of Twilight","Suffocating Darkness","Spiritcackle","Spiteful Soulcoiler","Wail of Terror","Retaliatory Malice","Consumed by Resentment","Spirit Shield","Gloombomb","Dread Bolt","Dreadful Presence","Soulbinding","Ghastly Regeneration","Fragment of Malacrass","Spirit Erasure","Reclaim Essence","Deathguard","Soulbound","Defilement of the Coiled Altar","Corrupted Toxin","Defiled Ground","Grim Guillotine","Grim Execution","Death's Embrace","Death's Whisper","Blighted Sever","Possession Barrage","Hollowing Strikes","Gravebound Advance","Soulcoil Rite","Ritual Burn","Soulcoil Ignition","Anguished Echoes","Soul Transfer","Hungering Pyre","Slithering Flame","Vessel of Awakening","Uncoiling","Entwined Step","Toxic Droplets","Noxious Blast","Venom Coagulation","Living Venom","Empowering Slam","Unstable Miasma","Clinging Murk","Blood Venom","Bloodvenom Injection","Vitriolic Stasis","Helical Toxins","Cultivated Burst","Shredding Shards","Steady Strikes","United Defense","Relic Rupture","Disgusting Fish","Final Ascension","Fishy Feedback","Mighty Thud","Frostfire Volley","Elemental Explosion","Explosive Surprise","Blast Wave","Bouncy Mushroom","Dripping Fangs","Malignant Burst","Hardened Venom","Blood Clotting","Umbral Ejection","Catalytic Bile","Plague Froth","Plague Wave","Toxic Vapor","Siphoning Infection","Stygian Burst","Stygian Infection","Exploding Infection","Apex Predator","Venomous Surge","Viscous Cyst","Caustic Claws","Raging Crosswinds","Caustic Deluge","Envenomed","Venomous Emergence","Corrosive Spit","Coiling Ichor","Stone Breaker","Stir Depths","Concentrated Spittle","Clotted Bolt","Vile Flood","Sanguine Storm","Ravenous Feast","Noxious Slick","Congealed Gore","Uncoiled Wrath","Eternal Venom","Cremation","Ula'tek's Dominance","Ula'tek's Presence","Ravage","Mutilate","Tempest","Imbibe","Dig In","Feasted"];
+    spells.sort((a,b)=>b.length-a.length);
+    const spellPattern = spells.map(escapeReg).join('|');
+    const spellRe = new RegExp('('+spellPattern+')','gi');
+    h = h.replace(spellRe, (m)=>{
+      // Avoid double-wrapping if already inside a spell span
+      if(m.indexOf('<')!==-1) return m;
+      const key = spells.find(k=>k.toLowerCase()===m.toLowerCase()) || m;
+      const tip = (typeof SPELL_TIPS!=='undefined' && (SPELL_TIPS[key]||SPELL_TIPS[m]))||"";
+      const tt = tip?` data-tooltip=\"${escapeAttr(tip)}\" tabindex=\"0\" aria-describedby=\"spellTooltip\"`:"";
+      return `<span class=\"spell\"${tt}>${m}</span>`;
     });
-  })(h);
-  const actions=["Soak as group","Drop puddle at edge","Touch exactly 1 partner","Pair greens to 4","Jump mushroom","Drop puddles","Group soak","Spread out","Loosely spread","Stack","Soak","Dodge","Interrupt","Dispel","Kite","Taunt swap","Drop puddle","Walk it out","Swap","Soak orbs"]; actions.sort((a,b)=>b.length-a.length); actions.forEach(act=>{ const re=new RegExp('\\b'+escapeReg(act)+'\\b','gi'); h=h.replace(re, m=>`<span class="action">${m}</span>`); });
-  const spells=["Fangs of the Coiled Altar","Twinfang Toxin","Noxious Ground","Toxic Deluge","Coalesced Venom","Venom Rupture","Volatile Venom","Virulent Cyst","Virulent Mutation","Mutagenic Venom","Tainted Blood","Guillotine","Execution","Widow's Kiss","Widow's Touch","Sever","Venomfang","Axegrinder","Guillotined","Dreadmarch","Manifestation of Dread","Unnerving Fixation","Despair","Soul Sever","Gravebound","Soul Fragment","Eternal Nightfall","Veil of Twilight","Suffocating Darkness","Spiritcackle","Spiteful Soulcoiler","Wail of Terror","Retaliatory Malice","Consumed by Resentment","Spirit Shield","Gloombomb","Dread Bolt","Dreadful Presence","Soulbinding","Ghastly Regeneration","Fragment of Malacrass","Spirit Erasure","Reclaim Essence","Deathguard","Soulbound","Defilement of the Coiled Altar","Corrupted Toxin","Defiled Ground","Grim Guillotine","Grim Execution","Death's Embrace","Death's Whisper","Blighted Sever","Possession Barrage","Hollowing Strikes","Gravebound Advance","Soulcoil Rite","Ritual Burn","Soulcoil Ignition","Anguished Echoes","Soul Transfer","Hungering Pyre","Slithering Flame","Vessel of Awakening","Uncoiling","Entwined Step","Toxic Droplets","Noxious Blast","Venom Coagulation","Living Venom","Empowering Slam","Unstable Miasma","Clinging Murk","Blood Venom","Bloodvenom Injection","Vitriolic Stasis","Helical Toxins","Cultivated Burst","Shredding Shards","Steady Strikes","United Defense","Relic Rupture","Disgusting Fish","Final Ascension","Fishy Feedback","Mighty Thud","Frostfire Volley","Elemental Explosion","Explosive Surprise","Blast Wave","Bouncy Mushroom","Dripping Fangs","Malignant Burst","Hardened Venom","Blood Clotting","Umbral Ejection","Catalytic Bile","Plague Froth","Plague Wave","Toxic Vapor","Siphoning Infection","Stygian Burst","Stygian Infection","Exploding Infection","Apex Predator","Venomous Surge","Viscous Cyst","Caustic Claws","Raging Crosswinds","Caustic Deluge","Envenomed","Venomous Emergence","Corrosive Spit","Coiling Ichor","Stone Breaker","Stir Depths","Concentrated Spittle","Clotted Bolt","Vile Flood","Sanguine Storm","Ravenous Feast","Noxious Slick","Congealed Gore","Uncoiled Wrath","Eternal Venom","Cremation","Ula'tek's Dominance","Ula'tek's Presence","Ravage","Mutilate","Tempest","Imbibe","Dig In","Feasted"]; spells.sort((a,b)=>b.length-a.length); const spellPattern = spells.map(escapeReg).join('|'); const spellRe = new RegExp('('+spellPattern+')','gi'); h = h.replace(spellRe, (m)=>{ const key = spells.find(k=>k.toLowerCase()===m.toLowerCase()) || m; const tip = SPELL_TIPS[key]||SPELL_TIPS[m]||""; const tt = tip?` data-tooltip="${escapeAttr(tip)}" tabindex="0" aria-describedby="spellTooltip"`:""; return `<span class="spell"${tt}>${m}</span>`; }); return h;
+  }catch(e){}
+  return h;
 }
 function escapeReg(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
 
@@ -1431,7 +1421,7 @@ function renderDungeonContent(){
 }
 
 function renderMechItem(it){
-  if(!it) return ""; if(typeof it==="string"){ return `<li class="mech-item"><div class="mech-lead">${enrichText(it)}</div></li>`; } const iconFor=(()=>{ const key=(it.lead||"").toLowerCase(); if(key.includes("toxic")||key.includes("droplets")) return RAID_ICONS["Entombed Sentinels"]; if(key.includes("mighty")||key.includes("thud")) return "assets/raid/lost-mighty-thud.jpg"; if(key.includes("frostfire")) return "assets/raid/lost-frostfire.jpg"; if(key.includes("bomb")||key.includes("explosive")) return "assets/raid/lost-bomb-mushroom.jpg"; if(key.includes("cyst")||key.includes("surge")) return "assets/raid/sszorak-cysts.jpg"; if(key.includes("crosswind")) return "assets/raid/sszorak-crosswinds.jpg"; if(key.includes("mutilate")) return "assets/raid/sszorak-mutilate.jpg"; if(key.includes("deluge")||key.includes("glob")) return "assets/raid/fangs-globules.jpg"; if(key.includes("flood")) return "assets/raid/fangs-flood.jpg"; if(key.includes("spit")||key.includes("emergence")) return "assets/raid/fangs-spit.jpg"; if(key.includes("ichor")) return "assets/raid/fangs-ichor.jpg"; return null; })(); const ico=iconFor?`<img class="mech-ico" src="${escapeAttr(iconFor)}" alt="" loading="lazy" onerror="this.style.display='none'"/>`:""; const subs=(it.subs||[]).map(s=>`<li>${enrichText(s)}</li>`).join(''); return `<li class="mech-item"><div class="mech-lead">${ico}<strong>${enrichText(it.lead)}</strong></div>${subs?`<ul class="mech-subs">${subs}</ul>`:''}</li>`;
+  if(!it) return ""; if(typeof it==="string"){ return `<li class=\"mech-item\"><div class=\"mech-lead\">${enrichText(it)}</div></li>`; } const iconFor=(()=>{ const key=(it.lead||"").toLowerCase(); if(key.includes("toxic")||key.includes("droplets")) return RAID_ICONS["Entombed Sentinels"]; if(key.includes("mighty")||key.includes("thud")) return "assets/raid/lost-mighty-thud.jpg"; if(key.includes("frostfire")) return "assets/raid/lost-frostfire.jpg"; if(key.includes("bomb")||key.includes("explosive")) return "assets/raid/lost-bomb-mushroom.jpg"; if(key.includes("cyst")||key.includes("surge")) return "assets/raid/sszorak-cysts.jpg"; if(key.includes("crosswind")) return "assets/raid/sszorak-crosswinds.jpg"; if(key.includes("mutilate")) return "assets/raid/sszorak-mutilate.jpg"; if(key.includes("deluge")||key.includes("glob")) return "assets/raid/fangs-globules.jpg"; if(key.includes("flood")) return "assets/raid/fangs-flood.jpg"; if(key.includes("spit")||key.includes("emergence")) return "assets/raid/fangs-spit.jpg"; if(key.includes("ichor")) return "assets/raid/fangs-ichor.jpg"; return null; })(); const ico=iconFor?`<img class=\"mech-ico\" src="${escapeAttr(iconFor)}" alt="" loading="lazy" onerror="this.style.display='none'"/>`:""; const subs=(it.subs||[]).map(s=>`<li>${enrichText(s)}</li>`).join(''); return `<li class=\"mech-item\"><div class=\"mech-lead\">${ico}<strong>${enrichText(it.lead)}</strong></div>${subs?`<ul class=\"mech-subs\">${subs}</ul>`:''}</li>`;
 }
 
 function renderRaidContent(){
@@ -1441,7 +1431,7 @@ function renderRaidContent(){
   const __notice=qs('#notice'); if(__notice){ __notice.style.display='none'; __notice.setAttribute('aria-hidden','true'); } const q=query.toLowerCase().trim();
   let html=`<div class="boss-card"><div class="boss-head raid-head"><h3><span class="boss-icon raid">${data.bossNum}</span>${escapeHtml(realName)}<span style="margin-left:10px;font-size:12px;color:var(--muted);font-weight:500">— ${escapeHtml(data.short)}</span></h3><span class="mini">TL;DR + Setup + Strat</span></div><div class="raid-body">`;
   html+=`<div class="tldr venom-tldr"><strong>TL;DR:</strong> ${escapeHtml(data.tldr)}</div>`; if(TANK_SWAP[realName]){ html+=`<div class="tank-box"><div class="tank-box-head"><span class="tb-icon">🛡️</span> Tank Swap / Taunt</div>${TANK_SWAP[realName]}</div>`; } html+=`<div class="setup-line"><span class="pill venom">${escapeHtml(data.setup)}</span>${data.bossNum===1?`<span class="pill">Tower-defense • 100 energy enrage</span>`:''}${data.bossNum===2?`<span class="pill">40y DR • Even HP</span>`:''}${data.bossNum===6?`<span class="pill">Eternal Venom 10 = death</span>`:''}</div>`;
-  const section=(title,items)=>{ if(!items||!items.length) return ""; if(q && !JSON.stringify(items).toLowerCase().includes(q) && !title.toLowerCase().includes(q)) return ""; const inner=Array.isArray(items)?items.map(it=>renderMechItem(it)).join(''):`<li class="mech-item"><div class="mech-lead">${enrichText(items)}</div></li>`; return `<div class="strat"><h4 class="raid-h">${escapeHtml(title)}</h4><ul>${inner}</ul><div class="mech-divider"></div></div>`; };
+  const section=(title,items)=>{ if(!items||!items.length) return ""; if(q && !JSON.stringify(items).toLowerCase().includes(q) && !title.toLowerCase().includes(q)) return ""; const inner=Array.isArray(items)?items.map(it=>renderMechItem(it)).join(''):`<li class=\"mech-item\"><div class=\"mech-lead\">${enrichText(items)}</div></li>`; return `<div class="strat"><h4 class="raid-h">${escapeHtml(title)}</h4><ul>${inner}</ul><div class=\"mech-divider\"></div></div>`; };
   if(data.strategy) html+=section(data.bossNum===7?"Stage One — Serpent's Bargain":"Core — Phase 1 loop",data.strategy); if(data.green) html+=section("Green Golem (Breath)",data.green); if(data.red) html+=section("Red Golem (Blood)",data.red); if(data.intermission) html+=section(data.bossNum===7?"Intermission — Claimed Vessel":"Intermission — Energy 100",data.bossNum===7?data.intermission:(data.bossNum===1?"Intermission — 50% cleanup":data.intermission)); if(data.p2) html+=section(data.bossNum===7?"Stage Two — Usurper's Reprisal":"Phase 2 — Burn",data.p2); if(data.tanks) html+=section("Tanks",[data.tanks]); if(data.tanks2) html+=section("Tanks — Soul Sever",data.tanks2); if(data.boxes) html+=section("Box / Fish Economy",[data.boxes]); if(data.feed) html+=section("Feed Order",[data.feed]); if(data.ultimates) html+=section("Ultimates",data.ultimates); if(data.enrage) html+=section("Enrage / Kill Together",[data.enrage]); if(data.rotation) html+=section("Rotation",data.rotation); if(data.adds) html+=section("Add Control",data.adds); if(data.infections) html+=section("Infections (telegraphed by Fountain)",data.infections); if(data.passive) html+=section("Passive Checklist",data.passive); if(data.apex) html+=section("Apex Predator",data.apex); if(data.surge) html+=section("Venomous Surge + Cysts",data.surge); if(data.crosswinds) html+=section("Raging Crosswinds",data.crosswinds); if(data.core) html+=section("Core Rotation",data.core); if(data.feast) html+=section("Ravenous Feast — Venom Refund",data.feast); if(data.submerge) html+=section("Submerge 100 — Combined Assault",data.submerge); if(data.p3) html+=section("Stage Three — Coiled Union",data.p3);
   if(data.images && data.images.length){ const matches = q? data.images.filter(img=>img.cap.toLowerCase().includes(q)): data.images; if(matches.length){ html+=`<div class="strat"><h4 class="raid-h">Maps & Positions — click to zoom</h4><div class="img-grid">`; matches.forEach(img=>{ html+=`<div class="img-card"><img loading="lazy" src="${escapeAttr(img.src)}" alt="${escapeAttr(img.cap)}" onerror="this.parentElement.style.display='none'"/><div class="cap">${escapeHtml(img.cap)}</div></div>`; }); html+=`</div></div>`; } } html+=`</div></div>`; qs('#bossGrid').innerHTML=html; qs('#bossGrid').querySelectorAll('.img-card img').forEach(im=>im.addEventListener('click',()=>openLightbox(im.src,im.alt)));
 }
