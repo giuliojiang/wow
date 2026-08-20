@@ -1391,7 +1391,32 @@ function enrichText(s){
   const entities=["Nek'zali","Restless Amani","Echo of Jawae","Breath of Ula'tek","Vessel of Awakening","Restless Heart","Avatar of Sethraliss","Iku","Nama","Gebbo","Mor'zahi","Vashnik","Sszorak","Vexhul","Ithraz","Twin Fangs","Entombed Sentinels","Lost Explorers","Adderis","Aspix","Merektha","Galvazzt","Mchimba","Dazar","Melidrussa","Kokia","Kyrakka","Erkhart","Taz'Rah","Atroxus","Charonus","Hoardmonger","Nalorakk","Kystia","Zaen","Xathuux","Lithiel","Ruia","Ziekket","Zul'jan","Muro'jin","Nekraxx","Vordaza","Rak'tul","Garfrost","Tyrannus","Ranji","Araknath","Rukhran","Viryx","Seranel","Gemellus","Degentrius","Kasreth","Nysarra","Lothraxion","Zuraal","Saprish","Nezhar","L'ura","Emberdawn","Kroluk"];
   entities.sort((a,b)=>b.length-a.length);
   entities.forEach(ent=>{ const re=new RegExp('\\b'+escapeReg(ent)+'\\b','gi'); h=h.replace(re, (m)=>{ if(m.startsWith('<')) return m; return `<span class="entity">${m}</span>`; }); });
-  h=h.replace(/\btanks\b/gi,'<span class="role role-tank">tanks</span>'); h=h.replace(/\btank\b/gi,'<span class="role role-tank">tank</span>'); h=h.replace(/\bhealers\b/gi,'<span class="role role-healer">healers</span>'); h=h.replace(/\bhealer\b/gi,'<span class="role role-healer">healer</span>'); h=h.replace(/\bdps\b/gi,'<span class="role role-dps">dps</span>');
+  h=(function(text){
+    // Only format DPS/Tank/Healer when they clearly refer to the role (players), not the metric/verb
+    return text.replace(/\b(tanks|tank|healers|healer|dps)\b/gi,function(orig,_,off,full){
+      var low=orig.toLowerCase();
+      var before=(full.slice(0,off).match(/([A-Za-z0-9']+)\s*$/)||[])[1]||"";
+      var bw=before.toLowerCase();
+      var after=(full.slice(off+orig.length).match(/^\s*([A-Za-z0-9']+)/)||[])[1]||"";
+      var aw=after.toLowerCase();
+      if(low==='dps'){
+        var metricPre=["more","less","higher","lower","extra","increase","increased","deal","dealing","do","doing","to","gain","lose","max","high","low","overall","pure","total","raw","big","huge","insane"];
+        var metricPost=["check","loss","meter","meters","numbers","race","increase","losses","parse"];
+        if(metricPre.indexOf(bw)!==-1||metricPost.indexOf(aw)!==-1) return orig;
+        var rolePre=["melee","ranged","all","both","your","the","our","two","three","2","3","each"];
+        var rolePost=["should","must","need","needs","soak","soaks","move","stack","swap","kill","interrupt","focus","bait","spread","position","kite","cleave","stay","run","group","taunt","grab","pick","handle","soak"];
+        // allow second word back for "melee dps" where first capture is melee already as bw, but also check two words back for safety
+        if(rolePre.indexOf(bw)!==-1||rolePost.indexOf(aw)!==-1) return '<span class="role role-dps">'+orig+'</span>';
+        // Be conservative: only format DPS when we have a role hint; otherwise leave plain (avoids "more DPS" false positives)
+        return orig;
+      }else{
+        // tank / tanks / healer / healers — still pretty clearly role, but avoid obvious non-role like "more tank" (nonsense)
+        if(["more","less"].indexOf(bw)!==-1) return orig;
+        var role=low.indexOf('tank')!==-1?'tank':'healer';
+        return '<span class="role role-'+role+'">'+orig+'</span>';
+      }
+    });
+  })(h);
   const actions=["Soak as group","Drop puddle at edge","Touch exactly 1 partner","Pair greens to 4","Jump mushroom","Drop puddles","Group soak","Spread out","Loosely spread","Stack","Soak","Dodge","Interrupt","Dispel","Kite","Taunt swap","Drop puddle","Walk it out","Swap","Soak orbs"]; actions.sort((a,b)=>b.length-a.length); actions.forEach(act=>{ const re=new RegExp('\\b'+escapeReg(act)+'\\b','gi'); h=h.replace(re, m=>`<span class="action">${m}</span>`); });
   const spells=["Fangs of the Coiled Altar","Twinfang Toxin","Noxious Ground","Toxic Deluge","Coalesced Venom","Venom Rupture","Volatile Venom","Virulent Cyst","Virulent Mutation","Mutagenic Venom","Tainted Blood","Guillotine","Execution","Widow's Kiss","Widow's Touch","Sever","Venomfang","Axegrinder","Guillotined","Dreadmarch","Manifestation of Dread","Unnerving Fixation","Despair","Soul Sever","Gravebound","Soul Fragment","Eternal Nightfall","Veil of Twilight","Suffocating Darkness","Spiritcackle","Spiteful Soulcoiler","Wail of Terror","Retaliatory Malice","Consumed by Resentment","Spirit Shield","Gloombomb","Dread Bolt","Dreadful Presence","Soulbinding","Ghastly Regeneration","Fragment of Malacrass","Spirit Erasure","Reclaim Essence","Deathguard","Soulbound","Defilement of the Coiled Altar","Corrupted Toxin","Defiled Ground","Grim Guillotine","Grim Execution","Death's Embrace","Death's Whisper","Blighted Sever","Possession Barrage","Hollowing Strikes","Gravebound Advance","Soulcoil Rite","Ritual Burn","Soulcoil Ignition","Anguished Echoes","Soul Transfer","Hungering Pyre","Slithering Flame","Vessel of Awakening","Uncoiling","Entwined Step","Toxic Droplets","Noxious Blast","Venom Coagulation","Living Venom","Empowering Slam","Unstable Miasma","Clinging Murk","Blood Venom","Bloodvenom Injection","Vitriolic Stasis","Helical Toxins","Cultivated Burst","Shredding Shards","Steady Strikes","United Defense","Relic Rupture","Disgusting Fish","Final Ascension","Fishy Feedback","Mighty Thud","Frostfire Volley","Elemental Explosion","Explosive Surprise","Blast Wave","Bouncy Mushroom","Dripping Fangs","Malignant Burst","Hardened Venom","Blood Clotting","Umbral Ejection","Catalytic Bile","Plague Froth","Plague Wave","Toxic Vapor","Siphoning Infection","Stygian Burst","Stygian Infection","Exploding Infection","Apex Predator","Venomous Surge","Viscous Cyst","Caustic Claws","Raging Crosswinds","Caustic Deluge","Envenomed","Venomous Emergence","Corrosive Spit","Coiling Ichor","Stone Breaker","Stir Depths","Concentrated Spittle","Clotted Bolt","Vile Flood","Sanguine Storm","Ravenous Feast","Noxious Slick","Congealed Gore","Uncoiled Wrath","Eternal Venom","Cremation","Ula'tek's Dominance","Ula'tek's Presence","Ravage","Mutilate","Tempest","Imbibe","Dig In","Feasted"]; spells.sort((a,b)=>b.length-a.length); const spellPattern = spells.map(escapeReg).join('|'); const spellRe = new RegExp('('+spellPattern+')','gi'); h = h.replace(spellRe, (m)=>{ const key = spells.find(k=>k.toLowerCase()===m.toLowerCase()) || m; const tip = SPELL_TIPS[key]||SPELL_TIPS[m]||""; const tt = tip?` data-tooltip="${escapeAttr(tip)}" tabindex="0" aria-describedby="spellTooltip"`:""; return `<span class="spell"${tt}>${m}</span>`; }); return h;
 }
