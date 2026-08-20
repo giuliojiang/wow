@@ -481,7 +481,7 @@ const SEASON_2=["Temple of Sethraliss","King's Rest","Ruby Life Pools","Voidscar
 const SEASON_1=["Algeth’ar Academy","Maisara Caverns","Pit of Saron","Skyreach","Magister's Terrace","Nexus Point Xenas","Seat of the Triumvirate","Windrunner Spire"];
 
 // RAID DATA — scannable rewrite preserving all info
-const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs"];
+const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs","The Coiled Altar"];
 // Friendly aliases for task-requested names
 const RAID_ALIASES={
   "Vashnik the Water-Gazer":"Vashnik the Malignant",
@@ -870,6 +870,141 @@ const RAID_DATA={
       {src:"assets/raid/fangs-feast.jpg",cap:"Ravenous Feast — 3 groups, venom refund"},
       {src:"assets/raid/fangs-flood.jpg",cap:"Vile Flood laser — run against rotation"}
     ]
+  },
+
+  "The Coiled Altar":{
+    short:"Duo council — Zul'jan & Malacrass",
+    bossNum:7,
+    tldr:"Three-phase duo + intermission vessel. P1 Zul'jan orb eco + Guillotine soak, P2 Malacrass Boo ghosts + Gravebound fragments + shield break, Intermission burn boss double-damage while blocking fragment heals, P3 both mechanics at once - keep stacked DPS even kill together or 500% enrage.",
+    setup:"2 / 4 / 14 · 5+ soak (Guillotine) alternating Heroic 2 groups · 3 Markers ghosts + orb stack · Lust P3 (alt Intermission for Ghastly)",
+    strategy:[
+      {lead:"Fangs of the Coiled Altar + Noxious Ground → Stay stacked near boss, side overflow", subs:[
+        "Raid-wide nature from Fangs hits tanks with Twinfang Toxin auto tax",
+        "Noxious Ground area-denial from side mouths - keep center clear, drop at sides"
+      ]},
+      {lead:"Toxic Deluge → Coalesced Venom eco", subs:[
+        "Green poison circles leave Coalesced Venom orbs - assigned players step to pick up and move to designated stack point",
+        "Volatile Venom debuff expires dropping orb fresh - don't chain expire",
+        "Each destroyed orb triggers Venom Rupture raid-wide - Heroic: stacking DoT, avoid simultaneous pops",
+        "Mythic: some warp Virulent Mutation (pulses 1s, Mutagenic Venom respawn), one mutates Virulent Cyst expelling 2 orbs every 6s 70 nature 4y"
+      ]},
+      {lead:"Sever → Tank frontal cone destroys orbs", subs:[
+        "Sever heavy physical cone - debuff increased next Sever - taunt swap every cast",
+        "Any Coalesced Venom inside frontal destroyed - aim through stack point to control raid stacks",
+        "Tank edge-aim not raid"
+      ]},
+      {lead:"Guillotine → 5+ soak then Widow's Kiss run-out", subs:[
+        "Soak must hit at least 5 players - 5.4M physical split",
+        "If fails Execution 1.6M nature lethal raid",
+        "Widow's Kiss plume 1.25M nature around axe - run outside circle using Stampeding Roar / Gateway",
+        "Widow's Touch 208k nature to 40+ yard far players - far group tucked",
+        "Heroic: Guillotined 500% increased next Guillotine - two groups half-raid alternate"
+      ]},
+      {lead:"Venomfang → Loosely spread dispellable poison", subs:[
+        "Random players poison DoT - dispel quickly, Shaman Poison Cleansing Totem great"
+      ]},
+      {lead:"Axegrinder → Spinning axes dodge", subs:[
+        "Axes travel leaving spinning hitboxes 583k physical 4y - watch while moving with Kiss or Venom",
+        "Mythic: no despawn - early axis placement critical, preserve lanes"
+      ]}
+    ],
+    p2:[
+      {lead:"Positioning → Behind Malacrass slightly to side, stacked", subs:[
+        "Stack behind boss to one side - instead of poison orbs now Boo ghosts, same Soul Sever clear"
+      ]},
+      {lead:"Dreadmarch → Mind-control walk-off, break fast", subs:[
+        "Multiple players MC'd gain absorb shield walk to nearest edge and jump off",
+        "Breaking shield spawns 2 Manifestations of Dread per player via Unnerving Fixation",
+        "If raid stacked on boss passive cleave breaks quickly",
+        "Can CC with Ring of Peace / Death Grip etc"
+      ]},
+      {lead:"Manifestation of Dread → Boo ghost stare-freeze", subs:[
+        "Fixates random player - moves only when player NOT looking directly at it - stare to freeze",
+        "Guide to assigned stack point then face to hold before Soul Sever",
+        "Immune to damage/control otherwise",
+        "Heroic: if reaches target reapplies Dreadmarch - never let contact",
+        "Mythic: only visible to fixated target, refixates every 15s, Malevolent Resonance when 2 touch both pulse damage to fixated 5s"
+      ]},
+      {lead:"Despair → Fixated shadow bite", subs:[
+        "333k shadow while ghost lives - heal / dispel lane"
+      ]},
+      {lead:"Soul Sever → Tank frontal destroys ghosts + Gravebound collection", subs:[
+        "500k shadow cone same as Sever plus applies Gravebound to hit players",
+        "Gravebound fractures soul into 3 Soul Fragments fading 10s - must reclaim all or die",
+        "Active tank must collect fragments immediately after cast, other tank taunts",
+        "Destroys all Manifestations of Dread - dump ghosts before cast"
+      ]},
+      {lead:"Gloombomb → Spread far purple circles", subs:[
+        "Ranged targeted 5s big purple circle explodes - move away avoid overlap",
+        "Hit players need 3 Soul Fragments before expiry or die",
+        "Heroic: explosion itself applies Gravebound making accidental overlaps lethal"
+      ]},
+      {lead:"Spiritcackle → Interrupt add Heroic+", subs:[
+        "Repeatedly casts Wail of Terror 5s fear and Retaliatory Malice random dark blasts",
+        "Assign 2-3 interrupters toward end of cast - interrupt causes teleport and recast",
+        "If teleports into melee gets cleaved, ranged prioritize"
+      ]},
+      {lead:"Eternal Nightfall → Veil of Twilight 12M shield break", subs:[
+        "Malacrass gains Veil 12M absorb and begins casting deadly raid wipe",
+        "Break shield then interrupt before completion - avoid purple shadow circles",
+        "Delay interrupt to last seconds for max DPS if safe"
+      ]}
+    ],
+    intermission:[
+      {lead:"Soulbinding → Ghastly Regeneration double-damage burn", subs:[
+        "Malacrass links to Zul'jan, Zul'jan regenerates 2% max per sec 35s via Ghastly Regeneration",
+        "Zul'jan takes 100% increased damage during - Bloodlust / cooldowns / potions window",
+        "Wowhead vs Icy conflict: Wowhead TLDR says BL P3, Icy says BL here for double-damage - choose P3 unless heal check failing then use here"
+      ]},
+      {lead:"Fragment of Malacrass → Soak before boss heals", subs:[
+        "Fragments slowly move to Zul'jan and trigger Reclaim Essence healing 10% each if reaches",
+        "Spread around Zul'jan and intercept every Fragment before boss",
+        "Stepping triggers Spirit Erasure 166k shadow raid - stagger soaks, don't simultaneous",
+        "Tanks prioritise soaking, healers rotate CDs and delay soaks when raid low"
+      ]},
+      {lead:"Deathguard → Don't let stunned ghosts clog", subs:[
+        "Baleful energies absorb any stunned Manifestations - number held = enrage timer, clear all remaining before phase ends",
+        "Move away from edge before Malacrass dies or knock off"
+      ]}
+    ],
+    p3:[
+      {lead:"Soulbound → Two target, no shared health, kill together", subs:[
+        "Bosses do NOT share health - keep stacked for cleave, DPS evenly",
+        "If one dies other berserks 500% damage - soft enrage wipe, must kill together within short window"
+      ]},
+      {lead:"Defilement of the Coiled Altar → Healing barrier", subs:[
+        "Defiles altar applying healing absorb barrier 8 heals per player - must heal through",
+        "Overflow Defiled Ground absorbs 5 healing per sec while standing"
+      ]},
+      {lead:"Corrupted Toxin → P3 Twinfang tax", subs:[
+        "Melee consuming stacks inflicts 41670 shadow DoT stacking - swap near 20+"
+      ]},
+      {lead:"Toxic Deluge eco persists → Same P1 orb handling but faster with raid damage overlay", subs:[
+        "Crucible still spews 541k nature - same Coalesced / Volatile rotation, Heroic stacking Rupture, Mythic Tainted Blood",
+        "Blighted Sever P3 version 583k shadow destroys all venom globs + dread adds"
+      ]},
+      {lead:"Grim Guillotine → Shadow version same 5+ rule", subs:[
+        "5.4M shadow split among 5+ - failure Grim Execution 1.6M shadow raid",
+        "Guillotined 500% permanent Mythic - 3 groups rotating",
+        "Death's Embrace 1.25M shadow plume nearby",
+        "Death's Whisper 208k shadow 40y+ far punishment"
+      ]},
+      {lead:"Gravebound + Dreadmarch + Eternal Nightfall → All P2 still active", subs:[
+        "All P2 mechanics still fire in P3 - Soul Fragments still must be recovered, Boo ghosts still need stare-kite, Veil shield still must be broken to interrupt Nightfall",
+        "Synchronise Sever / Soul Sever cleans for both orb + ghost piles"
+      ]},
+      {lead:"Soft enrage → Soulbound failure + Axegrinder clutter + Venom Rupture stacking", subs:[
+        "500% enrage if not killed together, plus Twinfang Toxin + Noxious Ground area denial limiting room, plus Fragment heals if intermission sloppy"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/coiled-altar-header.jpg",cap:"The Coiled Altar — penultimate dual-boss (Zul'jan + Malacrass)"},
+      {src:"assets/raid/07-zuljan-orbs.webp",cap:"Toxic Deluge → Coalesced Venom orb stack & Sever clear"},
+      {src:"assets/raid/07-zuljan-guillotine.webp",cap:"Guillotine 5+ soak → Widow's Kiss run-out (2 groups Heroic)"},
+      {src:"assets/raid/07-malacrass-ghosts.webp",cap:"Dreadmarch Boo ghosts — stare to freeze, stack for Soul Sever"},
+      {src:"assets/raid/07-malacrass-gloombomb.webp",cap:"Gloombomb spread → Gravebound fragments reclaim"},
+      {src:"assets/raid/coiled-altar-pillar.webp",cap:"Manifestation of Dread — Unnerving Fixation fixate"}
+    ]
   }
 };
 
@@ -885,14 +1020,15 @@ const RAID_ICONS={
   "Vashnik the Malignant":"assets/raid/icons/vashnik.webp",
   "Sszorak":"assets/raid/icons/sszorak.webp",
   "The Twin Fangs":"assets/raid/icons/twin-fangs.webp"
-};
+, "The Coiled Altar":"assets/raid/icons/coiled-altar.webp"};
 const RAID_SHORT_SLUG={
   "Nek'zali the Soulcoiler":"nekzali",
   "Entombed Sentinels":"entombed-sentinels",
   "The Lost Explorers":"lost-explorers",
   "Vashnik the Malignant":"vashnik",
   "Sszorak":"sszorak",
-  "The Twin Fangs":"twin-fangs"
+  "The Twin Fangs":"twin-fangs",
+  "The Coiled Altar":"coiled-altar"
 };
 const RAID_SHORT_TO_NAME={
   "nekzali":"Nek'zali the Soulcoiler",
@@ -900,7 +1036,8 @@ const RAID_SHORT_TO_NAME={
   "lost-explorers":"The Lost Explorers",
   "vashnik":"Vashnik the Malignant",
   "sszorak":"Sszorak",
-  "twin-fangs":"The Twin Fangs"
+  "twin-fangs":"The Twin Fangs",
+  "coiled-altar":"The Coiled Altar"
 };
 function resolveRaidName(n){ const map={"Vashnik the Water-Gazer":"Vashnik the Malignant","Sszorak the Ascended":"Sszorak","Ithrax & Vexhul - The Twin Fangs":"The Twin Fangs","Lost Explorers (Iku'nal & Nama'jin)":"The Lost Explorers"}; return map[n]||n; }
 
@@ -1087,7 +1224,61 @@ const SPELL_TIPS={
   "Tempest":"Roaming tornadoes dealing nature damage on contact",
   "Imbibe":"Empowers boss with two fountain buffs, one carried over plus new one",
   "Dig In":"Boss rooted gaining 30% increased damage taken while wind pushes",
-  "Feasted":"800% increased damage from Ravenous Feast for 8 seconds"
+  "Feasted":"800% increased damage from Ravenous Feast for 8 seconds",
+  "Fangs of the Coiled Altar":"Raid-wide nature damage; unlocks venom pits and spawns Noxious Ground",
+  "Twinfang Toxin":"Stacking nature DoT from melee hits",
+  "Noxious Ground":"Poison floor; heavy nature per tick while standing in it",
+  "Toxic Deluge":"8-yard volley of 4-yard nature circles; leaves Coalesced Venom orbs",
+  "Coalesced Venom":"Venom orb pulsing raid nature every 2 sec; stepping converts to Volatile Venom",
+  "Venom Rupture":"Orb detonates for stacking raid nature over 10 sec",
+  "Volatile Venom":"Nature DoT; drops fresh Coalesced Venom on expiry",
+  "Virulent Cyst":"Mythic cyst expelling 2 Coalesced Venom every 6 sec; 4-yard pulses",
+  "Virulent Mutation":"Mutated orb pulsing stronger; applies Mutagenic Venom on touch",
+  "Mutagenic Venom":"Strong poison DoT; respawns Virulent Mutation on expiry",
+  "Tainted Blood":"Mythic: +200% Volatile Venom damage taken for 10 sec",
+  "Guillotine":"Axe throw requiring 5+ to split 5.4M physical; else Execution raid lethal",
+  "Execution":"Raid-wide lethal nature explosion when Guillotine understaffed",
+  "Widow's Kiss":"Nature plume around axe impact; damages nearby players",
+  "Widow's Touch":"Nature damage to players 40+ yards from axe impact",
+  "Sever":"Frontal physical cleave; destroys Coalesced Venom inside cone",
+  "Venomfang":"Bouncing poison axe; nature DoT every 2 sec on jump",
+  "Axegrinder":"Spinning axe hitbox; 583k physical within 4 yards, persists",
+  "Guillotined":"500% increased Guillotine damage taken; permanent on Mythic",
+  "Dreadmarch":"Charmed walk to nearest edge with absorb shield; spawns 2 Manifestations when broken",
+  "Manifestation of Dread":"Fixating add; moves only when not stared at; reapplies Dreadmarch on contact",
+  "Unnerving Fixation":"Manifestation fixates random player; immune while fixated",
+  "Despair":"Shadow damage to fixated player while ghost lives",
+  "Soul Sever":"Shadow cone 500k on tank; destroys Manifestations; applies Gravebound",
+  "Gravebound":"Soul splits into 3 fragments; death if not reclaimed in 10 sec",
+  "Soul Fragment":"Soul shard fading in 10 sec; stepping reclaims it",
+  "Eternal Nightfall":"Channeling raid-wide shadow wipe; interruptible after Veil break",
+  "Veil of Twilight":"12M absorb shield on boss; pulses Suffocating Darkness",
+  "Suffocating Darkness":"Stacking healing absorb; 35k per stack",
+  "Spiritcackle":"Summons Spiteful Soulcoilers",
+  "Spiteful Soulcoiler":"Spirit add with 99% DR shield; casts Wail and Malice",
+  "Wail of Terror":"5-sec fear cast from Soulcoilers",
+  "Retaliatory Malice":"Random-target shadow blast from Soulcoilers",
+  "Consumed by Resentment":"100 energy enrage; Soulcoiler gains interrupt immunity",
+  "Spirit Shield":"99% DR shield; weakened by Gloombomb hits",
+  "Gloombomb":"Purple 5-sec mark exploding for shadow; ejects Soul Fragment",
+  "Dread Bolt":"Single-target 208k shadow bolt",
+  "Dreadful Presence":"Constant raid-wide shadow damage aura",
+  "Soulbinding":"Ritual linking Malacrass to Zul'jan; triggers Ghastly Regeneration",
+  "Ghastly Regeneration":"2% max health per sec for 35 sec; takes +100% damage",
+  "Fragment of Malacrass":"Slow add moving to Zul'jan; heals 10% on arrival",
+  "Spirit Erasure":"Fragment detonates 166k shadow raid when intercepted",
+  "Reclaim Essence":"Heals Zul'jan for 10% when Fragment reaches boss",
+  "Deathguard":"Absorbs stunned Manifestations; counts toward soft enrage",
+  "Soulbound":"Bosses don't share health; other berserks 500% if one dies",
+  "Defilement of the Coiled Altar":"P3 barrier absorbing 8 heals per player; leaves Defiled Ground",
+  "Corrupted Toxin":"P3 melee poison; converts to stacking shadow DoT",
+  "Defiled Ground":"Ground absorbing 5 healing per sec while standing",
+  "Grim Guillotine":"P3 shadow axe throw requiring 5+ to split 5.4M; else Grim Execution",
+  "Grim Execution":"Raid-wide lethal shadow explosion when Grim Guillotine understaffed",
+  "Death's Embrace":"Shadow plume 1.25M around P3 axe impact",
+  "Death's Whisper":"Shadow damage to 40+ yard players after P3 axe",
+  "Blighted Sever":"P3 shadow cleave destroying all venom orbs and dread adds",
+
 };
 
 const TANK_SWAP={
@@ -1116,7 +1307,13 @@ const TANK_SWAP={
     <li><span class="entity">Vexhul</span> <span class="spell" data-tooltip="5-second tank channel spawning 2 Caustic Globules" tabindex="0">Caustic Deluge</span> 10% stacking <span class="spell" data-tooltip="10% stacking magic damage taken for 90s" tabindex="0">Envenomed</span> 90s forces <span class="role role-tank">tank</span> trade (trade serpents, not same spot).</li>
     <li><span class="entity">Ithraz</span> <span class="spell" data-tooltip="Roar knockback plus 3 sequential 4-yard swirlies, applies 33% stacking physical taken for 90s" tabindex="0">Stone Breaker</span> 33% stacking 90s + 3 swirlies must be soaked by <span class="role role-tank">tank</span> — tanks alt every other set.</li>
     <li>Both bosses can't be kited out of range (<span class="spell" data-tooltip="Single-target nature bolt punishing out-of-range targets" tabindex="0">Concentrated Spittle</span> / <span class="spell" data-tooltip="Single-target shadow bolt punishing out-of-range targets" tabindex="0">Clotted Bolt</span> enrage).</li>
-  </ul>`
+  </ul>`,
+  "The Coiled Altar":`<ul>
+    <li><span class="role role-tank">Tank</span> <span class="action">swap</span> on <span class="spell" data-tooltip="Frontal physical cleave; destroys Coalesced Venom inside cone" tabindex="0">Sever</span> / <span class="spell" data-tooltip="Shadow cone 500k on tank; destroys Manifestations; applies Gravebound" tabindex="0">Soul Sever</span> — both destroy adds; don't cleave raid.</li>
+    <li><span class="spell" data-tooltip="Axe throw requiring 5+ to split 5.4M physical; else Execution raid lethal" tabindex="0">Guillotine</span> / <span class="spell" data-tooltip="P3 shadow axe throw requiring 5+ to split 5.4M; else Grim Execution" tabindex="0">Grim Guillotine</span> — tanks edge-away; raid stacks; far players avoid <span class="spell" data-tooltip="Nature damage to players 40+ yards from axe impact" tabindex="0">Widow's Touch</span> / <span class="spell" data-tooltip="Shadow damage to 40+ yard players after P3 axe" tabindex="0">Death's Whisper</span>.</li>
+    <li><span class="action">Kite</span> <span class="spell" data-tooltip="Spinning axe hitbox; 583k physical within 4 yards, persists" tabindex="0">Axegrinder</span> — tanks carve lane; Mythic no despawn.</li>
+  </ul>`,
+
 };
 
 function imgSrc(n){if(!n) return null; const m=(IMAGE_MAP[n]||n); return `assets/${m}`}
@@ -1196,7 +1393,7 @@ function enrichText(s){
   entities.forEach(ent=>{ const re=new RegExp('\\b'+escapeReg(ent)+'\\b','gi'); h=h.replace(re, (m)=>{ if(m.startsWith('<')) return m; return `<span class="entity">${m}</span>`; }); });
   h=h.replace(/\btanks\b/gi,'<span class="role role-tank">tanks</span>'); h=h.replace(/\btank\b/gi,'<span class="role role-tank">tank</span>'); h=h.replace(/\bhealers\b/gi,'<span class="role role-healer">healers</span>'); h=h.replace(/\bhealer\b/gi,'<span class="role role-healer">healer</span>'); h=h.replace(/\bdps\b/gi,'<span class="role role-dps">dps</span>');
   const actions=["Soak as group","Drop puddle at edge","Touch exactly 1 partner","Pair greens to 4","Jump mushroom","Drop puddles","Group soak","Spread out","Loosely spread","Stack","Soak","Dodge","Interrupt","Dispel","Kite","Taunt swap","Drop puddle","Walk it out","Swap","Soak orbs"]; actions.sort((a,b)=>b.length-a.length); actions.forEach(act=>{ const re=new RegExp('\\b'+escapeReg(act)+'\\b','gi'); h=h.replace(re, m=>`<span class="action">${m}</span>`); });
-  const spells=["Possession Barrage","Hollowing Strikes","Gravebound Advance","Soulcoil Rite","Ritual Burn","Soulcoil Ignition","Anguished Echoes","Soul Transfer","Hungering Pyre","Slithering Flame","Vessel of Awakening","Uncoiling","Entwined Step","Toxic Droplets","Noxious Blast","Venom Coagulation","Living Venom","Empowering Slam","Unstable Miasma","Clinging Murk","Blood Venom","Bloodvenom Injection","Vitriolic Stasis","Helical Toxins","Cultivated Burst","Shredding Shards","Steady Strikes","United Defense","Relic Rupture","Disgusting Fish","Final Ascension","Fishy Feedback","Mighty Thud","Frostfire Volley","Elemental Explosion","Explosive Surprise","Blast Wave","Bouncy Mushroom","Dripping Fangs","Malignant Burst","Hardened Venom","Blood Clotting","Umbral Ejection","Catalytic Bile","Plague Froth","Plague Wave","Toxic Vapor","Siphoning Infection","Stygian Burst","Stygian Infection","Exploding Infection","Apex Predator","Venomous Surge","Viscous Cyst","Caustic Claws","Raging Crosswinds","Caustic Deluge","Envenomed","Venomous Emergence","Corrosive Spit","Coiling Ichor","Stone Breaker","Stir Depths","Concentrated Spittle","Clotted Bolt","Vile Flood","Sanguine Storm","Ravenous Feast","Noxious Slick","Congealed Gore","Uncoiled Wrath","Eternal Venom","Cremation","Ula'tek's Dominance","Ula'tek's Presence","Ravage","Mutilate","Tempest","Imbibe","Dig In","Feasted"]; spells.sort((a,b)=>b.length-a.length); const spellPattern = spells.map(escapeReg).join('|'); const spellRe = new RegExp('('+spellPattern+')','gi'); h = h.replace(spellRe, (m)=>{ const key = spells.find(k=>k.toLowerCase()===m.toLowerCase()) || m; const tip = SPELL_TIPS[key]||SPELL_TIPS[m]||""; const tt = tip?` data-tooltip="${escapeAttr(tip)}" tabindex="0" aria-describedby="spellTooltip"`:""; return `<span class="spell"${tt}>${m}</span>`; }); return h;
+  const spells=["Fangs of the Coiled Altar","Twinfang Toxin","Noxious Ground","Toxic Deluge","Coalesced Venom","Venom Rupture","Volatile Venom","Virulent Cyst","Virulent Mutation","Mutagenic Venom","Tainted Blood","Guillotine","Execution","Widow's Kiss","Widow's Touch","Sever","Venomfang","Axegrinder","Guillotined","Dreadmarch","Manifestation of Dread","Unnerving Fixation","Despair","Soul Sever","Gravebound","Soul Fragment","Eternal Nightfall","Veil of Twilight","Suffocating Darkness","Spiritcackle","Spiteful Soulcoiler","Wail of Terror","Retaliatory Malice","Consumed by Resentment","Spirit Shield","Gloombomb","Dread Bolt","Dreadful Presence","Soulbinding","Ghastly Regeneration","Fragment of Malacrass","Spirit Erasure","Reclaim Essence","Deathguard","Soulbound","Defilement of the Coiled Altar","Corrupted Toxin","Defiled Ground","Grim Guillotine","Grim Execution","Death's Embrace","Death's Whisper","Blighted Sever","Possession Barrage","Hollowing Strikes","Gravebound Advance","Soulcoil Rite","Ritual Burn","Soulcoil Ignition","Anguished Echoes","Soul Transfer","Hungering Pyre","Slithering Flame","Vessel of Awakening","Uncoiling","Entwined Step","Toxic Droplets","Noxious Blast","Venom Coagulation","Living Venom","Empowering Slam","Unstable Miasma","Clinging Murk","Blood Venom","Bloodvenom Injection","Vitriolic Stasis","Helical Toxins","Cultivated Burst","Shredding Shards","Steady Strikes","United Defense","Relic Rupture","Disgusting Fish","Final Ascension","Fishy Feedback","Mighty Thud","Frostfire Volley","Elemental Explosion","Explosive Surprise","Blast Wave","Bouncy Mushroom","Dripping Fangs","Malignant Burst","Hardened Venom","Blood Clotting","Umbral Ejection","Catalytic Bile","Plague Froth","Plague Wave","Toxic Vapor","Siphoning Infection","Stygian Burst","Stygian Infection","Exploding Infection","Apex Predator","Venomous Surge","Viscous Cyst","Caustic Claws","Raging Crosswinds","Caustic Deluge","Envenomed","Venomous Emergence","Corrosive Spit","Coiling Ichor","Stone Breaker","Stir Depths","Concentrated Spittle","Clotted Bolt","Vile Flood","Sanguine Storm","Ravenous Feast","Noxious Slick","Congealed Gore","Uncoiled Wrath","Eternal Venom","Cremation","Ula'tek's Dominance","Ula'tek's Presence","Ravage","Mutilate","Tempest","Imbibe","Dig In","Feasted"]; spells.sort((a,b)=>b.length-a.length); const spellPattern = spells.map(escapeReg).join('|'); const spellRe = new RegExp('('+spellPattern+')','gi'); h = h.replace(spellRe, (m)=>{ const key = spells.find(k=>k.toLowerCase()===m.toLowerCase()) || m; const tip = SPELL_TIPS[key]||SPELL_TIPS[m]||""; const tt = tip?` data-tooltip="${escapeAttr(tip)}" tabindex="0" aria-describedby="spellTooltip"`:""; return `<span class="spell"${tt}>${m}</span>`; }); return h;
 }
 function escapeReg(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
 
@@ -1215,12 +1412,12 @@ function renderMechItem(it){
 function renderRaidContent(){
   const realName=selectedRaid; const data=RAID_DATA[realName]; if(!data){ qs('#bossGrid').innerHTML=`<div class="no-results">Raid boss not found: ${escapeHtml(realName||'')}</div>`; return; }
   qs('#dungeonTitle').className='raid-title'; qs('#dungeonTitle').textContent=realName;
-  qs('#headerMeta').innerHTML=`<span class="pill venom">Boss ${data.bossNum} / 6 • Season 2 Raid</span> <span class="pill">2/4/14 • Heroic summaries</span> <span class="pill"><kbd>click</kbd> images to zoom</span>`;
+  qs('#headerMeta').innerHTML=`<span class="pill venom">Boss ${data.bossNum} / ${RAID_ORDER.length} • Season 2 Raid</span> <span class="pill">2/4/14 • Heroic summaries</span> <span class="pill"><kbd>click</kbd> images to zoom</span>`;
   const __notice=qs('#notice'); if(__notice){ __notice.style.display='none'; __notice.setAttribute('aria-hidden','true'); } const q=query.toLowerCase().trim();
   let html=`<div class="boss-card"><div class="boss-head raid-head"><h3><span class="boss-icon raid">${data.bossNum}</span>${escapeHtml(realName)}<span style="margin-left:10px;font-size:12px;color:var(--muted);font-weight:500">— ${escapeHtml(data.short)}</span></h3><span class="mini">TL;DR + Setup + Strat</span></div><div class="raid-body">`;
   html+=`<div class="tldr venom-tldr"><strong>TL;DR:</strong> ${escapeHtml(data.tldr)}</div>`; if(TANK_SWAP[realName]){ html+=`<div class="tank-box"><div class="tank-box-head"><span class="tb-icon">🛡️</span> Tank Swap / Taunt</div>${TANK_SWAP[realName]}</div>`; } html+=`<div class="setup-line"><span class="pill venom">${escapeHtml(data.setup)}</span>${data.bossNum===1?`<span class="pill">Tower-defense • 100 energy enrage</span>`:''}${data.bossNum===2?`<span class="pill">40y DR • Even HP</span>`:''}${data.bossNum===6?`<span class="pill">Eternal Venom 10 = death</span>`:''}</div>`;
   const section=(title,items)=>{ if(!items||!items.length) return ""; if(q && !JSON.stringify(items).toLowerCase().includes(q) && !title.toLowerCase().includes(q)) return ""; const inner=Array.isArray(items)?items.map(it=>renderMechItem(it)).join(''):`<li class="mech-item"><div class="mech-lead">${enrichText(items)}</div></li>`; return `<div class="strat"><h4 class="raid-h">${escapeHtml(title)}</h4><ul>${inner}</ul><div class="mech-divider"></div></div>`; };
-  if(data.strategy) html+=section("Core — Phase 1 loop",data.strategy); if(data.green) html+=section("Green Golem (Breath)",data.green); if(data.red) html+=section("Red Golem (Blood)",data.red); if(data.intermission) html+=section(data.bossNum===1?"Intermission — 50% cleanup":"Intermission — Energy 100",data.intermission); if(data.p2) html+=section("Phase 2 — Burn",data.p2); if(data.tanks) html+=section("Tanks",[data.tanks]); if(data.boxes) html+=section("Box / Fish Economy",[data.boxes]); if(data.feed) html+=section("Feed Order",[data.feed]); if(data.ultimates) html+=section("Ultimates",data.ultimates); if(data.enrage) html+=section("Enrage / Kill Together",[data.enrage]); if(data.rotation) html+=section("Rotation",data.rotation); if(data.adds) html+=section("Add Control",data.adds); if(data.infections) html+=section("Infections (telegraphed by Fountain)",data.infections); if(data.passive) html+=section("Passive Checklist",data.passive); if(data.apex) html+=section("Apex Predator",data.apex); if(data.surge) html+=section("Venomous Surge + Cysts",data.surge); if(data.crosswinds) html+=section("Raging Crosswinds",data.crosswinds); if(data.core) html+=section("Core Rotation",data.core); if(data.feast) html+=section("Ravenous Feast — Venom Refund",data.feast); if(data.submerge) html+=section("Submerge 100 — Combined Assault",data.submerge);
+  if(data.strategy) html+=section(data.bossNum===7?"Stage One — Serpent's Bargain":"Core — Phase 1 loop",data.strategy); if(data.green) html+=section("Green Golem (Breath)",data.green); if(data.red) html+=section("Red Golem (Blood)",data.red); if(data.intermission) html+=section(data.bossNum===7?"Intermission — Claimed Vessel":"Intermission — Energy 100",data.bossNum===7?data.intermission:(data.bossNum===1?"Intermission — 50% cleanup":data.intermission)); if(data.p2) html+=section(data.bossNum===7?"Stage Two — Usurper's Reprisal":"Phase 2 — Burn",data.p2); if(data.tanks) html+=section("Tanks",[data.tanks]); if(data.tanks2) html+=section("Tanks — Soul Sever",data.tanks2); if(data.boxes) html+=section("Box / Fish Economy",[data.boxes]); if(data.feed) html+=section("Feed Order",[data.feed]); if(data.ultimates) html+=section("Ultimates",data.ultimates); if(data.enrage) html+=section("Enrage / Kill Together",[data.enrage]); if(data.rotation) html+=section("Rotation",data.rotation); if(data.adds) html+=section("Add Control",data.adds); if(data.infections) html+=section("Infections (telegraphed by Fountain)",data.infections); if(data.passive) html+=section("Passive Checklist",data.passive); if(data.apex) html+=section("Apex Predator",data.apex); if(data.surge) html+=section("Venomous Surge + Cysts",data.surge); if(data.crosswinds) html+=section("Raging Crosswinds",data.crosswinds); if(data.core) html+=section("Core Rotation",data.core); if(data.feast) html+=section("Ravenous Feast — Venom Refund",data.feast); if(data.submerge) html+=section("Submerge 100 — Combined Assault",data.submerge); if(data.p3) html+=section("Stage Three — Coiled Union",data.p3);
   if(data.images && data.images.length){ const matches = q? data.images.filter(img=>img.cap.toLowerCase().includes(q)): data.images; if(matches.length){ html+=`<div class="strat"><h4 class="raid-h">Maps & Positions — click to zoom</h4><div class="img-grid">`; matches.forEach(img=>{ html+=`<div class="img-card"><img loading="lazy" src="${escapeAttr(img.src)}" alt="${escapeAttr(img.cap)}" onerror="this.parentElement.style.display='none'"/><div class="cap">${escapeHtml(img.cap)}</div></div>`; }); html+=`</div></div>`; } } html+=`</div></div>`; qs('#bossGrid').innerHTML=html; qs('#bossGrid').querySelectorAll('.img-card img').forEach(im=>im.addEventListener('click',()=>openLightbox(im.src,im.alt)));
 }
 
