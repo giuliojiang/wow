@@ -25,7 +25,7 @@
     --accent-venom:#6e84ff;
     --radius:18px;
     --radius-sm:12px;
-    --shadow:0 10px 40px rgba(0,0,0,.45), 0 1px 0 rgba(255,255,255,.04) inset;
+    --shadow:0 2px 12px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
   html{-webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scrollbar-color:var(--line2) var(--bg)}
@@ -35,7 +35,7 @@
     min-height:100dvh; line-height:1.6;
   }
   body::before{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+    content:""; position:absolute; inset:0; height:120vh; pointer-events:none; z-index:-1;
     background:
       radial-gradient(900px 600px at 15% -10%, rgba(245,197,24,.10) 0%, transparent 60%),
       radial-gradient(800px 500px at 90% 0%, rgba(120,90,255,.12) 0%, transparent 60%),
@@ -46,13 +46,13 @@
   @media (max-width:900px){.app{grid-template-columns:1fr}}
 
   .side{
-    position:sticky; top:0; align-self:start; height:100dvh; overflow:auto;
+    position:sticky; top:0; align-self:start; height:100dvh; overflow:auto; contain:paint;
     background:linear-gradient(180deg,var(--bg2) 0%, var(--bg) 100%);
     border-right:1px solid var(--line);
     display:flex; flex-direction:column;
   }
   @media (max-width:900px){.side{position:static; height:auto; overflow:visible} .side .dungeon-list{display:none}}
-  .side-top{padding:22px 18px 14px; border-bottom:1px solid var(--line); background:radial-gradient(400px 200px at 0% 0%, rgba(245,197,24,.08), transparent 70%)}
+  .side-top{padding:22px 18px 14px; border-bottom:1px solid var(--line); background:var(--bg2)}
   .brand{display:flex; align-items:center; gap:12px; margin-bottom:14px}
   .brand-mark{
     width:36px; height:36px; border-radius:10px; display:grid; place-items:center;
@@ -103,7 +103,7 @@
   .notice{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:14px; padding:14px 16px; color:var(--muted); font-size:13px; display:flex; gap:12px; margin-bottom:22px}
   .notice strong{color:var(--ink)}
   .boss-grid{display:grid; gap:18px}
-  .boss-card{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  .boss-card{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; content-visibility:auto; contain-intrinsic-size: 600px}
   .boss-head{padding:18px 20px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); background:linear-gradient(90deg,rgba(245,197,24,.08),transparent 60%)}
   .boss-head.raid-head{background:linear-gradient(90deg,rgba(110,132,255,.14),transparent 70%)}
   .boss-head h3{margin:0; font-family: ui-serif, Georgia, serif; font-size:18.5px; letter-spacing:-.01em; display:flex; align-items:center; gap:10px}
@@ -111,18 +111,17 @@
   .boss-icon.raid{color:var(--accent-venom)}
   .boss-head .mini{color:var(--muted2); font-size:12.2px; font-weight:600}
   .tips{padding:6px 10px 12px; display:flex; flex-direction:column}
-  .tip-row{display:grid; grid-template-columns:1fr 320px; gap:14px; padding:12px 10px; border-radius:12px; transition:.12s; border:1px solid transparent}
+  .tip-row{display:grid; grid-template-columns:1fr 320px; gap:14px; padding:12px 10px; border-radius:12px; border:1px solid transparent}
   .tip-row:hover{background:rgba(255,255,255,.02); border-color:rgba(255,255,255,.04)}
   @media (max-width:920px){.tip-row{grid-template-columns:1fr}}
-  .tip-text{font-size:14px; color:var(--ink); line-height:1.55; text-wrap:pretty; display:flex; gap:10px; align-items:flex-start}
+  .tip-text{font-size:14px; color:var(--ink); line-height:1.55; text-wrap:wrap; display:flex; gap:10px; align-items:flex-start}
   .tip-num{flex:0 0 26px; width:26px; height:26px; display:grid; place-items:center; background:var(--panel3); border:1px solid var(--line); border-radius:8px; color:var(--muted); font-size:11.5px; font-weight:700; margin-top:1px}
   .tip-row:hover .tip-num{color:var(--ink); border-color:var(--line2)}
   .tip-row:has(.tip-media.empty){grid-template-columns:1fr}
   .tip-media{position:relative; border-radius:12px; overflow:hidden; background:var(--panel3); border:1px solid var(--line); aspect-ratio:16/9; display:grid; place-items:center}
-  .tip-media img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:.2s}
-  .tip-media img:hover{transform:scale(1.02)}
+  .tip-media img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in}
   .tip-media.empty{display:none}
-  .img-badge{position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.6); backdrop-filter:blur(6px); color:white; font-size:11px; padding:4px 7px; border-radius:7px; border:1px solid rgba(255,255,255,.15)}
+  .img-badge{position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.72); color:white; font-size:11px; padding:4px 7px; border-radius:7px; border:1px solid rgba(255,255,255,.15)}
 
   /* RAID specifics */
   .raid-body{padding:16px 18px 18px}
@@ -140,9 +139,8 @@
   .img-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:14px}
   @media (max-width:700px){.img-grid{grid-template-columns:1fr}}
   .img-card{border-radius:12px; overflow:hidden; background:var(--panel3); border:1px solid var(--line); aspect-ratio:16/9; position:relative}
-  .img-card img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:.2s}
-  .img-card img:hover{transform:scale(1.02)}
-  .img-card .cap{position:absolute; left:0; right:0; bottom:0; background:linear-gradient(0deg,rgba(0,0,0,.72),transparent); color:white; font-size:11.5px; padding:10px 10px 8px; backdrop-filter:blur(2px)}
+  .img-card img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in}
+  .img-card .cap{position:absolute; left:0; right:0; bottom:0; background:linear-gradient(0deg,rgba(0,0,0,.78),transparent); color:white; font-size:11.5px; padding:10px 10px 8px}
 
   .no-results{padding:40px 20px; text-align:center; color:var(--muted); border:1px dashed var(--line); border-radius:16px; background:var(--panel)}
   .mobile-dungeons{display:none; margin-bottom:18px}
@@ -150,7 +148,7 @@
     .mobile-dungeons{display:block}
     .mobile-dungeons select{width:100%; padding:12px 14px; border-radius:12px; background:var(--panel); color:var(--ink); border:1px solid var(--line); font-size:14px}
   }
-  .lightbox{position:fixed; inset:0; z-index:60; display:none; place-items:center; padding:20px; background:rgba(5,6,10,.78); backdrop-filter:blur(10px)}
+  .lightbox{position:fixed; inset:0; z-index:60; display:none; place-items:center; padding:20px; background:rgba(5,6,10,.86);}
   .lightbox.open{display:grid}
   .lightbox img{max-width:min(1100px,92vw); max-height:86vh; border-radius:14px; border:1px solid rgba(255,255,255,.12); box-shadow:0 20px 60px rgba(0,0,0,.7)}
   .lightbox .close{position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:99px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:white; cursor:pointer; display:grid; place-items:center}
@@ -278,7 +276,7 @@
   }
   @media (hover: hover) and (pointer: fine){
     .spell{cursor:help}
-    .spell:hover,.spell:focus{filter:brightness(1.15); outline:none}
+    .spell:hover,.spell:focus{opacity:.92; outline:none}
     .spell:focus-visible{box-shadow:0 0 0 2px rgba(122,236,236,.5), 0 0 0 4px rgba(122,236,236,.18)}
   }
   #spellTooltip{
@@ -302,7 +300,7 @@
     transform:translateY(4px) scale(.98);
     pointer-events:none;
     transition:opacity .14s ease, transform .14s ease;
-    text-wrap:pretty;
+    text-wrap:wrap;
     white-space:normal;
   }
   #spellTooltip.show{
