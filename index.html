@@ -66,6 +66,16 @@
   .switch-btn{flex:1; padding:9px 8px; border-radius:9px; border:1px solid transparent; background:transparent; color:var(--muted); font-weight:600; font-size:12.8px; cursor:pointer; transition:.14s; letter-spacing:.02em}
   .switch-btn.active{background:var(--gold); color:#101010; border-color:rgba(255,255,255,.12)}
   .switch-btn:hover:not(.active){background:var(--panel2); color:var(--ink); border-color:var(--line2)}
+  .bonus-roll-link{
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    width:100%; margin-bottom:12px; padding:8px 11px;
+    border:1px solid rgba(110,132,255,.35); border-radius:999px;
+    background:rgba(110,132,255,.10); color:#c8d0ff;
+    font-size:12.5px; font-weight:700; line-height:1.35; text-decoration:none;
+    transition:background .14s,border-color .14s,color .14s;
+  }
+  .bonus-roll-link:hover{background:rgba(110,132,255,.16); border-color:rgba(110,132,255,.55); color:#fff}
+  .bonus-roll-link:focus-visible{outline:2px solid var(--accent-venom); outline-offset:2px}
   .search-wrap{position:relative}
   .search-wrap input{
     width:100%; background:var(--panel); border:1px solid var(--line);
@@ -335,6 +345,7 @@
         <button class="switch-btn active" id="swDungeon" role="tab" aria-selected="true">Dungeons</button>
         <button class="switch-btn" id="swRaid" role="tab" aria-selected="false">Raid • Abyss</button>
       </div>
+      <a class="bonus-roll-link" href="bonus-rolls.html" data-preview-href="assets/bonus-rolls.html">Bonus Rolls →</a>
       <div class="search-wrap">
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M11.5 11.5L13.8 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="7" r="4" stroke="currentColor" stroke-width="1.3"/></svg>
         <input id="q" placeholder="Search bosses, mechanics…" autocomplete="off" spellcheck="false"/>
@@ -359,8 +370,15 @@
 <div id="spellTooltip" role="tooltip" aria-hidden="true"></div>
 <div id="copyFeedback" role="status" aria-live="polite"></div>
 <script>
-// deeplink titles are <a href="#..."> – allow native hash navigation, show feedback, keep right-click copy working
+// Keep the GitHub Pages link at the repo root while serving the preview copy from Hatch's asset route.
 document.addEventListener('click', (e)=>{
+  const previewLink=e.target.closest && e.target.closest('a[data-preview-href]');
+  if(previewLink && location.pathname.includes('/spaces/v2/')){
+    e.preventDefault();
+    location.href=previewLink.dataset.previewHref;
+    return;
+  }
+
   const a=e.target.closest && e.target.closest('a.deeplink');
   if(!a) return;
   const href=a.getAttribute('href')||'';
