@@ -110,8 +110,6 @@
   .pill{display:inline-flex; align-items:center; gap:7px; padding:7px 11px; border-radius:999px; background:var(--panel); border:1px solid var(--line); color:var(--muted); font-size:12.1px; font-weight:600; flex-wrap:wrap}
   .pill.gold{border-color:rgba(245,197,24,.28); background:rgba(245,197,24,.08); color:var(--gold2)}
   .pill.venom{border-color:rgba(110,132,255,.28); background:rgba(110,132,255,.10); color:#b9c3ff}
-  .notice{background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:14px 16px; color:var(--muted); font-size:13px; display:flex; gap:12px; margin-bottom:22px}
-  .notice strong{color:var(--ink)}
   .boss-grid{display:grid; gap:18px}
   .boss-card{background:var(--panel2); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
   .boss-head{padding:18px 20px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); background:var(--panel2)}
@@ -233,7 +231,13 @@
   }
   .pn-btn.venom:hover{border-color:rgba(110,132,255,.45)}
   .pn-btn.gold:hover{border-color:rgba(245,197,24,.42)}
-  .pn-label{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:22ch}
+  .pn-label{white-space:nowrap; max-width:22ch}
+  @media (max-width:480px){
+    .pn-btn{max-width:none; min-width:0; white-space:normal}
+    .pn-btn.small{padding:6px 8px}
+    .pn-label{white-space:normal; max-width:18ch; line-height:1.2}
+    .pn-hint{flex:0 0 auto}
+  }
   .pn-hint{font-size:10.5px; color:var(--muted2); letter-spacing:.06em; text-transform:uppercase; font-weight:700; margin-right:4px}
 
   /* Title deeplink */
@@ -360,9 +364,8 @@
     <div class="pn-top" id="topPrevNext" aria-label="Previous Next top"></div>
     <div class="header">
       <h2 id="dungeonTitle">Temple of Sethraliss</h2>
-      <div class="meta" id="headerMeta"><span class="pill"><kbd>/</kbd> to search • <kbd>Esc</kbd> closes image</span></div>
+      <div class="meta" id="headerMeta" aria-live="polite"></div>
     </div>
-    <div class="notice" id="notice"><span style="font-size:16px">💡</span><div><strong id="noticeTitle">How to use:</strong> <span id="noticeText">pick a dungeon left, then skim boss cards. Search filters bosses and mechanics.</span></div></div>
     <div class="boss-grid" id="bossGrid"></div>
   </main>
 </div>
@@ -492,7 +495,7 @@ const SEASON_2=["Temple of Sethraliss","King's Rest","Ruby Life Pools","Voidscar
 const SEASON_1=["Algeth’ar Academy","Maisara Caverns","Pit of Saron","Skyreach","Magister's Terrace","Nexus Point Xenas","Seat of the Triumvirate","Windrunner Spire"];
 
 // RAID DATA — scannable rewrite preserving all info
-const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs","The Coiled Altar"];
+const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs","The Coiled Altar","Ula'tek"];
 // Friendly aliases for task-requested names
 const RAID_ALIASES={
   "Vashnik the Water-Gazer":"Vashnik the Malignant",
@@ -884,7 +887,7 @@ const RAID_DATA={
   },
 
   "The Coiled Altar":{
-    short:"Duo council — <span class=\"entity\">Zul'jan</span> & Malacrass",
+    short:"Duo council — Zul'jan & Malacrass",
     bossNum:7,
     tldr:"Three-phase duo + intermission vessel. P1 <span class=\"entity\">Zul'jan</span> orb eco + <span class=\"spell\" data-tooltip=\"Axe throw requiring 5+ to split 5.4M physical; else Execution raid lethal\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Guillotine</span> <span class=\"action\">soak</span>, P2 Malacrass Boo ghosts + Gravebound fragments + shield break, Intermission burn boss double-damage while blocking fragment heals, P3 both mechanics at once - keep stacked DPS even kill together or 500% enrage.",
     setup:"2 / 4 / 14 · 5+ <span class=\"action\">soak</span> (Guillotine) alternating Heroic 2 groups · 3 Markers ghosts + orb <span class=\"action\">stack</span> · Lust P3 (alt Intermission for Ghastly)",
@@ -1016,6 +1019,101 @@ const RAID_DATA={
       {src:"assets/raid/07-malacrass-gloombomb.webp",cap:"Gloombomb spread → Gravebound fragments reclaim"},
       {src:"assets/raid/coiled-altar-pillar.webp",cap:"Manifestation of Dread — Unnerving Fixation fixate"}
     ]
+  },
+
+  "Ula'tek":{
+    short:"Final — eggs, tail & shrinking platforms",
+    bossNum:8,
+    tldr:"Final boss. P1 boss+tail share health, dodge Caustic Waves wing-telegraph, group-soak Spectral Coils to break eggs, never let eggs touch venom. P2 split to kill Doomscale Wardens and deposit Doomscale Egg in cauldron in 20s, interrupt Anguished Cry. Intermission egg sweep. P3 quadrants — DPS eggs, soak Serpent's Bite circles away, spread for Volatile Purge, jump when platform destroyed. Kill before Fury Unleashed.",
+    setup:"2 / 4 / 14 · 2 tanks (boss+tail) · 2 groups · Egg runners · Soak groups 7+ · Lust P3",
+    strategy:[
+      {lead:"<span class=\"spell\" data-tooltip=\"Boss and Gore Rattle tail share health\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Ula'tek's Bond</span> → Split boss + <span class=\"entity\">Gore Rattle</span>, damage either", subs:[
+        "One <span class=\"role role-tank\">tank</span> holds Ula'tek, one holds the tail; swap sides during <span class=\"spell\" data-tooltip=\"Venom waves sweep from the boss and tail; wing pullback shows which side starts\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Caustic Waves</span>",
+        "Keep melee on both targets: empty boss melee triggers <span class=\"spell\" data-tooltip=\"Raid-wide physical damage when no target is in melee range of Ula'tek\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Unchecked Rage</span>; empty tail melee triggers <span class=\"spell\" data-tooltip=\"Heavy physical strike used when Gore Rattle has no target in melee\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Rattler Slam</span>",
+        "Tail casts <span class=\"spell\" data-tooltip=\"Wide tail sweep that knocks players back 35 yards\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Mephitic Thrash</span> — step out of the sweep and face knockbacks safely"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Venom waves sweep from the boss and tail; wing pullback shows which side starts\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Caustic Waves</span> → Read the wing, cross the safe lane", subs:[
+        "Ula'tek reaches one wing back before the waves start on that side; move to the opposite safe lane, then cross",
+        "Gore Rattle sends its own waves — watch both bodies, not only the boss",
+        "<span class=\"spell\" data-tooltip=\"Tank knockback followed by a bite applying Stone Venom and Hobbled\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Mother's Wrath</span> knocks the boss tank, then applies stacking <span class=\"spell\" data-tooltip=\"Stacking nature damage-over-time effect from Mother's Wrath\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Stone Venom</span> and <span class=\"spell\" data-tooltip=\"Movement-speed slow applied by Mother's Wrath\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Hobbled</span>"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Eggs carried by players; touching venom or finishing their cast hatches a lethal Viper\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Blightscale Spawn</span> → Pick up, keep dry, break with Coils", subs:[
+        "Eggs appear in the center on pull and once more in P1 — runners pick them up by walking over them",
+        "Carrying an egg applies <span class=\"spell\" data-tooltip=\"Nature damage every second while a Blightscale Spawn is attached\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Malignant Shell</span>; never touch venom or let its cast finish",
+        "A failed egg hatches a <span class=\"spell\" data-tooltip=\"Lethal hatched add using Acidic Burst, Petrifying Sting and Putrid Membrane\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Blightscale Viper</span>; breaking early creates weaker <span class=\"spell\" data-tooltip=\"Weakened hatchling using Poisonous Bite, Boiling Venom and Acidic Expulsion\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Blightscale Rawling</span>s to AoE"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Two group soaks beside the tail; damage splits within 10 yards and breaks carried eggs\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Spectral Coils</span> → Two tail-side soaks break eggs", subs:[
+        "Split into two marked groups on opposite sides of Gore Rattle; 7+ players per impact",
+        "Egg runners enter the soaks to break their eggs, then raid AoEs the weakened Rawlings",
+        "Impact applies <span class=\"spell\" data-tooltip=\"Debuff preventing a player from soaking the next Spectral Coils\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Soul Constrictor</span> — alternate groups",
+        "Repeat when <span class=\"spell\" data-tooltip=\"Summons another set of Blightscale Spawn eggs\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Call of Serpent</span> adds more eggs"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Twenty-second raid pulse exposing Venomous Heart for shared-health bonus damage\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Rage of Shackled</span> → Burn <span class=\"spell\" data-tooltip=\"Exposed heart sharing Ula'tek's health and taking 200% increased damage for 20 seconds\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Venomous Heart</span>", subs:[
+        "Heart shares boss health and takes 200% increased damage for 20s — swap damage immediately",
+        "Keep moving through <span class=\"spell\" data-tooltip=\"Seven-yard falling-rock circles dealing heavy physical damage\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Falling Debris</span> while healers cover the nature pulses",
+        "<span class=\"spell\" data-tooltip=\"Stacking raid-wide nature damage that grows through the encounter\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Necrotic Vapors</span> raises the healing pressure each cycle"
+      ]}
+    ],
+    p2:[
+      {lead:"<span class=\"spell\" data-tooltip=\"Phase with two Wardens protecting eggs on opposite sides\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Children of Doomscale</span> → Split left / right, kill Wardens", subs:[
+        "Each group takes one <span class=\"spell\" data-tooltip=\"Add protecting nearby eggs and casting Malice, Shadow Molt and Writhing Gestation\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Doomscale Warden</span>; eggs cannot be touched while <span class=\"spell\" data-tooltip=\"Prevents players from touching protected eggs while a Doomscale Warden lives\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Warden's Protection</span> remains",
+        "Snap <span class=\"spell\" data-tooltip=\"Slow tether that deals nature damage until players move 35 yards apart\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Grasping Fangs</span> by moving 35y apart; heal the resulting <span class=\"spell\" data-tooltip=\"Eight-second nature damage effect applied when Grasping Fangs breaks\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Blight Vein</span>",
+        "<span class=\"action\">Interrupt</span> <span class=\"spell\" data-tooltip=\"Six-second channel dealing heavy nature damage every second\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Malice</span>; follow the Warden after <span class=\"spell\" data-tooltip=\"Warden relocation to another position in its lane\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Shadow Molt</span>"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Nearby eggs begin a 20-second hatch and grow stronger until broken\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Writhing Gestation</span> → Break Clutches before they mature", subs:[
+        "Wardens turn nearby eggs into <span class=\"spell\" data-tooltip=\"Growing egg clutch that hatches after 20 seconds unless destroyed\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Blightscale Clutch</span> — hard swap and destroy them",
+        "If a Clutch hatches, control the add and interrupt <span class=\"spell\" data-tooltip=\"Interruptible raid hit followed by a six-second stun\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Anguished Cry</span>"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Carryable phase egg that hatches 20 seconds after pickup unless deposited\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Doomscale Egg</span> → Cauldron within 20s", subs:[
+        "After both Wardens die, pick up the egg and carry it to the <span class=\"spell\" data-tooltip=\"Deposit point that destroys the carried Doomscale Egg and prevents its hatch\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Doomscale Cauldron</span>",
+        "Pickup applies <span class=\"spell\" data-tooltip=\"Nature damage every two seconds while carrying the Doomscale Egg\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Doomscale Shell</span>; deposit before its 20s hatch",
+        "Heroic: <span class=\"spell\" data-tooltip=\"Disturbing the Doomscale Egg starts gestation on all remaining eggs\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Mass Gestation</span> starts every remaining egg — finish both lanes first"
+      ]},
+      {lead:"Second <span class=\"spell\" data-tooltip=\"Twenty-second raid pulse exposing Venomous Heart for shared-health bonus damage\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Rage of Shackled</span> → Heart burn at 4:45", subs:[
+        "Repeat the Heart burn: 200% bonus damage for 20s while dodging Falling Debris",
+        "Save enough cooldowns to finish the check, then prepare for The Shattering"
+      ]}
+    ],
+    intermission:[
+      {lead:"The Shattering → Sweep every small egg", subs:[
+        "Eggs fall across the arena — runners collect all small eggs before they can hatch",
+        "Move together from one <span class=\"spell\" data-tooltip=\"Two group soaks beside the tail; damage splits within 10 yards and breaks carried eggs\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Spectral Coils</span> soak to the next",
+        "Use each soak to break carried eggs, then <span class=\"action\">AoE</span> the weakened hatchlings"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Debuff preventing a player from soaking the next Spectral Coils\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Soul Constrictor</span> → Alternate soak groups", subs:[
+        "Never re-soak with Soul Constrictor — follow the two-group rotation",
+        "Finish the sweep cleanly before Ula'tek's Ascension"
+      ]}
+    ],
+    p3:[
+      {lead:"Ula'tek's Ascension → Quadrants, kill each platform egg", subs:[
+        "Ula'tek appears on one quadrant; each platform has one egg",
+        "DPS the active egg to zero, then stack and AoE the weakened adds",
+        "Use Bloodlust here — the arena only gets smaller"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Targeted nature hit and 15-second DoT removed when another player soaks within 7 yards\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Serpent's Bite</span> → Pair-soak, then spread", subs:[
+        "Marked players move clear; one unmarked partner enters each 7y circle to remove the ticking debuff",
+        "Uncleared Bite becomes <span class=\"spell\" data-tooltip=\"Lethal stun dealing one million damage per second and piercing immunities\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Calcified Corpse</span>",
+        "Soakers gain <span class=\"spell\" data-tooltip=\"Delayed seven-yard nature explosion on players who clear Serpent's Bite\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Volatile Purge</span> — spread at least 7y before it explodes"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Destroys the current platform with a heavy hit and knockback\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Circling Prey</span> → Evacuate the platform", subs:[
+        "Preview <span class=\"spell\" data-tooltip=\"Venom waves sweep from the boss and tail; wing pullback shows which side starts\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Caustic Waves</span> by the floor orbs — stand where no orbs will travel",
+        "At Circling Prey, move outside 13y and jump to the next platform before the current one is destroyed",
+        "Any egg left on the destroyed platform falls into venom and hatches empowered — kill the egg before leaving"
+      ]},
+      {lead:"Late eggs + <span class=\"spell\" data-tooltip=\"Final prison-breaking enrage causing a lethal hit and continuous raid damage\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Fury Unleashed</span> → Control, then burn", subs:[
+        "Ceiling eggs can hatch <span class=\"spell\" data-tooltip=\"Late-phase hatchling using Acidic Expulsion and Vicious Echoes\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Blightscale Shrieker</span>s — focus and <span class=\"action\">interrupt</span>",
+        "<span class=\"spell\" data-tooltip=\"Heavy raid hit followed by periodic damage and a six-second stun\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Vicious Echoes</span> is the dangerous cast",
+        "Finish Ula'tek before Fury Unleashed destroys the prison and its raid damage overwhelms healers"
+      ]}
+    ],
+    images:[
+      {src:"assets/raid/08-ulatek-header.jpg",cap:"Ula'tek — final boss of The Venomous Abyss"},
+      {src:"assets/raid/08-ulatek-waves.webp",cap:"Caustic Waves — read the wing and cross the safe lane"},
+      {src:"assets/raid/08-ulatek-coils.webp",cap:"Spectral Coils — two group soaks break carried eggs"},
+      {src:"assets/raid/08-ulatek-cauldron.webp",cap:"Doomscale Egg — deposit it in the cauldron within 20 seconds"},
+      {src:"assets/raid/08-ulatek-clutch.webp",cap:"Blightscale Clutch — break eggs, then AoE weakened adds"}
+    ]
   }
 };
 
@@ -1030,8 +1128,10 @@ const RAID_ICONS={
   "The Lost Explorers":"assets/raid/icons/lost-explorers.webp",
   "Vashnik the Malignant":"assets/raid/icons/vashnik.webp",
   "Sszorak":"assets/raid/icons/sszorak.webp",
-  "The Twin Fangs":"assets/raid/icons/twin-fangs.webp"
-, "The Coiled Altar":"assets/raid/icons/coiled-altar.webp"};
+  "The Twin Fangs":"assets/raid/icons/twin-fangs.webp",
+  "The Coiled Altar":"assets/raid/icons/coiled-altar.webp",
+  "Ula'tek":"assets/raid/icons/ulatek.webp"
+};
 const RAID_SHORT_SLUG={
   "Nek'zali the Soulcoiler":"nekzali",
   "Entombed Sentinels":"entombed-sentinels",
@@ -1039,7 +1139,8 @@ const RAID_SHORT_SLUG={
   "Vashnik the Malignant":"vashnik",
   "Sszorak":"sszorak",
   "The Twin Fangs":"twin-fangs",
-  "The Coiled Altar":"coiled-altar"
+  "The Coiled Altar":"coiled-altar",
+  "Ula'tek":"ulatek"
 };
 const RAID_SHORT_TO_NAME={
   "nekzali":"Nek'zali the Soulcoiler",
@@ -1048,7 +1149,8 @@ const RAID_SHORT_TO_NAME={
   "vashnik":"Vashnik the Malignant",
   "sszorak":"Sszorak",
   "twin-fangs":"The Twin Fangs",
-  "coiled-altar":"The Coiled Altar"
+  "coiled-altar":"The Coiled Altar",
+  "ulatek":"Ula'tek"
 };
 function resolveRaidName(n){ const map={"Vashnik the Water-Gazer":"Vashnik the Malignant","Sszorak the Ascended":"Sszorak","Ithrax & Vexhul - The Twin Fangs":"The Twin Fangs","Lost Explorers (Iku'nal & Nama'jin)":"The Lost Explorers"}; return map[n]||n; }
 
@@ -1289,6 +1391,64 @@ const SPELL_TIPS={
   "Death's Embrace":"Shadow plume 1.25M around P3 axe impact",
   "Death's Whisper":"Shadow damage to 40+ yard players after P3 axe",
   "Blighted Sever":"P3 shadow cleave destroying all venom orbs and dread adds",
+  "Blightscale Spawn":"Carryable egg that hatches into a Viper if it touches venom or completes its cast",
+  "Malignant Shell":"Nature damage every second while a Blightscale Spawn is attached",
+  "Putrid Membrane":"Long-duration raid-wide nature DoT applied by each hatched Viper",
+  "Blightscale Rawling":"Weakened hatchling using Poisonous Bite, Boiling Venom and Acidic Expulsion",
+  "Blightscale Viper":"Lethal hatched add using Acidic Burst, Petrifying Sting and Putrid Membrane",
+  "Poisonous Bite":"Stacking poison applied by a Blightscale Rawling's melee attacks",
+  "Boiling Venom":"Haste buff used by Blightscale hatchlings",
+  "Acidic Expulsion":"Venom ground attack cast by Blightscale hatchlings",
+  "Acidic Burst":"Heavy nature attack cast by a Blightscale Viper",
+  "Petrifying Sting":"Heroic Viper attack that petrifies its target",
+  "Caustic Waves":"Venom waves sweep from the boss and tail; wing pullback shows which side starts",
+  "Spectral Coils":"Two group soaks beside the tail; damage splits within 10 yards and breaks carried eggs",
+  "Soul Constrictor":"Debuff preventing a player from soaking the next Spectral Coils",
+  "Necrotic Vapors":"Stacking raid-wide nature damage that grows through the encounter",
+  "Ula'tek's Bond":"Boss and Gore Rattle tail share health",
+  "Rage of Shackled":"Twenty-second raid pulse exposing Venomous Heart for shared-health bonus damage",
+  "Falling Debris":"Seven-yard falling-rock circles dealing heavy physical damage",
+  "Venomous Heart":"Exposed heart sharing Ula'tek's health and taking 200% increased damage for 20 seconds",
+  "Unchecked Rage":"Raid-wide physical damage when no target is in melee range of Ula'tek",
+  "Mother's Wrath":"Tank knockback followed by a bite applying Stone Venom and Hobbled",
+  "Stone Venom":"Stacking nature damage-over-time effect from Mother's Wrath",
+  "Hobbled":"Movement-speed slow applied by Mother's Wrath",
+  "Gore Rattle":"Ula'tek's tail; shares health with the boss and requires a melee target",
+  "Rattler Slam":"Heavy physical strike used when Gore Rattle has no target in melee",
+  "Mephitic Thrash":"Wide tail sweep that knocks players back 35 yards",
+  "Call of Serpent":"Summons another set of Blightscale Spawn eggs",
+  "Toxic Womb":"Mythic effect that creates a Blightscale Wretch",
+  "Blightscale Wretch":"Mythic add casting Fester Burst and Toxic Incubation",
+  "Toxic Incubation":"Interceptable channel that otherwise grants Mother's Boon",
+  "Mother's Boon":"Stacking 10% damage reduction and 15% damage increase",
+  "Toxic Burn":"Debuff on the player intercepting Toxic Incubation; creates Caustic Waves",
+  "Doomscale Egg":"Carryable phase egg that hatches 20 seconds after pickup unless deposited",
+  "Doomscale Shell":"Nature damage every two seconds while carrying the Doomscale Egg",
+  "Mass Gestation":"Disturbing the Doomscale Egg starts gestation on all remaining eggs",
+  "Doomscale Warden":"Add protecting nearby eggs and casting Malice, Shadow Molt and Writhing Gestation",
+  "Grasping Fangs":"Slow tether that deals nature damage until players move 35 yards apart",
+  "Blight Vein":"Eight-second nature damage effect applied when Grasping Fangs breaks",
+  "Warden's Protection":"Prevents players from touching protected eggs while a Doomscale Warden lives",
+  "Malice":"Six-second channel dealing heavy nature damage every second",
+  "Shadow Molt":"Warden relocation to another position in its lane",
+  "Writhing Gestation":"Nearby eggs begin a 20-second hatch and grow stronger until broken",
+  "Doomscale Cauldron":"Deposit point that destroys the carried Doomscale Egg and prevents its hatch",
+  "Blightscale Clutch":"Growing egg clutch that hatches after 20 seconds unless destroyed",
+  "Weakened Doomscale":"Doomscale taking 100% increased damage and unable to cast Dread Roar",
+  "Dread Roar":"Twenty-second stun dealing heavy nature damage every second",
+  "Anguished Cry":"Interruptible raid hit followed by a six-second stun",
+  "Desperate Thrash":"Frontal cone attack from a Ravenous Doomscale",
+  "Revenge":"Mythic 100% haste and damage buff when a clutchmate dies",
+  "Serpent's Bite":"Targeted nature hit and 15-second DoT removed when another player soaks within 7 yards",
+  "Calcified Corpse":"Lethal stun dealing one million damage per second and piercing immunities",
+  "Volatile Purge":"Delayed seven-yard nature explosion on players who clear Serpent's Bite",
+  "Circling Prey":"Destroys the current platform with a heavy hit and knockback",
+  "Blightscale Shrieker":"Late-phase hatchling using Acidic Expulsion and Vicious Echoes",
+  "Vicious Echoes":"Heavy raid hit followed by periodic damage and a six-second stun",
+  "Slithering Clutch":"Mythic egg clutch that moves toward venom",
+  "Fury Unleashed":"Final prison-breaking enrage causing a lethal hit and continuous raid damage",
+  "Coiled Presence":"Raid-wide nature pulse if tank holds boss too far from center",
+  "Slumbering Coil":"Curio omni-token dropped by Ula'tek for any tier slot"
 
 };
 
@@ -1324,6 +1484,11 @@ const TANK_SWAP={
     <li><span class=\"spell\" data-tooltip=\"Axe throw requiring 5+ to split 5.4M physical; else Execution raid lethal\" tabindex=\"0\">Guillotine</span> / <span class=\"spell\" data-tooltip=\"P3 shadow axe throw requiring 5+ to split 5.4M; else Grim Execution\" tabindex=\"0\">Grim Guillotine</span> — tanks edge-away; raid stacks; far players avoid <span class=\"spell\" data-tooltip=\"Nature damage to players 40+ yards from axe impact\" tabindex=\"0\">Widow's Touch</span> / <span class=\"spell\" data-tooltip=\"Shadow damage to 40+ yard players after P3 axe\" tabindex=\"0\">Death's Whisper</span>.</li>
     <li><span class=\"action\">Kite</span> <span class=\"spell\" data-tooltip=\"Spinning axe hitbox; 583k physical within 4 yards, persists\" tabindex=\"0\">Axegrinder</span> — tanks carve lane; Mythic no despawn.</li>
   </ul>`,
+  "Ula'tek":`<ul>
+    <li>Assign one <span class=\"role role-tank\">tank</span> to Ula'tek and one to <span class=\"entity\">Gore Rattle</span>; both must stay in melee or <span class=\"spell\" data-tooltip=\"Raid-wide physical damage when no target is in melee range of Ula'tek\" tabindex=\"0\">Unchecked Rage</span> / <span class=\"spell\" data-tooltip=\"Heavy physical strike used when Gore Rattle has no target in melee\" tabindex=\"0\">Rattler Slam</span> fires.</li>
+    <li><span class=\"action\">Swap sides during Caustic Waves</span> to manage <span class=\"spell\" data-tooltip=\"Tank knockback followed by a bite applying Stone Venom and Hobbled\" tabindex=\"0\">Mother's Wrath</span>, <span class=\"spell\" data-tooltip=\"Stacking nature damage-over-time effect from Mother's Wrath\" tabindex=\"0\">Stone Venom</span> and positioning.</li>
+    <li>Face <span class=\"spell\" data-tooltip=\"Wide tail sweep that knocks players back 35 yards\" tabindex=\"0\">Mephitic Thrash</span> so its 35y knockback leaves room to recover.</li>
+  </ul>`
 
 };
 
@@ -1407,8 +1572,7 @@ function escapeReg(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
 function renderDungeonContent(){
   const toName=selectedDungeon||DUNGEON_ORDER[0]; const d=DUNGEONS[toName]||DUNGEONS[Object.keys(DUNGEONS)[0]]; const finalName=Object.keys(DUNGEONS).find(k=>k===toName)||toName;
   qs('#dungeonTitle').className=''; qs('#dungeonTitle').textContent=finalName;
-  qs('#headerMeta').innerHTML=`<span class=\"pill\">Season ${SEASON_2.includes(finalName)?'2':'1'} • ${d.bosses.length} bosses</span> <span class=\"pill\"><kbd>/</kbd> to search • <kbd>Esc</kbd> closes image</span>`;
-  const __notice2=qs('#notice'); if(__notice2){ __notice2.style.display='flex'; __notice2.removeAttribute('aria-hidden'); } qs('#noticeTitle').textContent='How to use:'; qs('#noticeText').textContent=' pick a dungeon left, then skim boss cards. Each tip has mechanic text and — when available — inline reference screenshot. Click any image to zoom.';
+  qs('#headerMeta').innerHTML=`<span class=\"pill\">Season ${SEASON_2.includes(finalName)?'2':'1'} • ${d.bosses.length} bosses</span>`;
   const grid=qs('#bossGrid'); const q=query.toLowerCase().trim(); let bosses=d.bosses; if(q){ bosses=bosses.map(b=>{ const bossMatch=b.name.toLowerCase().includes(q); const tips=b.tips.filter(t=>!q||t.text.toLowerCase().includes(q)||bossMatch); if(bossMatch||tips.length) return {...b,tips:tips.length?tips:b.tips,_highlight:bossMatch}; return null }).filter(Boolean); if(!bosses.length){grid.innerHTML=`<div class="no-results">No tips in <b>${escapeHtml(finalName)}</b> match “${escapeHtml(query)}”. Try clearing search or pick another dungeon.</div>`; return} } grid.innerHTML=bosses.map((boss,bi)=>{ const filteredTips=boss.tips; return `<div class="boss-card" id="boss-${slug(boss.name)}"><div class="boss-head"><h3><span class=\"boss-icon\">${bi+1}</span>${escapeHtml(boss.name)}</h3><span class=\"mini\">${filteredTips.length} mechanics • ${boss.tips.length===filteredTips.length?'all':'filtered'}</span></div><div class="tips">${filteredTips.map((t,i)=>tipHtml(t,i,boss.name)).join('')}</div></div>` }).join(''); grid.querySelectorAll('.tip-media img').forEach(img=>{img.addEventListener('click',()=>openLightbox(img.src,img.alt))});
 }
 
@@ -1419,13 +1583,35 @@ function renderMechItem(it){
 function renderRaidContent(){
   const realName=selectedRaid; const data=RAID_DATA[realName]; if(!data){ qs('#bossGrid').innerHTML=`<div class="no-results">Raid boss not found: ${escapeHtml(realName||'')}</div>`; return; }
   qs('#dungeonTitle').className='raid-title'; qs('#dungeonTitle').textContent=realName;
-  qs('#headerMeta').innerHTML=`<span class=\"pill venom\">Boss ${data.bossNum} / ${RAID_ORDER.length} • Season 2 Raid</span> <span class=\"pill\">2/4/14 • Heroic summaries</span> <span class=\"pill\"><kbd>click</kbd> images to zoom</span>`;
-  const __notice=qs('#notice'); if(__notice){ __notice.style.display='none'; __notice.setAttribute('aria-hidden','true'); } const q=query.toLowerCase().trim();
+  qs('#headerMeta').innerHTML=`<span class=\"pill venom\">Boss ${data.bossNum} / ${RAID_ORDER.length} • Season 2 Raid</span> <span class=\"pill\">2/4/14 • Heroic summaries</span>`;
+  const q=query.toLowerCase().trim();
   let html=`<div class="boss-card"><div class="boss-head raid-head"><h3><span class=\"boss-icon raid\">${data.bossNum}</span>${escapeHtml(realName)}<span style=\"margin-left:10px;font-size:12px;color:var(--muted);font-weight:500\">— ${escapeHtml(data.short)}</span></h3><span class=\"mini\">TL;DR + Setup + Strat</span></div><div class="raid-body">`;
   html+=`<div class="tldr venom-tldr"><strong>TL;DR:</strong> ${escapeHtml(data.tldr)}</div>`; if(TANK_SWAP[realName]){ html+=`<div class="tank-box"><div class="tank-box-head"><span class=\"tb-icon\">🛡️</span> Tank Swap / Taunt</div>${TANK_SWAP[realName]}</div>`; } html+=`<div class="setup-line"><span class=\"pill venom\">${escapeHtml(data.setup)}</span>${data.bossNum===1?`<span class=\"pill\">Tower-defense • 100 energy enrage</span>`:''}${data.bossNum===2?`<span class=\"pill\">40y DR • Even HP</span>`:''}${data.bossNum===6?`<span class=\"pill\">Eternal Venom 10 = death</span>`:''}</div>`;
   const section=(title,items)=>{ if(!items||!items.length) return ""; if(q && !JSON.stringify(items).toLowerCase().includes(q) && !title.toLowerCase().includes(q)) return ""; const inner=Array.isArray(items)?items.map(it=>renderMechItem(it)).join(''):`<li class="mech-item"><div class="mech-lead">${enrichText(items)}</div></li>`; return `<div class="strat"><h4 class="raid-h">${escapeHtml(title)}</h4><ul>${inner}</ul><div class="mech-divider"></div></div>`; };
-  if(data.strategy) html+=section(data.bossNum===7?"Stage One — Serpent's Bargain":"Core — Phase 1 loop",data.strategy); if(data.green) html+=section("Green Golem (Breath)",data.green); if(data.red) html+=section("Red Golem (Blood)",data.red); if(data.intermission) html+=section(data.bossNum===7?"Intermission — Claimed Vessel":"Intermission — Energy 100",data.bossNum===7?data.intermission:(data.bossNum===1?"Intermission — 50% cleanup":data.intermission)); if(data.p2) html+=section(data.bossNum===7?"Stage Two — Usurper's Reprisal":"Phase 2 — Burn",data.p2); if(data.tanks) html+=section("Tanks",[data.tanks]); if(data.tanks2) html+=section("Tanks — Soul Sever",data.tanks2); if(data.boxes) html+=section("Box / Fish Economy",[data.boxes]); if(data.feed) html+=section("Feed Order",[data.feed]); if(data.ultimates) html+=section("Ultimates",data.ultimates); if(data.enrage) html+=section("Enrage / Kill Together",[data.enrage]); if(data.rotation) html+=section("Rotation",data.rotation); if(data.adds) html+=section("Add Control",data.adds); if(data.infections) html+=section("Infections (telegraphed by Fountain)",data.infections); if(data.passive) html+=section("Passive Checklist",data.passive); if(data.apex) html+=section("Apex Predator",data.apex); if(data.surge) html+=section("Venomous Surge + Cysts",data.surge); if(data.crosswinds) html+=section("Raging Crosswinds",data.crosswinds); if(data.core) html+=section("Core Rotation",data.core); if(data.feast) html+=section("Ravenous Feast — Venom Refund",data.feast); if(data.submerge) html+=section("Submerge 100 — Combined Assault",data.submerge); if(data.p3) html+=section("Stage Three — Coiled Union",data.p3);
-  if(data.images && data.images.length){ const matches = q? data.images.filter(img=>img.cap.toLowerCase().includes(q)): data.images; if(matches.length){ html+=`<div class="strat"><h4 class="raid-h">Maps & Positions — click to zoom</h4><div class="img-grid">`; matches.forEach(img=>{ html+=`<div class="img-card"><img loading="lazy" decoding="async" src="${escapeAttr(img.src)}" alt="${escapeAttr(img.cap)}" width="560" height="315" onerror="this.parentElement.style.display='none'"/><div class="cap">${escapeHtml(img.cap)}</div></div>`; }); html+=`</div></div>`; } } html+=`</div></div>`; qs('#bossGrid').innerHTML=html; qs('#bossGrid').querySelectorAll('.img-card img').forEach(im=>im.addEventListener('click',()=>openLightbox(im.src,im.alt)));
+  if(data.strategy) html+=section(data.bossNum===7?"Stage One — Serpent's Bargain":data.bossNum===8?"Phase 1 — Ula'tek & Gore Rattle":"Core — Phase 1 loop",data.strategy);
+  if(data.green) html+=section("Green Golem (Breath)",data.green);
+  if(data.red) html+=section("Red Golem (Blood)",data.red);
+  if(data.intermission && data.bossNum!==8) html+=section(data.bossNum===7?"Intermission — Claimed Vessel":"Intermission — Energy 100",data.bossNum===1?"Intermission — 50% cleanup":data.intermission);
+  if(data.p2) html+=section(data.bossNum===7?"Stage Two — Usurper's Reprisal":data.bossNum===8?"Phase 2 — Children of Doomscale":"Phase 2 — Burn",data.p2);
+  if(data.intermission && data.bossNum===8) html+=section("Intermission — The Shattering",data.intermission);
+  if(data.tanks) html+=section("Tanks",[data.tanks]);
+  if(data.tanks2) html+=section("Tanks — Soul Sever",data.tanks2);
+  if(data.boxes) html+=section("Box / Fish Economy",[data.boxes]);
+  if(data.feed) html+=section("Feed Order",[data.feed]);
+  if(data.ultimates) html+=section("Ultimates",data.ultimates);
+  if(data.enrage) html+=section("Enrage / Kill Together",[data.enrage]);
+  if(data.rotation) html+=section("Rotation",data.rotation);
+  if(data.adds) html+=section("Add Control",data.adds);
+  if(data.infections) html+=section("Infections (telegraphed by Fountain)",data.infections);
+  if(data.passive) html+=section("Passive Checklist",data.passive);
+  if(data.apex) html+=section("Apex Predator",data.apex);
+  if(data.surge) html+=section("Venomous Surge + Cysts",data.surge);
+  if(data.crosswinds) html+=section("Raging Crosswinds",data.crosswinds);
+  if(data.core) html+=section("Core Rotation",data.core);
+  if(data.feast) html+=section("Ravenous Feast — Venom Refund",data.feast);
+  if(data.submerge) html+=section("Submerge 100 — Combined Assault",data.submerge);
+  if(data.p3) html+=section(data.bossNum===8?"Phase 3 — Ula'tek's Ascension":"Stage Three — Coiled Union",data.p3);
+  if(data.images && data.images.length){ const matches = q? data.images.filter(img=>img.cap.toLowerCase().includes(q)): data.images; if(matches.length){ html+=`<div class="strat"><h4 class="raid-h">Mechanic References</h4><div class="img-grid">`; matches.forEach(img=>{ html+=`<div class="img-card"><img loading="lazy" decoding="async" src="${escapeAttr(img.src)}" alt="${escapeAttr(img.cap)}" width="560" height="315" onerror="this.parentElement.style.display='none'"/><div class="cap">${escapeHtml(img.cap)}</div></div>`; }); html+=`</div></div>`; } } html+=`</div></div>`; qs('#bossGrid').innerHTML=html; qs('#bossGrid').querySelectorAll('.img-card img').forEach(im=>im.addEventListener('click',()=>openLightbox(im.src,im.alt)));
 }
 
 function getDungeonNav(){ const idx=DUNGEON_ORDER.indexOf(selectedDungeon); const prev=idx>0?DUNGEON_ORDER[idx-1]:null; const next=idx>=0&&idx<DUNGEON_ORDER.length-1?DUNGEON_ORDER[idx+1]:null; return {idx,prev,next}; }
@@ -1433,7 +1619,7 @@ function getRaidNav(){ const raw=RAID_ORDER.indexOf(selectedRaid); const idx=raw
 
 function renderPrevNext(){
   const top=qs('#topPrevNext'); if(!top) return; let prev=null,next=null,isRaid=mode==='raid'; if(mode==="dungeon"){ const nav=getDungeonNav(); prev=nav.prev; next=nav.next; } else { const nav=getRaidNav(); prev=nav.prev; next=nav.next; }
-  const mkBtn=(label,size,dir)=>{ if(!label){return `<button class="pn-btn ${size} ${isRaid?'venom':'gold'} disabled" disabled aria-disabled="true"><span class=\"pn-hint\">${dir==='prev'?'Prev':'Next'}</span><span class=\"pn-label\">—</span></button>`} const arrow=dir==='prev'?'←':'→'; const txt=dir==='prev'?`${arrow} ${label}`:`${label} ${arrow}`; return `<button class="pn-btn ${size} ${isRaid?'venom':'gold'}" data-go="${escapeAttr(label)}" data-dir="${dir}"><span class=\"pn-hint\">${dir==='prev'?'Prev':'Next'}</span><span class=\"pn-label\">${escapeHtml(txt)}</span></button>`; }; const mkHidden=()=>`<span style=\"opacity:.22;font-size:12px;color:var(--muted2)\">— end —</span>`; if(mode==="dungeon"){ const {prev:pr,next:nx}=getDungeonNav(); top.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex:1;justify-content:flex-start">${pr?mkBtn(pr,'small','prev'):mkHidden()}</div><div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;flex:1">${nx?mkBtn(nx,'small','next'):mkHidden()}</div>`; } else { const {prev:pr,next:nx}=getRaidNav(); top.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex:1;justify-content:flex-start">${pr?mkBtn(pr,'small','prev'):mkHidden()}</div><div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;flex:1">${nx?mkBtn(nx,'small','next'):mkHidden()}</div>`; } top.querySelectorAll('[data-go]').forEach(btn=>{ btn.addEventListener('click',()=>{ const dest=btn.getAttribute('data-go'); if(mode==="dungeon"){ selectedDungeon=dest; mode='dungeon'; try{localStorage.setItem('midnight:dungeon',dest); localStorage.setItem('midnight:mode','dungeon');}catch(e){} render(); }else{ selectedRaid=dest; mode='raid'; try{localStorage.setItem('midnight:raid',dest); localStorage.setItem('midnight:mode','raid');}catch(e){} render(); } const g=qs('#bossGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'}); }); });
+  const mkBtn=(label,size,dir)=>{ if(!label){return `<button class="pn-btn ${size} ${isRaid?'venom':'gold'} disabled" disabled aria-disabled="true"><span class=\"pn-hint\">${dir==='prev'?'Prev':'Next'}</span><span class=\"pn-label\">—</span></button>`} const arrow=dir==='prev'?'←':'→'; const txt=dir==='prev'?`${arrow} ${label}`:`${label} ${arrow}`; return `<button class="pn-btn ${size} ${isRaid?'venom':'gold'}" data-go="${escapeAttr(label)}" data-dir="${dir}"><span class=\"pn-hint\">${dir==='prev'?'Prev':'Next'}</span><span class=\"pn-label\">${escapeHtml(txt)}</span></button>`; }; const mkHidden=()=>`<span aria-hidden=\"true\"></span>`; if(mode==="dungeon"){ const {prev:pr,next:nx}=getDungeonNav(); top.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex:1;justify-content:flex-start">${pr?mkBtn(pr,'small','prev'):mkHidden()}</div><div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;flex:1">${nx?mkBtn(nx,'small','next'):mkHidden()}</div>`; } else { const {prev:pr,next:nx}=getRaidNav(); top.innerHTML=`<div style="display:flex;gap:8px;align-items:center;flex:1;justify-content:flex-start">${pr?mkBtn(pr,'small','prev'):mkHidden()}</div><div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;flex:1">${nx?mkBtn(nx,'small','next'):mkHidden()}</div>`; } top.querySelectorAll('[data-go]').forEach(btn=>{ btn.addEventListener('click',()=>{ const dest=btn.getAttribute('data-go'); if(mode==="dungeon"){ selectedDungeon=dest; mode='dungeon'; try{localStorage.setItem('midnight:dungeon',dest); localStorage.setItem('midnight:mode','dungeon');}catch(e){} render(); }else{ selectedRaid=dest; mode='raid'; try{localStorage.setItem('midnight:raid',dest); localStorage.setItem('midnight:mode','raid');}catch(e){} render(); } const g=qs('#bossGrid'); if(g) g.scrollIntoView({behavior:'smooth',block:'start'}); }); });
 }
 
 function render(){
