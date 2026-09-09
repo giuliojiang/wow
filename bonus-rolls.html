@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light; --ink:#16201b; --muted:#59665f; --paper:#fff; --wash:#edf2ef; --line:#d7dfda; --fel:#4f8f26; --fel-dark:#2c6417; --fel-pale:#e3f1d9; --vengeance:#a85123; --vengeance-pale:#f5e5da; --void:#25342d; --raid:#795320; --raid-pale:#f5ead7; --shadow:0 18px 55px rgba(22,32,27,.08); }
+    :root { color-scheme: light; --ink:#16201b; --muted:#59665f; --paper:#fff; --wash:#edf2ef; --line:#d7dfda; --fel:#4f8f26; --fel-dark:#2c6417; --fel-pale:#e3f1d9; --vengeance:#a85123; --vengeance-pale:#f5e5da; --havoc:#7a3b8f; --havoc-pale:#ece1f4; --void:#25342d; --raid:#795320; --raid-pale:#f5ead7; --shadow:0 18px 55px rgba(22,32,27,.08); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; min-width:0; background:linear-gradient(180deg,#dfe9e3 0,var(--wash) 270px,var(--wash) 100%); color:var(--ink); font-family:"Source Sans 3",sans-serif; font-size:16px; line-height:1.5; }
@@ -33,12 +33,13 @@
     .rules-list li { display:grid; grid-template-columns:24px minmax(0,1fr); gap:9px; align-items:start; color:#e5ece8; line-height:1.35; }
     .rules-list svg { width:20px; height:20px; color:#a8df72; margin-top:1px; }
     .rules-list strong { color:#fff; }
-    .spec-tabs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2px; padding:4px; background:#cad5ce; border:1px solid #bfcbc4; margin-bottom:18px; }
+    .spec-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px; padding:4px; background:#cad5ce; border:1px solid #bfcbc4; margin-bottom:18px; }
     .spec-tab { display:flex; min-width:0; gap:12px; align-items:center; justify-content:center; border:0; padding:15px 18px; background:transparent; color:#4d5a53; cursor:pointer; font-weight:700; transition:background .16s ease,color .16s ease,box-shadow .16s ease; }
     .spec-tab:hover { color:var(--ink); }
     .spec-tab[aria-selected="true"] { background:var(--paper); color:var(--ink); box-shadow:0 4px 16px rgba(22,32,27,.09); }
     .spec-mark { display:grid; width:29px; height:29px; place-items:center; background:var(--fel-pale); color:var(--fel-dark); border-radius:50%; font-family:"Alegreya",serif; font-size:1.05rem; }
     #tab-vengeance .spec-mark { background:var(--vengeance-pale); color:var(--vengeance); }
+    #tab-havoc .spec-mark { background:var(--havoc-pale); color:var(--havoc); }
     .spec-tab .tab-text { min-width:0; text-align:left; }
     .spec-tab small { display:block; color:var(--muted); font-weight:500; line-height:1.15; }
     .spec-panel[hidden] { display:none; }
@@ -182,6 +183,7 @@
     <div id="loot-priority-view">
     <div class="spec-tabs" role="tablist" aria-label="Demon Hunter specialization">
       <button class="spec-tab" id="tab-devourer" type="button" role="tab" aria-selected="true" aria-controls="panel-devourer" tabindex="0"><span class="spec-mark" aria-hidden="true">D</span><span class="tab-text">Devourer <small>Intellect · ranged</small></span></button>
+      <button class="spec-tab" id="tab-havoc" type="button" role="tab" aria-selected="false" aria-controls="panel-havoc" tabindex="-1"><span class="spec-mark" aria-hidden="true">H</span><span class="tab-text">Havoc <small>Agility · melee</small></span></button>
       <button class="spec-tab" id="tab-vengeance" type="button" role="tab" aria-selected="false" aria-controls="panel-vengeance" tabindex="-1"><span class="spec-mark" aria-hidden="true">V</span><span class="tab-text">Vengeance <small>Agility · tank</small></span></button>
     </div>
 
@@ -211,6 +213,40 @@
             <article class="loot-group"><div class="group-head"><strong>The Coiled Altar</strong></div><div class="items"><div class="item"><span class="item-name">Baleful Hexblade</span><span class="item-note">Weapon pairing</span></div></div></article>
           </div>
           <div class="outside-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg><span>Heroic versions of the Ula'tek cantrip pieces and <strong>Gebbo's Bottomless Bag</strong> can still justify a roll.</span></div>
+        </section>
+      </div>
+      <div class="pool-strip"><strong>Season 2 dungeon pool <a class="inline-source" href="https://www.wowhead.com/blue-tracker/news/us/the-shadows-deepen-midnight-season-2-begins-august-18-world-of-warcraft-blizzard-24294369" target="_blank" rel="noopener noreferrer">Official list ↗</a></strong><div class="pool-list" aria-label="Season 2 Mythic Plus dungeons"><span>Altar of Fangs</span><span>The Blinding Vale</span><span>Den of Nalorakk</span><span>Murder Row</span><span>Voidscar Arena</span><span>King's Rest</span><span>Ruby Life Pools</span><span>Temple of Sethraliss</span></div></div>
+    </section>
+
+    <section class="spec-panel" id="panel-havoc" role="tabpanel" aria-labelledby="tab-havoc" hidden>
+      <header class="spec-intro">
+        <div><h2>Havoc priority path</h2><p>Chase The Coiled Altar and Ula'tek first: Aman'muso with Zul'jin's Guillotine Technique is the signature weapon and trinket package. Backfill Murder Row and Voidscar Arena trinkets, then catalyst into the Abyssal Doomhound's 4-piece.</p></div>
+        <div class="route" aria-label="Havoc quick route"><div class="route-step"><b>1</b><span>The Coiled Altar</span></div><div class="route-step"><b>2</b><span>Ula'tek</span></div><div class="route-step"><b>3</b><span>Murder Row</span></div></div>
+      </header>
+      <div class="content-grid">
+        <section class="loot-section" aria-labelledby="hav-mplus">
+          <div class="section-heading"><div><h3 id="hav-mplus">Mythic+ dungeon drops</h3><p>Roll at +10 or above when possible. <a class="inline-source" href="https://www.icy-veins.com/wow/havoc-demon-hunter-pve-dps-gear-best-in-slot" target="_blank" rel="noopener noreferrer">Icy Veins gear guide ↗</a></p></div><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 3 6 6 .8-4.5 4.4 1.2 6.3-5.7-3-5.7 3 1.2-6.3L3 9.8 9 9l3-6Z" stroke="currentColor" stroke-width="1.7"/></svg></span></div>
+          <div class="dungeon-list">
+            <article class="loot-group priority"><div class="group-head"><strong>Murder Row</strong><span class="rank">Priority 1</span></div><div class="items"><div class="item"><span class="item-name">Freightrunner's Flask</span><span class="item-note">Trinket · on-use Agi</span></div><div class="item"><span class="item-name">Resonant Bellowstone</span><span class="item-note">Trinket · passive</span></div><div class="item"><span class="item-name">Signet of Snarling Servitude</span><span class="item-note">Finger</span></div><div class="item"><span class="item-name">Speakeasy Shroud</span><span class="item-note">Back</span></div></div></article>
+            <article class="loot-group priority"><div class="group-head"><strong>Voidscar Arena</strong><span class="rank">Priority 2</span></div><div class="items"><div class="item"><span class="item-name">Void Execution Mandate</span><span class="item-note">Trinket · on-use Agi</span></div><div class="item"><span class="item-name">Graft of the Domanaar</span><span class="item-note">Neck</span></div></div></article>
+            <article class="loot-group priority"><div class="group-head"><strong>King's Rest</strong><span class="rank">Priority 3</span></div><div class="items"><div class="item"><span class="item-name">Lustrous Golden Plumage</span><span class="item-note">Trinket · on-use Agi</span></div><div class="item"><span class="item-name">Primal Dinomancer's Belt</span><span class="item-note">Waist</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>The Blinding Vale</strong></div><div class="items"><div class="item"><span class="item-name">Thorntalon Edge</span><span class="item-note">Main hand</span></div><div class="item"><span class="item-name">Sapling of the Dawnroot</span><span class="item-note">Trinket</span></div><div class="item"><span class="item-name">Lightspire Core</span><span class="item-note">Trinket</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>Temple of Sethraliss</strong></div><div class="items"><div class="item"><span class="item-name">Sand-Shined Snakeskin Sandals</span><span class="item-note">Boots</span></div><div class="item"><span class="item-name">Charged Sandstone Band</span><span class="item-note">Finger</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>Altar of Fangs</strong></div><div class="items"><div class="item"><span class="item-name">Vile Vial of Volatile Venom</span><span class="item-note">Trinket · on-use Agi</span></div></div></article>
+          </div>
+        </section>
+        <section class="loot-section" aria-labelledby="hav-raid">
+          <div class="section-heading"><div><h3 id="hav-raid">Raid boss drops</h3><p>Venomous Abyss targets. <a class="inline-source" href="https://www.icy-veins.com/wow/havoc-demon-hunter-pve-dps-gear-best-in-slot" target="_blank" rel="noopener noreferrer">Icy Veins priorities ↗</a></p></div><span class="section-icon raid" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4 4.5 8v8L12 20l7.5-4V8L12 4Z" stroke="currentColor" stroke-width="1.7"/><path d="M8 11.5 12 9l4 2.5V16l-4 2-4-2v-4.5Z" stroke="currentColor" stroke-width="1.7"/></svg></span></div>
+          <div class="boss-list">
+            <article class="loot-group priority"><div class="group-head"><strong>The Coiled Altar</strong><span class="rank">Priority 1</span></div><div class="items"><div class="item"><span class="item-name">Aman'muso, Warlord's Vengeance</span><span class="item-note unique">Weapon · unique</span></div><div class="item"><span class="item-name">Zul'jin's Guillotine Technique</span><span class="item-note unique">Trinket · S-tier damage</span></div><div class="item"><span class="item-name">Sash of the Forlorn Vessel</span><span class="item-note">Waist</span></div><div class="item"><span class="item-name">Silken Voodoo Drape</span><span class="item-note">Back</span></div></div></article>
+            <article class="loot-group priority"><div class="group-head"><strong>Ula'tek</strong><span class="rank">Priority 2</span></div><div class="items"><div class="item"><span class="item-name">Aqirbane Reliquary</span><span class="item-note unique">Neck · unique</span></div><div class="item"><span class="item-name">Voracious Heart of Ula'tek</span><span class="item-note">Trinket · on-use Crit</span></div><div class="item"><span class="item-name">Font of Venomous Rage</span><span class="item-note">Trinket · on-use Mastery</span></div><div class="item"><span class="item-name">Gaze of the Coiled Watcher</span><span class="item-note catalyst">Tier head · catalyst target</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>Vashnik the Malignant</strong></div><div class="items"><div class="item"><span class="item-name">Vashnik's Sanguine Rancor</span><span class="item-note">Trinket</span></div><div class="item"><span class="item-name">Vile Alchemist's Band</span><span class="item-note">Finger</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>Sszorak</strong></div><div class="items"><div class="item"><span class="item-name">Venomous Boneglaive</span><span class="item-note">Off-hand</span></div><div class="item"><span class="item-name">Apex Brute's Claw Ring</span><span class="item-note">Finger</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>The Twin Fangs</strong></div><div class="items"><div class="item"><span class="item-name">Bespittled Slitherslippers</span><span class="item-note">Boots</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>Entombed Sentinels</strong></div><div class="items"><div class="item"><span class="item-name">Keeper's Seething Core</span><span class="item-note">Trinket</span></div></div></article>
+            <article class="loot-group"><div class="group-head"><strong>The Lost Explorers</strong></div><div class="items"><div class="item"><span class="item-name">Gebbo's Bottomless Bag</span><span class="item-note">Trinket</span></div></div></article>
+          </div>
+          <div class="outside-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 8 8-4 8 4-8 4-8-4Zm0 4 8 4 8-4M4 16l8 4 8-4" stroke="currentColor" stroke-width="1.8"/></svg><span><strong>Spellbreaker's Warglaive</strong> is crafted, not a dungeon or raid drop, so it is outside every bonus-roll pool.</span></div>
         </section>
       </div>
       <div class="pool-strip"><strong>Season 2 dungeon pool <a class="inline-source" href="https://www.wowhead.com/blue-tracker/news/us/the-shadows-deepen-midnight-season-2-begins-august-18-world-of-warcraft-blizzard-24294369" target="_blank" rel="noopener noreferrer">Official list ↗</a></strong><div class="pool-list" aria-label="Season 2 Mythic Plus dungeons"><span>Altar of Fangs</span><span>The Blinding Vale</span><span>Den of Nalorakk</span><span>Murder Row</span><span>Voidscar Arena</span><span>King's Rest</span><span>Ruby Life Pools</span><span>Temple of Sethraliss</span></div></div>
