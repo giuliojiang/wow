@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="data:," />
+  <title>Midnight S2 Extra Upgrades — Enchants, Gems, Embellishments &amp; Consumables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; --ink:#16201b; --muted:#59665f; --paper:#fff; --wash:#edf2ef; --line:#d7dfda; --fel:#4f8f26; --fel-dark:#2c6417; --fel-pale:#e3f1d9; --vengeance:#a85123; --vengeance-pale:#f5e5da; --havoc:#7a3b8f; --havoc-pale:#ece1f4; --void:#25342d; --raid:#795320; --raid-pale:#f5ead7; --shadow:0 18px 55px rgba(22,32,27,.08); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:0; background:linear-gradient(180deg,#dfe9e3 0,var(--wash) 270px,var(--wash) 100%); color:var(--ink); font-family:"Source Sans 3",sans-serif; font-size:16px; line-height:1.5; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    .page { width:min(1160px,calc(100% - 32px)); margin:0 auto; padding:42px 0 72px; }
+    .hero { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(280px,.75fr); gap:24px; align-items:end; margin-bottom:22px; }
+    .hero-copy { min-width:0; }
+    .season-line { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin-bottom:11px; color:var(--fel-dark); font-weight:700; }
+    .season-line .rule { width:40px; height:2px; background:var(--fel); }
+    .season-line a.back-link{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700;font-size:.85rem;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .season-line a.back-link:hover{border-color:var(--fel);color:var(--fel-dark)}
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { font-family:"Alegreya",serif; }
+    h1 { max-width:780px; margin-bottom:13px; font-size:clamp(2.45rem,6vw,4.75rem); line-height:.92; letter-spacing:-.035em; text-wrap:balance; }
+    .lede { max-width:760px; margin-bottom:0; color:#3f4c45; font-size:clamp(1.04rem,2vw,1.2rem); text-wrap:pretty; }
+    .rules-card { padding:20px; background:var(--void); color:#fff; box-shadow:var(--shadow); }
+    .rules-card h2 { margin-bottom:12px; font-size:1.25rem; }
+    .rules-list { display:grid; gap:10px; margin:0; padding:0; list-style:none; }
+    .rules-list li { display:grid; grid-template-columns:24px minmax(0,1fr); gap:9px; align-items:start; color:#e5ece8; line-height:1.35; }
+    .rules-list svg { width:20px; height:20px; color:#a8df72; margin-top:1px; }
+    .rules-list strong { color:#fff; }
+
+    .toc { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; padding:0; list-style:none; }
+    .toc a { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid var(--line); background:var(--paper); color:var(--ink); text-decoration:none; font-weight:700; font-size:.88rem; border-radius:999px; }
+    .toc a:hover { border-color:var(--fel); color:var(--fel-dark); }
+    .toc .n { display:grid; width:22px; height:22px; place-items:center; background:var(--fel-pale); color:var(--fel-dark); border-radius:50%; font-size:.8rem; font-family:"Alegreya",serif; }
+
+    .guide-section { background:var(--paper); box-shadow:var(--shadow); border-top:4px solid var(--fel); margin-bottom:26px; scroll-margin-top:16px; }
+    .guide-section.alt { border-top-color:var(--raid); }
+    .section-head { padding:25px 28px 20px; border-bottom:1px solid var(--line); }
+    .section-head h2 { margin:0 0 4px; font-size:clamp(1.8rem,4vw,2.4rem); line-height:1; }
+    .section-head p { margin:0; color:var(--muted); }
+    .section-body { padding:24px 28px 28px; }
+    .section-body h3 { font-size:1.35rem; margin:26px 0 10px; }
+    .section-body h3:first-child { margin-top:0; }
+    .section-body p { color:#344139; }
+    .section-body p.lead { font-size:1.02rem; }
+
+    table.spec-table { width:100%; border-collapse:collapse; table-layout:fixed; border:1px solid var(--line); margin:0 0 18px; }
+    .spec-table th,.spec-table td { padding:10px 12px; border-bottom:1px solid #e3e9e5; text-align:left; vertical-align:top; overflow-wrap:anywhere; }
+    .spec-table th { background:#f1f4f2; color:#405047; font-size:.76rem; letter-spacing:.025em; text-transform:uppercase; }
+    .spec-table tbody tr:last-child td { border-bottom:0; }
+    .spec-table td { color:#344139; font-size:.9rem; line-height:1.35; }
+    .spec-table td:first-child { color:var(--ink); font-weight:700; }
+    .spec-table .slot { white-space:nowrap; }
+    .tag-new { display:inline-block; margin-left:8px; padding:2px 8px; background:var(--havoc-pale); color:var(--havoc); border-radius:999px; font-size:.68rem; font-weight:700; letter-spacing:.02em; text-transform:uppercase; vertical-align:middle; }
+    .tag-check { display:inline-block; margin-left:8px; padding:2px 8px; background:var(--raid-pale); color:var(--raid); border-radius:999px; font-size:.68rem; font-weight:700; letter-spacing:.02em; text-transform:uppercase; vertical-align:middle; }
+    .item-name { font-weight:700; color:var(--ink); }
+    .note { color:var(--muted); font-size:.85rem; }
+
+    .callout { display:grid; grid-template-columns:24px minmax(0,1fr); gap:10px; margin:0 0 18px; padding:13px; background:#f1f3f2; border:1px solid var(--line); color:#465149; font-size:.88rem; }
+    .callout svg { width:20px; height:20px; color:var(--muted); margin-top:1px; }
+    .callout strong { color:var(--ink); }
+    .callout.warn { background:var(--raid-pale); border-color:#dfcaa8; color:#61451f; }
+    .callout.warn strong { color:var(--raid); }
+    .callout.warn svg { color:var(--raid); }
+
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin:0 0 18px; }
+    .card { border:1px solid var(--line); background:#fbfdfc; padding:14px 15px; }
+    .card h4 { margin:0 0 6px; font-size:1rem; font-family:"Alegreya",serif; }
+    .card p { margin:0; font-size:.87rem; color:#465149; }
+    .card .item-name { display:block; margin-bottom:2px; }
+
+    .sim-note { margin:18px 0 0; padding:12px 13px; background:var(--fel-pale); border:1px solid #bcdba4; color:#33571c; font-size:.88rem; line-height:1.45; }
+    .sim-note strong { color:var(--fel-dark); }
+
+    .footer-note { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 20px; margin-top:16px; color:#58665f; font-size:.82rem; }
+    .footer-note strong { color:#344138; }
+    .sources { margin:20px 0 0; padding-top:15px; border-top:1px solid var(--line); color:var(--muted); font-size:.8rem; }
+    .sources a { color:var(--fel-dark); }
+
+    @media (max-width:860px) { .hero{grid-template-columns:1fr;align-items:stretch} .section-body{padding-left:20px;padding-right:20px} .section-head{padding-left:20px;padding-right:20px} }
+    @media (max-width:600px) {
+      .page{width:min(100% - 20px,1160px);padding:24px 0 48px} h1{font-size:clamp(2.5rem,14vw,3.8rem)} .rules-card{padding:17px}
+      .spec-table,.spec-table tbody,.spec-table tr,.spec-table td { display:block; width:100%; }
+      .spec-table thead { display:none; }
+      .spec-table { border:0; }
+      .spec-table tr { border:1px solid var(--line); margin-bottom:9px; background:#fff; }
+      .spec-table td { display:grid; grid-template-columns:88px minmax(0,1fr); gap:9px; border-bottom:1px solid #e3e9e5; padding:8px 10px; }
+      .spec-table td::before { content:attr(data-label); color:var(--muted); font-size:.72rem; font-weight:700; text-transform:uppercase; }
+      .spec-table tr:last-child td { border-bottom:1px solid #e3e9e5; }
+      .spec-table td:last-child { border-bottom:0; }
+    }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} }
+    @media print { body{background:#fff} .page{width:100%;padding:0} .guide-section{box-shadow:none;margin-bottom:20px;break-inside:avoid} .rules-card{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none} .rules-list li,.rules-card h2,.rules-list strong{color:var(--ink)} .toc{display:none} }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="hero-copy">
+      <div class="season-line"><span class="rule"></span><span>Midnight Season 2 · Patch 12.1</span><a class="back-link" href="index.html">← Morrigan's Midnight Tips</a></div>
+      <h1>Extra Upgrades</h1>
+      <p class="lede">The power that never drops from a boss: enchants, gems, embellishments, and consumables. These are the upgrades people forget — and the gap between a geared character and a finished one.</p>
+    </div>
+    <aside class="rules-card" aria-label="Extra upgrades checklist">
+      <h2>The finished-character checklist</h2>
+      <ul class="rules-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Enchant every slot</strong> — weapon, helm, shoulders, chest, legs, boots, rings.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Socket everything</strong> — one Eversong Diamond plus Flawless color gems in every socket.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Two embellished crafts max</strong> — with missives tuned to your best stats.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Full consumables</strong> — flask, combat potion, oil or stone, food, and an augment rune for raid nights.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Spend Mistcrests weekly</strong> — and check the Great Vault before upgrading anything.</span></li>
+      </ul>
+    </aside>
+  </header>
+
+  <nav aria-label="Sections">
+    <ul class="toc">
+      <li><a href="#enchants"><span class="n">1</span>Enchants</a></li>
+      <li><a href="#gems"><span class="n">2</span>Gems</a></li>
+      <li><a href="#embellishments"><span class="n">3</span>Embellishments</a></li>
+      <li><a href="#consumables"><span class="n">4</span>Consumables</a></li>
+      <li><a href="#other"><span class="n">5</span>Other upgrades</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============ 1. ENCHANTS ============ -->
+  <section class="guide-section" id="enchants" aria-labelledby="h-enchants">
+    <div class="section-head">
+      <h2 id="h-enchants">1 · Enchants</h2>
+      <p>Defaults that fit most specs, and where to look when they don't. Weapon is the most spec-dependent slot — sim it.</p>
+    </div>
+    <div class="section-body">
+      <div class="callout" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Midnight changed the slots.</strong> Cloak and bracer enchants were removed; <strong>helm and shoulder enchants are new</strong>. There is no glove or belt enchant. Legs are handled by Leatherworking armor kits (Strength/Agility) or Tailoring spellthreads (Intellect).</span>
+      </div>
+      <table class="spec-table">
+        <thead><tr><th style="width:14%">Slot</th><th style="width:32%">Default pick</th><th style="width:54%">Effect &amp; alternatives</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="slot" data-label="Slot">Weapon</td>
+            <td data-label="Default pick"><span class="item-name">Enchant Weapon - Rite of the Hash'ey</span><span class="tag-new">New in 12.1</span></td>
+            <td data-label="Effect">Chance to gain random secondaries, favoring your highest while above 80% health. Recipe from <strong>Jan'sari the Watchful</strong> on the Coiled Isle (Renown 5, Zul'jarra's Forces). Alternatives by spec: <span class="item-name">Berserker's Rage</span> (Haste — e.g. Arms), <span class="item-name">Jan'alai's Precision</span> (Crit — e.g. Marksmanship), <span class="item-name">Arcane Mastery</span> (Mastery — e.g. Augmentation), <span class="item-name">Acuity of the Ren'dorei</span> (Strength — e.g. Brewmaster).</td>
+          </tr>
+          <tr>
+            <td class="slot" data-label="Slot">Helm</td>
+            <td data-label="Default pick"><span class="item-name">Enchant Helm - Empowered Hex of Leeching</span></td>
+            <td data-label="Effect">Leech, plus healing when defeating enemies outdoors in a Midnight zone. <span class="item-name">Empowered Rune of Avoidance</span> (Avoidance + speed burst on kills) and <span class="item-name">Empowered Blessing of Speed</span> (Speed + Vigor charge on kills) are the alternatives; the choice is largely personal preference.</td>
+          </tr>
+          <tr>
+            <td class="slot" data-label="Slot">Shoulders</td>
+            <td data-label="Default pick"><span class="item-name">Enchant Shoulders - Amirdrassil's Grace</span> <span class="note">or</span> <span class="item-name">Silvermoon's Mending</span></td>
+            <td data-label="Effect">Tertiary stats: Avoidance (<span class="item-name">Amirdrassil's Grace</span>, <span class="item-name">Nature's Grace</span>), Leech (<span class="item-name">Silvermoon's Mending</span>, <span class="item-name">Thalassian Recovery</span>), or Speed (<span class="item-name">Akil'zon's Swiftness</span>, <span class="item-name">Flight of the Eagle</span>).</td>
+          </tr>
+          <tr>
+            <td class="slot" data-label="Slot">Chest</td>
+            <td data-label="Default pick"><span class="item-name">Enchant Chest - Mark of the Worldsoul</span></td>
+            <td data-label="Effect">Primary stat — the default for nearly every spec. (<span class="item-name">Mark of Nalorakk</span>, <span class="item-name">Mark of the Magister</span>, <span class="item-name">Mark of the Rootwarden</span> cover niche cases.)</td>
+          </tr>
+          <tr>
+            <td class="slot" data-label="Slot">Legs</td>
+            <td data-label="Default pick"><span class="item-name">Blood Knight's Armor Kit</span> <span class="note">/</span> <span class="item-name">Sunfire Silk Spellthread</span></td>
+            <td data-label="Effect">Leatherworking kits for Strength/Agility (<span class="item-name">Blood Knight's</span>, <span class="item-name">Forest Hunter's</span>, <span class="item-name">Thalassian Scout Armor Kit</span>); Tailoring spellthreads for Intellect (<span class="item-name">Sunfire Silk</span>, <span class="item-name">Arcanoweave</span>, <span class="item-name">Bright Linen Spellthread</span>).</td>
+          </tr>
+          <tr>
+            <td class="slot" data-label="Slot">Boots</td>
+            <td data-label="Default pick"><span class="item-name">Enchant Boots - Lynx's Dexterity</span></td>
+            <td data-label="Effect">Avoidance + Stamina. Alternatives: <span class="item-name">Shaladrassil's Roots</span> (Leech + Stamina), <span class="item-name">Farstrider's Hunt</span> (Speed + Stamina).</td>
+          </tr>
+          <tr>
+            <td class="slot" data-label="Slot">Rings</td>
+            <td data-label="Default pick"><span class="item-name">Enchant Ring - Eyes of the Eagle</span></td>
+            <td data-label="Effect">Critical Strike <em>effectiveness</em> — distinct from plain Crit, and the most common default. Swap to <span class="item-name">Zul'jin's Mastery</span>, <span class="item-name">Silvermoon's Alacrity</span>, <span class="item-name">Silvermoon's Tenacity</span>, or <span class="item-name">Nature's Fury</span> to match your stat priority.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Exceptions.</strong> <strong>Death Knights</strong> use Runeforging instead of weapon enchants (e.g. <span class="item-name">Rune of the Fallen Crusader</span>, <span class="item-name">Rune of Sanguination</span>). <strong>Hunters</strong> use Engineering scopes instead of weapon enchants (see Consumables).</span>
+      </div>
+      <p class="note">Standard enchants come from Enchanting; armor kits from Leatherworking; spellthreads from Tailoring. Profession-tool enchants (Amani Perception, Haranir Finesse, etc.) only boost profession stats — they are not combat upgrades.</p>
+    </div>
+  </section>
+
+  <!-- ============ 2. GEMS ============ -->
+  <section class="guide-section alt" id="gems" aria-labelledby="h-gems">
+    <div class="section-head">
+      <h2 id="h-gems">2 · Gems</h2>
+      <p>Flawless cuts are the top tier. One unique Eversong Diamond plus color-matched secondary gems is the standard setup.</p>
+    </div>
+    <div class="section-body">
+      <h3>Color and cut matrix</h3>
+      <table class="spec-table">
+        <thead><tr><th style="width:24%">Gemstone</th><th style="width:38%">First stat</th><th style="width:38%">Cut adjective = second stat</th></tr></thead>
+        <tbody>
+          <tr><td class="slot" data-label="Gemstone"><span class="item-name">Garnet</span></td><td data-label="First stat">Critical Strike</td><td data-label="Cut" rowspan="4"><span class="item-name">Deadly</span> = Crit · <span class="item-name">Quick</span> = Haste · <span class="item-name">Masterful</span> = Mastery · <span class="item-name">Versatile</span> = Versatility<br><br>Always buy the <span class="item-name">Flawless</span> version — e.g. <span class="item-name">Flawless Deadly Garnet</span>, <span class="item-name">Flawless Quick Amethyst</span>, <span class="item-name">Flawless Masterful Peridot</span>, <span class="item-name">Flawless Versatile Lapis</span>. Non-Flawless cuts are weaker.</td></tr>
+          <tr><td class="slot" data-label="Gemstone"><span class="item-name">Amethyst</span></td><td data-label="First stat">Mastery</td></tr>
+          <tr><td class="slot" data-label="Gemstone"><span class="item-name">Peridot</span></td><td data-label="First stat">Haste</td></tr>
+          <tr><td class="slot" data-label="Gemstone"><span class="item-name">Lapis</span></td><td data-label="First stat">Versatility</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Socket your two best secondary stats — the exact cuts are spec-dependent (tanks often mix in Versatile cuts). <span class="item-name">Heliotrope</span> gems are PvP-only; ignore them for raid and Mythic+.</p>
+      <h3>Eversong Diamonds — unique-equipped (one only)</h3>
+      <div class="cards">
+        <div class="card"><h4><span class="item-name">Indecipherable Eversong Diamond</span></h4><p>The most primary stat. The safe default most Season 2 guides recommend.</p></div>
+        <div class="card"><h4><span class="item-name">Powerful Eversong Diamond</span></h4><p>Primary stat plus Crit effect per unique gem color — can beat Indecipherable with balanced colors, but it is gear-dependent.</p></div>
+        <div class="card"><h4><span class="item-name">Telluric Eversong Diamond</span></h4><p>Primary stat plus mana per unique gem color — popular with mana-hungry casters.</p></div>
+        <div class="card"><h4><span class="item-name">Stoic Eversong Diamond</span></h4><p>Primary stat plus movement speed per unique gem color.</p></div>
+      </div>
+      <div class="callout" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Need more sockets?</strong> <span class="item-name">Radiant Jewelbinder</span> adds a socket to a helm, bracers, or belt — PvE gear only. Sold by <strong>Vaultkeeper Elysa</strong> by the Great Vault in Silvermoon City for <strong>6 Thalassian Token of Merit</strong> (the currency you can take from the weekly Great Vault instead of an item).</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. EMBELLISHMENTS ============ -->
+  <section class="guide-section" id="embellishments" aria-labelledby="h-embellishments">
+    <div class="section-head">
+      <h2 id="h-embellishments">3 · Embellishments</h2>
+      <p>Crafted gear with built-in or added bonus effects — the biggest "free" power most players leave on the table.</p>
+    </div>
+    <div class="section-body">
+      <p class="lead">You may equip <strong>a maximum of two embellished items</strong> at once — a third grants nothing. Embellishments come two ways: gear with a <strong>built-in</strong> effect, and <strong>optional crafting reagents</strong> added at craft time. Place crafting work orders with <strong>Mar'nah</strong> in Silvermoon City.</p>
+      <h3>New Season 2 embellishment reagents</h3>
+      <table class="spec-table">
+        <thead><tr><th style="width:30%">Reagent</th><th style="width:70%">Effect</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Reagent"><span class="item-name">Hunter's Ritual Stone</span><span class="tag-new">12.1</span></td><td data-label="Effect">Blacksmithing. Random secondary stat — 50% stronger during outdoor Prey Hunts.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Adorned Fang</span><span class="tag-new">12.1</span></td><td data-label="Effect">Leatherworking. Haste proc with an increased chance as the target's health falls.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Snakeskin Lining</span><span class="tag-new">12.1</span></td><td data-label="Effect">Tailoring. Applies Corrosive Acid that can detonate for splash damage.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Polished Ammolite</span><span class="tag-new">12.1</span></td><td data-label="Effect">Jewelcrafting. Critical strikes stack a Crit blessing; at max stacks, crits trigger burst damage.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Coiled Snake-Eye</span><span class="tag-new">12.1</span></td><td data-label="Effect">Engineering (gun embellishment). Random secondary proc; grants your highest secondary instead when triggered by a critical strike.</td></tr>
+        </tbody>
+      </table>
+      <h3>Established embellishments</h3>
+      <table class="spec-table">
+        <thead><tr><th style="width:30%">Reagent</th><th style="width:70%">Effect</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Reagent"><span class="item-name">Darkmoon Sigil: Hunt</span></td><td data-label="Effect">Creature-type-dependent secondary-stat proc — weapon only. A common Season 2 weapon pick (e.g. Fury Warrior).</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Darkmoon Sigil: Void</span> / <span class="item-name">Rot</span> / <span class="item-name">Blood</span></td><td data-label="Effect">Void: stacking Versatility. Rot: stacking Nature damage-over-time. Blood: boosts your lowest secondaries; an ally's death triggers a highest-secondary effect.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Arcanoweave Lining</span></td><td data-label="Effect">Tailoring (armor pieces). Mana wyrm proc grants primary stat to you and an ally. A staple second embellishment (e.g. Fury bracers, Affliction cloak/bracers, Guardian 2×).</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Sunfire Silk Lining</span></td><td data-label="Effect">Tailoring (armor pieces). Periodic healing/damage can stack primary stat.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Devouring Banding</span></td><td data-label="Effect">Devouring Bolts damage enemies and boost your highest secondary stat.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Primal Spore Binding</span></td><td data-label="Effect">Explosive Spores heal allies or damage enemies.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Blessed Pango Charm</span></td><td data-label="Effect">Your helpful spells can grant Versatility to the target — a healer-oriented option.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Stabilizing Gemstone Bandolier</span></td><td data-label="Effect">Jewelcrafting. Doubles Jewelcrafting embellishment effects.</td></tr>
+          <tr><td data-label="Reagent"><span class="item-name">Prismatic Focusing Iris</span></td><td data-label="Effect">Jewelcrafting. Damage proc scaling with unique gem colors.</td></tr>
+        </tbody>
+      </table>
+      <h3>Missives — pick your stats</h3>
+      <p>Inscription-crafted optional reagents that set the secondary stats on a crafted piece:</p>
+      <table class="spec-table">
+        <thead><tr><th style="width:45%">Missive</th><th style="width:55%">Stats</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Missive"><span class="item-name">Thalassian Missive of the Aurora</span></td><td data-label="Stats">Versatility + Haste</td></tr>
+          <tr><td data-label="Missive"><span class="item-name">Thalassian Missive of the Fireflash</span></td><td data-label="Stats">Critical Strike + Haste</td></tr>
+          <tr><td data-label="Missive"><span class="item-name">Thalassian Missive of the Feverflare</span></td><td data-label="Stats">Mastery + Haste</td></tr>
+          <tr><td data-label="Missive"><span class="item-name">Thalassian Missive of the Harmonious</span></td><td data-label="Stats">Versatility + Mastery</td></tr>
+          <tr><td data-label="Missive"><span class="item-name">Thalassian Missive of the Peerless</span></td><td data-label="Stats">Critical Strike + Mastery</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Slot advice.</strong> Bracers are the classic embellishment slot (low stat budget); non-tier cloak, belt, and boots are common too. <strong>Avoid embellishments on tier slots</strong> (helm/shoulders/chest/gloves/legs) unless a spec guide specifically justifies it — tier pieces are hard to replace. <span class="item-name">Thalassian Missive of the Quickblade</span> is listed inconsistently across sources — confirm its stats in-game before relying on it.</span>
+      </div>
+      <p class="note">High-track Season 2 crafts use a Spark of Tides plus Mistcrests for Hero/Myth track (Champion-track crafts use Sparks without Mistcrests). Spend order: a weak weapon or critically low item-level slot first, then your proven embellishment combo, then stat-profile gaps.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. CONSUMABLES ============ -->
+  <section class="guide-section alt" id="consumables" aria-labelledby="h-consumables">
+    <div class="section-head">
+      <h2 id="h-consumables">4 · Consumables</h2>
+      <p>What to have running before every pull: flask, combat potion, weapon buff, food, and an augment rune.</p>
+    </div>
+    <div class="section-body">
+      <h3>Flasks (Alchemy, 1 hour)</h3>
+      <p>Pick by stat — treat flasks as swappable gear and sim which secondary wins for your spec:</p>
+      <table class="spec-table">
+        <thead><tr><th style="width:45%">Flask</th><th style="width:55%">Stat</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Flask"><span class="item-name">Flask of the Blood Knights</span></td><td data-label="Stat">Haste</td></tr>
+          <tr><td data-label="Flask"><span class="item-name">Flask of the Magisters</span></td><td data-label="Stat">Mastery</td></tr>
+          <tr><td data-label="Flask"><span class="item-name">Flask of the Shattered Sun</span></td><td data-label="Stat">Critical Strike</td></tr>
+          <tr><td data-label="Flask"><span class="item-name">Flask of Thalassian Resistance</span></td><td data-label="Stat">Versatility</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><span class="item-name">Vicious Thalassian Flask of Honor</span> is PvP-only. Note that in Midnight, phials are profession/crafting consumables — not combat.</p>
+      <h3>Combat potions (Alchemy)</h3>
+      <table class="spec-table">
+        <thead><tr><th style="width:34%">Potion</th><th style="width:66%">Effect</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Potion"><span class="item-name">Potion of Recklessness</span></td><td data-label="Effect">Large amount of your <strong>highest</strong> secondary, lose a small amount of your <strong>lowest</strong>, for 30s — strong, but demands secondary-stat management.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Light's Potential</span></td><td data-label="Effect">Primary stat for 30s. The easy-to-use option.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Draught of Rampant Abandon</span></td><td data-label="Effect">Primary stat for 30s, but occasionally summons a silenced void zone.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Liquid Luster</span><span class="tag-new">12.1</span></td><td data-label="Effect">Stacking Versatility buff.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Alluring Nostrum</span><span class="tag-new">12.1</span></td><td data-label="Effect">Shadow damage to your current target and nearby enemies.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Potion of Zealotry</span></td><td data-label="Effect">Stacking Holy damage to a single target; resets on target change.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Light's Preservation</span></td><td data-label="Effect">Damage absorb shield.</td></tr>
+          <tr><td data-label="Potion"><span class="item-name">Concentrated Silvermoon Health Potion</span><span class="tag-new">12.1</span></td><td data-label="Effect">The current health potion. <span class="item-name">Lightfused Mana Potion</span> and <span class="item-name">Potion of Devoured Dreams</span> cover mana.</td></tr>
+        </tbody>
+      </table>
+      <h3>Weapon buffs: oils, stones, and Hunter ammo</h3>
+      <table class="spec-table">
+        <thead><tr><th style="width:34%">Item</th><th style="width:66%">Effect</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Item"><span class="item-name">Thalassian Phoenix Oil</span></td><td data-label="Effect">Enchanting. +Crit and Haste for 2 hours, <strong>lasts through death</strong> — the default for most specs. Dual-wielders apply it to both weapons.</td></tr>
+          <tr><td data-label="Item"><span class="item-name">Smuggler's Enchanted Edge</span> / <span class="item-name">Oil of Dawn</span></td><td data-label="Effect">Chance for extra Arcane damage / chance to grant an absorb shield.</td></tr>
+          <tr><td data-label="Item"><span class="item-name">Refulgent Whetstone</span> / <span class="item-name">Refulgent Weightstone</span></td><td data-label="Effect">Blacksmithing. +Attack Power for 1 hour — whetstone for bladed weapons (swords, daggers, axes, polearms, fist), weightstone for blunt (maces, staves).</td></tr>
+          <tr><td data-label="Item"><span class="item-name">Smuggler's Lynxeye</span> / <span class="item-name">Farstrider's Hawkeye</span></td><td data-label="Effect">Engineering. <strong>Hunter-only</strong> ammo replacing oils (+Mastery / +Critical Strike). Hunters also use scopes — <span class="item-name">Laced Zoomshots</span> (Nature DoT), <span class="item-name">Weighted Boomshots</span> (AoE Fire) — instead of weapon enchants.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Enhancement Shamans use no oil (Windfury and Flametongue Weapon instead).</p>
+      <h3>Food and feasts</h3>
+      <table class="spec-table">
+        <thead><tr><th style="width:45%">Food</th><th style="width:55%">Buff</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Food"><span class="item-name">Amani Cornucopia</span>, <span class="item-name">Loa's Gathering</span><span class="tag-new">12.1</span>, <span class="item-name">Feast of Knowledge</span><span class="tag-new">12.1</span>, <span class="item-name">Blooming Feast</span>, <span class="item-name">Quel'dorei Medley</span></td><td data-label="Buff">Feasts: highest secondary + Stamina.</td></tr>
+          <tr><td data-label="Food"><span class="item-name">Silvermoon Parade</span>, <span class="item-name">Harandar Celebration</span></td><td data-label="Buff">Feasts: main stat + Stamina.</td></tr>
+          <tr><td data-label="Food"><span class="item-name">Royal Roast</span> / <span class="item-name">Impossibly Royal Roast</span></td><td data-label="Buff">Primary stat. The <strong>Hearty</strong> version <strong>persists through death</strong> and is the best non-feast option.</td></tr>
+          <tr><td data-label="Food"><span class="item-name">Flora Frenzy</span>, <span class="item-name">Champion's Bento</span>, <span class="item-name">Puffer Plate</span><span class="tag-new">12.1</span>, <span class="item-name">Sweet-And-Sour Skewers</span>, <span class="item-name">Venom-Spiced Cutlets</span></td><td data-label="Buff">Highest secondary stat.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Hearty foods are crafted from 5 base foods and aren't straightforward to buy on the Auction House — Cooking is worth having. Dual-stat foods (e.g. <span class="item-name">Hearthflame Supper</span>, <span class="item-name">Bloodthistle-Wrapped Cutlets</span>, <span class="item-name">Wise Tails</span>) exist for fine-tuning.</p>
+      <h3>Augment rune</h3>
+      <p><span class="item-name">Void-Touched Augment Rune</span> — primary stat for 1 hour, the <strong>only</strong> augment rune in Midnight. It does <strong>not</strong> persist through death, so use it sparingly unless rich.</p>
+      <div class="callout warn" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <span><strong>Vantus Runes: unconfirmed for Season 2.</strong> No Venomous Abyss Vantus Rune was found in any source checked. Season 1 had boss-specific runes; the old rule was Inscription-crafted, +Versatility against one chosen boss, one boss per weekly reset. Check the Inscription trainer and the Auction House in-game before assuming they exist.</span>
+      </div>
+      <p class="note">Raid convenience: <span class="item-name">Cauldron of Sin'dorei Flasks</span> and <span class="item-name">Voidlight Potion Cauldron</span> let the party take the flask or potion of their choice.</p>
+    </div>
+  </section>
+
+  <!-- ============ 5. OTHER ============ -->
+  <section class="guide-section" id="other" aria-labelledby="h-other">
+    <div class="section-head">
+      <h2 id="h-other">5 · Other easy-to-miss upgrades</h2>
+      <p>Upgrade tracks, Vault thresholds, tier acquisition, and the drops worth prioritizing.</p>
+    </div>
+    <div class="section-body">
+      <h3>Mistcrests — the Season 2 upgrade system</h3>
+      <p>Five <strong>track-locked</strong> tiers — Adventurer, Veteran, Champion, Hero, Myth — each only upgrades its own track, at <strong>20 crests per upgrade level</strong> plus a small gold fee. There are no Valorstones in Season 2.</p>
+      <ul>
+        <li>Weekly cap is about <strong>100 per tier per character</strong> on a cumulative catch-up curve (the cap rises roughly 100/week); over-cap rewards downgrade a tier.</li>
+        <li>Upgrade vendor: <strong>Cuzolth</strong> in Silvermoon City's Bazaar. Higher crests exchange 1:1 down via <strong>Vaskarn</strong> without counting against the cap.</li>
+        <li><strong>Warband alts pay 50% fewer crests</strong> — spread gearing across alts where sensible.</li>
+        <li>Myth Mistcrests come from Mythic Venomous Abyss and Mythic+ <strong>+9 and above</strong> (+2/+3 give Champion, +4+ give Hero).</li>
+      </ul>
+      <h3>Great Vault thresholds</h3>
+      <p>Raid slots unlock at <strong>2, 4, and 6</strong> eligible Venomous Abyss boss kills; Mythic+ slots unlock at <strong>1, 4, and 8</strong> dungeons. Check the Vault before spending crests on anything it might replace.</p>
+      <h3>Tier acquisition</h3>
+      <p>Tier tokens drop from five bosses: <strong>Entombed Sentinels</strong> (Hands), <strong>The Lost Explorers</strong> (Shoulders), <strong>Vashnik the Malignant</strong> (Chest), <strong>Sszorak</strong> (Legs), <strong>The Twin Fangs</strong> (Helm) — plus the flexible <span class="item-name">Slumbering Coil Curio</span> from <strong>Ula'tek</strong>. A <strong>Revival Catalyst</strong> exists in Silvermoon City for converting eligible gear into tier pieces; its exact Season 2 charge cadence is unconfirmed, so check in-game.</p>
+      <div class="callout" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Prioritize the last two bosses.</strong> <strong>The Coiled Altar</strong> and <strong>Ula'tek</strong> drop <strong>item level 344</strong> gear — roughly 10 item levels above the normal Myth-track cap.</span>
+      </div>
+      <p class="note">Remember: <span class="item-name">Thalassian Token of Merit</span> can be taken from the weekly Great Vault <em>instead of an item</em> — six of them buy a <span class="item-name">Radiant Jewelbinder</span> socket.</p>
+    </div>
+  </section>
+
+  <div class="sources">
+    <p><strong>Sources.</strong> Method's Midnight consumables/enchants/gems and embellishment guides; Wowhead's Fury Warrior 12.1 enchants &amp; gems guide; Icy Veins profession and class guides for 12.1; Overgear's Midnight guides; wow-professions.com's 12.1 profession changes; Blizzard's Coiled Isle article. Exact stat values on enchants and gems, Season 2 Vantus Runes, the Revival Catalyst's Season 2 cadence, a Season 2–specific socket item, and the Quickblade missive's stat pair could not be confirmed from available sources — check in-game where flagged.</p>
+  </div>
+
+  <div class="footer-note">
+    <span><strong>Morrigan's Midnight Tips</strong> · Midnight Season 2 · Patch 12.1</span>
+    <span>Related: <a href="bonus-rolls.html" style="color:var(--fel-dark)">Bonus Rolls &amp; Loot Tables →</a></span>
+  </div>
+</div>
+</body>
+</html>
