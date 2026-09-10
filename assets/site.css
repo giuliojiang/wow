@@ -1,0 +1,81 @@
+/* Morrigan's Midnight Tips — shared chrome for all three sections.
+   Dark "guides" theme tokens + global top navigation + cross-link styles. */
+
+:root{
+  --bg:#0c0e12;
+  --bg2:#10131a;
+  --panel:#171a23;
+  --panel2:#1e2230;
+  --panel3:#252b3e;
+  --line:#2a3148;
+  --line2:#313a56;
+  --ink:#e9ecf4;
+  --muted:#9aa3bd;
+  --muted2:#6b7591;
+  --gold:#f5c518;
+  --gold2:#ffe27a;
+  --gold-dim:rgba(245,197,24,.14);
+  --green:#3ae68a;
+  --accent-venom:#6e84ff;
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow:0 2px 12px rgba(0,0,0,.35);
+
+  /* Aliases used by the Bonus Rolls / Extra Upgrades pages — same values, one source of truth */
+  --paper:var(--panel);
+  --wash:var(--bg);
+  --fel:var(--gold);
+  --fel-dark:var(--gold2);
+  --fel-pale:var(--gold-dim);
+  --void:var(--bg2);
+  --vengeance:#d97f3e;
+  --vengeance-pale:rgba(217,127,62,.16);
+  --havoc:#c084e0;
+  --havoc-pale:rgba(192,132,224,.16);
+  --raid:#e0a458;
+  --raid-pale:rgba(224,164,88,.14);
+}
+
+/* ---------- Global top navigation ---------- */
+.site-topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:10px 22px; background:var(--bg2); border-bottom:1px solid var(--line);
+}
+.site-brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); flex:none;}
+.site-brand .brand-mark{
+  width:32px; height:32px; border-radius:9px; display:grid; place-items:center;
+  background:var(--gold); color:#111; font-weight:800;
+  font-family:ui-serif, Georgia, serif; font-size:16px; letter-spacing:-.02em;
+}
+.site-brand .brand-name{font-weight:800; font-size:14.5px; letter-spacing:-.01em; line-height:1.15;}
+.site-brand .brand-name small{display:block; font-size:10.5px; color:var(--muted); font-weight:600; letter-spacing:.05em;}
+.site-nav{display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end;}
+.site-nav a{
+  padding:8px 14px; border-radius:999px; color:var(--muted); text-decoration:none;
+  font-weight:700; font-size:13.5px; border:1px solid transparent; white-space:nowrap;
+}
+.site-nav a:hover{color:#fff; background:var(--panel2);}
+.site-nav a[aria-current="page"]{color:var(--gold2); background:var(--gold-dim); border-color:rgba(245,197,24,.35);}
+.site-nav a:focus-visible{outline:2px solid var(--accent-venom); outline-offset:2px;}
+@media (max-width:640px){
+  .site-topbar{padding:8px 12px; gap:10px;}
+  .site-brand .brand-name{display:none;}
+  .site-nav a{padding:7px 10px; font-size:12.5px;}
+}
+
+/* ---------- Contextual cross-links ---------- */
+.xlink-strip{
+  margin:0; padding:12px 28px; background:var(--bg2); border-top:1px solid var(--line);
+  color:var(--muted); font-size:.88rem;
+}
+.xlink-strip a{color:var(--gold2); font-weight:700; text-decoration:none;}
+.xlink-strip a:hover{text-decoration:underline;}
+.guide-xlink{
+  font-size:.76rem; font-weight:700; color:var(--muted); text-decoration:none;
+  border:1px solid var(--line); border-radius:999px; padding:3px 10px; margin-left:10px;
+  white-space:nowrap; vertical-align:middle;
+}
+.guide-xlink:hover{color:var(--gold2); border-color:var(--gold);}
+a.pill-link{text-decoration:none; border:1px solid rgba(245,197,24,.4); color:var(--gold2);}
+a.pill-link:hover{background:var(--gold-dim); color:#fff;}
+.meta{display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
