@@ -357,7 +357,7 @@
         const query=document.getElementById('loot-raid-search').value.trim().toLowerCase();
         const items=boss.items.filter(item=>!query||item.name.toLowerCase().includes(query)||item.type.toLowerCase().includes(query));
         const tier=boss.tier_tokens&&boss.tier_tokens.length?`<p class="loot-tier"><strong>Tier: ${escapeHtml(boss.tier)}</strong> — ${boss.tier_tokens.map(token=>`${escapeHtml(token.name)} (${escapeHtml(token.note)})`).join(' · ')}</p>`:'';
-        document.getElementById('loot-raid-output').innerHTML=`<section class="loot-boss"><h3>${boss.bossNum}. ${escapeHtml(boss.boss)}<a class="guide-xlink" href="index.html#raid-'+guideSlug(boss.boss)+'">Boss guide \u2192</a></h3>${tier}${items.length?table(items):'<div class="loot-empty">No matching items from this boss.</div>'}</section>`;
+        document.getElementById('loot-raid-output').innerHTML=`<section class="loot-boss"><h3>${boss.bossNum}. ${escapeHtml(boss.boss)}<a class="guide-xlink" href="index.html#raid-${guideSlug(boss.boss)}">Boss guide \u2192</a></h3>${tier}${items.length?table(items):'<div class="loot-empty">No matching items from this boss.</div>'}</section>`;
       }
       if((location.hash||'').toLowerCase()==='#browse'){ try{ setMainView('browser'); }catch(e){} }
       function setMainView(view){
