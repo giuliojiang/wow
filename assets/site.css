@@ -45,7 +45,7 @@
 .site-brand .brand-mark{
   width:32px; height:32px; border-radius:9px; display:grid; place-items:center;
   background:var(--gold); color:#111; font-weight:800;
-  font-family:ui-serif, Georgia, serif; font-size:16px; letter-spacing:-.02em;
+  font-size:16px; letter-spacing:-.02em;
 }
 .site-brand .brand-name{font-weight:800; font-size:14.5px; letter-spacing:-.01em; line-height:1.15;}
 .site-brand .brand-name small{display:block; font-size:10.5px; color:var(--muted); font-weight:600; letter-spacing:.05em;}
