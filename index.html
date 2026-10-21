@@ -483,7 +483,7 @@ const SEASON_2=["Temple of Sethraliss","King's Rest","Ruby Life Pools","Voidscar
 const SEASON_1=["Algeth’ar Academy","Maisara Caverns","Pit of Saron","Skyreach","Magister's Terrace","Nexus Point Xenas","Seat of the Triumvirate","Windrunner Spire"];
 
 // RAID DATA — scannable rewrite preserving all info
-const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs","The Coiled Altar","Ula'tek"];
+const RAID_ORDER=["Nek'zali the Soulcoiler","Entombed Sentinels","The Lost Explorers","Vashnik the Malignant","Sszorak","The Twin Fangs","The Coiled Altar","Ula'tek","Kith'ix"];
 // Friendly aliases for task-requested names
 const RAID_ALIASES={
   "Vashnik the Water-Gazer":"Vashnik the Malignant",
@@ -1102,6 +1102,84 @@ const RAID_DATA={
       {src:"assets/raid/08-ulatek-cauldron.webp",cap:"Doomscale Egg — deposit it in the cauldron within 20 seconds"},
       {src:"assets/raid/08-ulatek-clutch.webp",cap:"Blightscale Clutch — break eggs, then AoE weakened adds"}
     ]
+  },
+  "Kith'ix":{
+    short:"Standalone — swarm & Liadrin's Light",
+    bossNum:9,
+    tldr:"Standalone single-boss raid (Patch 12.1.5) — the C'Thraxxi general Ula'tek was guarding, fought alongside Lady Liadrin. P1: keep every aqir 25+ yards from the boss, kill the Voidweaver first, stagger beetle explosions, and grab a Light mote before every Extinguish. Kill all adds before 100 energy, then hold Liadrin's light through the darkness. At 25% she full-heals the raid and buffs damage by 50% — Lust and burn before the eighth eclipse.",
+    setup:"2 / 4 / 14 · DK grip for beetles · Fear dispels · Immunities for Extinguish · Lust P2 at 25%",
+    strategy:[
+      {lead:"<span class=\"spell\" data-tooltip=\"6-second channel dealing raid-wide shadow damage and summoning a Venomous Hulk, a Voidweaver and Bomber Beetles\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Voidswarm</span> → Adds 25y+ off boss, <span class=\"entity\">Voidweaver</span> dies first", subs:[
+        "<span class=\"spell\" data-tooltip=\"Aqir near Kith'ix take 75% reduced damage; does not affect eggs\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Commanding Presence</span> — any aqir within 25 yards of the boss takes 75% less damage, so the add <span class=\"role role-tank\">tank</span> drags the <span class=\"entity\">Venomous Hulk</span> onto the stationary <span class=\"entity\">Voidweaver</span> and the raid cleaves both there",
+        "Face the Hulk away — <span class=\"spell\" data-tooltip=\"Venomous Hulk frontal cone dealing heavy physical and nature damage and knocking players back\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Venom Roar</span> hits hard and knocks back",
+        "<span class=\"entity\">Voidweaver</span> is the kill priority: <span class=\"spell\" data-tooltip=\"Raid-wide shadow damage; each cast makes the next Nightfall hit 20% harder\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Nightfall</span> stacks +20% per cast, while <span class=\"spell\" data-tooltip=\"Void energy channeled onto random players, ticking shadow damage for 8 seconds\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Voidweave</span> ticks random players"
+      ]},
+      {lead:"<span class=\"entity\">Bomber Beetles</span> → Grip in one at a time, stagger explosions", subs:[
+        "Beetles <span class=\"action\">fixate</span> random players and explode on contact or after 30 seconds — <span class=\"spell\" data-tooltip=\"Beetle explosion covering the raid in a stacking damage-over-time effect\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Gut Reaction</span> coats the raid in stacking <span class=\"spell\" data-tooltip=\"Stacking damage-over-time effect left on the raid by Gut Reaction\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Digestive Juices</span>",
+        "A Death Knight grips one beetle onto the Hulk at a time; wait for Digestive Juices to fall off before the next — stacked explosions overwhelm healers",
+        "Fixated players without a grip lead their beetles away from the group instead of through it"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Heroic and Mythic: dead Hulks and Voidweavers leave eggs that hatch into Mindstingers; on Mythic, Bomber Beetles leave eggs too\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Incubation</span> (Heroic+) → Break eggs before they hatch", subs:[
+        "After the Hulk and Voidweaver die, switch to their eggs immediately — eggs ignore Commanding Presence and die fast",
+        "A hatched <span class=\"entity\">Mindstinger</span> flies to a player and stuns them with <span class=\"spell\" data-tooltip=\"Mindstinger stun dealing periodic nature damage\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Mindsting</span>",
+        "Mythic: every beetle explosion also leaves eggs — gripping beetles onto the Hulk keeps all eggs in the cleave pile"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Near-lethal raid-wide shadow damage that also removes Light's Embrace\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Extinguish</span> → Mote from <span class=\"spell\" data-tooltip=\"Mote of Light reducing shadow damage taken by 90% for up to 8 seconds\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Light's Embrace</span> before every cast", subs:[
+        "Liadrin scatters motes in the Hulk's frontal direction — move to the Hulk and pick one up before Extinguish lands; the 90% shadow reduction is the survival mechanic, not a bonus",
+        "The buff lasts at most 8 seconds and Extinguish strips it — grab late, not early",
+        "No mote in time means immunity or a strong defensive — the backup plan only"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Several players are overwhelmed for 6 seconds, then feared; on expiry or dispel they scream, dealing shadow damage that falls off with distance\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Unspeakable Horrors</span> → Move out, then <span class=\"action\">dispel</span>", subs:[
+        "Targeted players run away from the raid during the 6-second warning, before <span class=\"spell\" data-tooltip=\"Fear applied by Unspeakable Horrors; screams for raid damage on expiry or dispel\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Overwhelming Fear</span> lands",
+        "Healers dispel only once the player is out — a dispel inside the stack is a big raid hit, at range it is almost harmless; stagger multiple dispels",
+        "<span class=\"spell\" data-tooltip=\"Shadow tentacles lashing out near Kith'ix, hitting anyone in their path\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Twisted Appendage</span> frontals keep firing throughout — step out of tentacle paths, including in the intermission"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Mass of darkness hitting the tank and everyone within 15 yards for heavy physical and shadow damage; leaves a Voidscar on Heroic and Mythic\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Dark Devastation</span> → <span class=\"action\">Swap</span> every cast, place the <span class=\"spell\" data-tooltip=\"Void zone left by Dark Devastation; damages and knocks back on contact, and releases Eclipse Fragments during Suffocating Darkness\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Voidscar</span> with intent", subs:[
+        "<span class=\"spell\" data-tooltip=\"150% increased physical and shadow damage taken for 25 seconds after Dark Devastation\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Devastated</span> means +150% physical and shadow taken for 25s — <span class=\"action\">taunt swap</span> after every cast, and nobody else stands within 15 yards",
+        "Two casts per Phase 1 plus one in the intermission: place each Voidscar (Heroic+) on your planned marker line — the scars release the intermission's Eclipse Fragments, so placement now decides that phase",
+        "Keep scars at the edge of the play space, leaving room for the raid and a path to Liadrin"
+      ]}
+    ],
+    intermission:[
+      {lead:"<span class=\"spell\" data-tooltip=\"At 100 energy, darkness closes in across the room, ticking raid-wide damage; outside the Light, players are pacified, slowed and take heavy damage every second\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Suffocating Darkness</span> → All adds dead before 100 energy", subs:[
+        "Any aqir alive when the darkness lands gains <span class=\"spell\" data-tooltip=\"Surviving aqir gain doubled attack and movement speed, crowd control immunity and a raid-wide damage aura\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Dark Frenzy</span> — finish adds and eggs even at the cost of boss damage",
+        "Collapse into <span class=\"spell\" data-tooltip=\"Liadrin's barrier of Light in the center of the room — the intermission safe zone\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Refulgent Bulwark</span> in the middle; outside it is <span class=\"spell\" data-tooltip=\"Pacified, slowed, and heavy damage every second while caught in the darkness\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Suffocation</span>",
+        "Boss mechanics continue in the small space: Extinguish motes, fear dispels and tank swaps all still apply"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Void tendrils grab random players, pulling them toward the darkness and applying a large healing absorb; if it is not healed off within 8 seconds, the player is dragged in\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Abyssal Grasp</span> → Heal absorbs off within 8s", subs:[
+        "Grasped players are the healers' top priority — an absorb still standing after 8 seconds drags the player into the darkness and kills them",
+        "Do not spread healing evenly across the raid while a Grasp is active"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Fragments released from Voidscars that drift toward Liadrin; touching one destroys it with area damage and a stacking DoT\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Eclipse Fragments</span> → Assigned trios intercept in rotation", subs:[
+        "Fragments drift from your Voidscars toward Liadrin — intercept them before they arrive; each one through applies <span class=\"spell\" data-tooltip=\"A fragment reaching Liadrin damages the raid and shrinks the Refulgent Bulwark safe zone\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Lost Refulgence</span> and shrinks the safe zone, and enough lost means no Light left to stand in",
+        "Assign groups of 3 per marker (tanks take the first line) and alternate soaks — touching a fragment deals AoE damage and applies a stacking DoT",
+        "Waves grow each intermission: 4, then 5, then 6 — and keep fear targets opposite the intercepts"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Liadrin clears the darkness and stuns Kith'ix for 8 seconds, but each cast leaves her Exhausted, weakening her Light\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Divine Radiance</span> → Reset in the stun window", subs:[
+        "Use the 8-second stun to reset positions and re-place the boss for the next Voidswarm",
+        "Each Radiance stacks <span class=\"spell\" data-tooltip=\"Each Divine Radiance weakens Liadrin's Light and increases Suffocating Darkness damage for the rest of the fight\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Exhausted</span> on Liadrin — later darkness phases hurt more even played identically, so clean early intermissions matter",
+        "Near 25%, push the boss instead of perfecting mechanics — the transition clears everything active"
+      ]}
+    ],
+    p2:[
+      {lead:"<span class=\"spell\" data-tooltip=\"At 25% health, Kith'ix stuns the whole raid and absorbs all adds and active abilities\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Stygian Howl</span> at 25% → <span class=\"spell\" data-tooltip=\"Liadrin fully heals the raid and grants Luminous Grace\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Last Light</span>: Lust + everything", subs:[
+        "<span class=\"spell\" data-tooltip=\"50% increased damage and healing done for the rest of the fight\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Luminous Grace</span> gives +50% damage and healing for the rest of the fight",
+        "Bloodlust/Heroism, every offensive cooldown and potions on the transition — this phase is a pure damage race"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Eclipses form one at a time, each dealing raid-wide shadow damage; when the eighth forms, they converge on Liadrin and kill the raid\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Eightfold Eclipse</span> → Kill before the 8th eclipse", subs:[
+        "Hard enrage with a visible counter — every eclipse is also a raid-wide hit healers must cover",
+        "Losing players early loses the race: survival until late beats greedy deaths"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Three players are targeted for 5 seconds, then a Null Gate opens at their location, damaging nearby players and scattering Nullshards\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Null Gate</span> → Drop gates away, spread, <span class=\"action\">dodge</span> shards", subs:[
+        "Targeted players (melee / healer / ranged) place gates away from the raid and spread out, so tanks always have a gate within reach",
+        "Gates and shards each apply <span class=\"spell\" data-tooltip=\"Stacking void corruption; at 5 stacks the player dies — 3 stacks on Mythic\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Nullify</span> — 5 stacks kills you, only 3 on Mythic; you will not dodge every shard, so manage stacks rather than chasing perfection"
+      ]},
+      {lead:"<span class=\"spell\" data-tooltip=\"Current tank gains 100% movement speed and shard immunity but takes 100% more physical damage; on expiry the tank dies unless the effect is removed\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Negation</span> → <span class=\"role role-tank\">Tank</span> clears it in a Null Gate before expiry", subs:[
+        "Expiry is 8 seconds on Heroic, 12 on Mythic — run straight through the shards (Negation makes the tank immune to them) to the nearest gate",
+        "Touching a gate triggers <span class=\"spell\" data-tooltip=\"Heavy raid-wide hit that also destroys every Null Gate and Nullshard within 10 yards\" tabindex=\"0\" aria-describedby=\"spellTooltip\">Explosive Restabilization</span> — a heavy raid hit that also clears gates and shards within 10 yards, so warn healers",
+        "Mythic: Negation applies 3 stacks — the tank must clear 3 separate gates to survive"
+      ]}
+    ]
   }
 };
 
@@ -1128,7 +1206,8 @@ const RAID_SHORT_SLUG={
   "Sszorak":"sszorak",
   "The Twin Fangs":"twin-fangs",
   "The Coiled Altar":"coiled-altar",
-  "Ula'tek":"ulatek"
+  "Ula'tek":"ulatek",
+  "Kith'ix":"kithix"
 };
 const RAID_SHORT_TO_NAME={
   "nekzali":"Nek'zali the Soulcoiler",
@@ -1138,7 +1217,8 @@ const RAID_SHORT_TO_NAME={
   "sszorak":"Sszorak",
   "twin-fangs":"The Twin Fangs",
   "coiled-altar":"The Coiled Altar",
-  "ulatek":"Ula'tek"
+  "ulatek":"Ula'tek",
+  "kithix":"Kith'ix"
 };
 function resolveRaidName(n){ const map={"Vashnik the Water-Gazer":"Vashnik the Malignant","Sszorak the Ascended":"Sszorak","Ithrax & Vexhul - The Twin Fangs":"The Twin Fangs","Lost Explorers (Iku'nal & Nama'jin)":"The Lost Explorers"}; return map[n]||n; }
 
@@ -1508,6 +1588,11 @@ const TANK_SWAP={
     <li>Assign one <span class=\"role role-tank\">tank</span> to Ula'tek and one to <span class=\"entity\">Gore Rattle</span>; both must stay in melee or <span class=\"spell\" data-tooltip=\"Raid-wide physical damage when no target is in melee range of Ula'tek\" tabindex=\"0\">Unchecked Rage</span> / <span class=\"spell\" data-tooltip=\"Heavy physical strike used when Gore Rattle has no target in melee\" tabindex=\"0\">Rattler Slam</span> fires.</li>
     <li><span class=\"action\">Swap sides during Caustic Waves</span> to manage <span class=\"spell\" data-tooltip=\"Tank knockback followed by a bite applying Stone Venom and Hobbled\" tabindex=\"0\">Mother's Wrath</span>, <span class=\"spell\" data-tooltip=\"Stacking nature damage-over-time effect from Mother's Wrath\" tabindex=\"0\">Stone Venom</span> and positioning.</li>
     <li>Face <span class=\"spell\" data-tooltip=\"Wide tail sweep that knocks players back 35 yards\" tabindex=\"0\">Mephitic Thrash</span> so its 35y knockback leaves room to recover.</li>
+  </ul>`,
+  "Kith'ix":`<ul>
+    <li><span class=\"action\">Taunt swap</span> after every <span class=\"spell\" data-tooltip=\"Mass of darkness hitting the tank and everyone within 15 yards for heavy physical and shadow damage\" tabindex=\"0\">Dark Devastation</span> — <span class=\"spell\" data-tooltip=\"150% increased physical and shadow damage taken for 25 seconds after Dark Devastation\" tabindex=\"0\">Devastated</span> is +150% physical and shadow taken for 25s, and nobody else may be within 15 yards.</li>
+    <li>Split roles: one <span class=\"role role-tank\">tank</span> on Kith'ix, one on the <span class=\"entity\">Venomous Hulk</span> — drag the Hulk onto the Voidweaver with its frontal away from the raid, and place every <span class=\"spell\" data-tooltip=\"Void zone left by Dark Devastation; releases Eclipse Fragments during Suffocating Darkness\" tabindex=\"0\">Voidscar</span> (Heroic+) on the planned marker line: those scars feed the intermission's fragments.</li>
+    <li>Phase 2: clear <span class=\"spell\" data-tooltip=\"Tank debuff that kills on expiry unless removed by touching a Null Gate; 8 seconds on Heroic, 12 on Mythic\" tabindex=\"0\">Negation</span> by touching a Null Gate before it expires — Mythic applies 3 stacks, so clear 3 gates.</li>
   </ul>`
 
 };
@@ -1563,10 +1648,11 @@ function buildSidebar(){
     const filtered=RAID_ORDER.filter(isRaidMatch);
     const btnHtml=(name)=>{
       const d=RAID_DATA[name]; const active=name===selectedRaid?'raid-active':''; const iconSrc=RAID_ICONS[name]; const fallbackLetter=escapeHtml(name.trim().charAt(0)||'R'); const iconHtml=iconSrc?`<img class="raid-ico" src="${escapeAttr(iconSrc)}" alt="${escapeAttr(name)}" loading="lazy" decoding="async" width="32" height="32" data-fallback="${fallbackLetter}" onerror="this.outerHTML='<span class=&quot;raid-ico&quot; style=&quot;width:32px;height:32px;display:grid;place-items:center;background:var(--panel3);border:1px solid var(--line);border-radius:9px;font-size:13px;font-weight:800;color:var(--muted)&quot;>${fallbackLetter}</span>'"/>`:`<span style=\"width:32px;height:32px;display:grid;place-items:center;background:var(--panel3);border:1px solid var(--line);border-radius:9px;font-size:13px;font-weight:800;color:var(--muted)\">${fallbackLetter}</span>`;
-      return `<button class="dungeon-btn ${active}" data-rname="${escapeAttr(name)}"><span style=\"display:flex;align-items:center;gap:10px;min-width:0\"><span style=\"display:flex\">${iconHtml}</span><span class=\"name\" style=\"display:flex;flex-direction:column;line-height:1.2\"><span>${escapeHtml(name)}</span><span style=\"font-size:11px;opacity:.7;font-weight:400\">${escapeHtml(d.short)}</span></span></span><span class=\"count\">S2</span></button>`
+      return `<button class="dungeon-btn ${active}" data-rname="${escapeAttr(name)}"><span style=\"display:flex;align-items:center;gap:10px;min-width:0\"><span style=\"display:flex\">${iconHtml}</span><span class=\"name\" style=\"display:flex;flex-direction:column;line-height:1.2\"><span>${escapeHtml(name)}</span><span style=\"font-size:11px;opacity:.7;font-weight:400\">${escapeHtml(d.short)}</span></span></span><span class=\"count\">${name==="Kith'ix"?'12.1.5':'S2'}</span></button>`
     };
-    list.innerHTML=`<div class="season-head raid-head">The Venomous Abyss — Season 2 Raid</div>${filtered.map(n=>btnHtml(n)).join('')}${!filtered.length?`<div class="no-results" style="margin:8px">No raid bosses match “${escapeHtml(query)}”</div>`:''}`;
-    mobileSel.innerHTML=`<optgroup label="The Venomous Abyss">${RAID_ORDER.map(n=>`<option value="r:${escapeAttr(n)}" ${n===selectedRaid?'selected':''}>${escapeHtml(n)}</option>`).join('')}</optgroup>`;
+    const abyssFiltered=filtered.filter(n=>n!=="Kith'ix"); const kithFiltered=filtered.filter(n=>n==="Kith'ix");
+    list.innerHTML=`${abyssFiltered.length?`<div class="season-head raid-head">The Venomous Abyss — Season 2 Raid</div>${abyssFiltered.map(n=>btnHtml(n)).join('')}`:''}${kithFiltered.length?`<div class="season-head raid-head">The Unbinding of Kith'ix — Patch 12.1.5</div>${kithFiltered.map(n=>btnHtml(n)).join('')}`:''}${!filtered.length?`<div class="no-results" style="margin:8px">No raid bosses match “${escapeHtml(query)}”</div>`:''}`;
+    mobileSel.innerHTML=`<optgroup label="The Venomous Abyss">${RAID_ORDER.filter(n=>n!=="Kith'ix").map(n=>`<option value="r:${escapeAttr(n)}" ${n===selectedRaid?'selected':''}>${escapeHtml(n)}</option>`).join('')}</optgroup><optgroup label="The Unbinding of Kith'ix">${RAID_ORDER.filter(n=>n==="Kith'ix").map(n=>`<option value="r:${escapeAttr(n)}" ${n===selectedRaid?'selected':''}>${escapeHtml(n)}</option>`).join('')}</optgroup>`;
     list.querySelectorAll('[data-rname]').forEach(btn=>{ btn.addEventListener('click',()=>{ selectedRaid=btn.dataset.rname; mode='raid'; try{localStorage.setItem('midnight:raid',selectedRaid); localStorage.setItem('midnight:mode','raid');}catch(e){} render(); }) });
   }
   mobileSel.onchange=(e)=>{
@@ -1603,7 +1689,7 @@ function renderMechItem(it){
 function renderRaidContent(){
   const realName=selectedRaid; const data=RAID_DATA[realName]; if(!data){ qs('#bossGrid').innerHTML=`<div class="no-results">Raid boss not found: ${escapeHtml(realName||'')}</div>`; return; }
   qs('#dungeonTitle').className='raid-title'; qs('#dungeonTitle').textContent=realName;
-  qs('#headerMeta').innerHTML=`<span class=\"pill venom\">Boss ${data.bossNum} / ${RAID_ORDER.length} • Season 2 Raid</span> <span class=\"pill\">2/4/14 • Heroic summaries</span> <a class="pill pill-link" href="bonus-rolls.html#browse">Loot tables &rarr;</a>`;
+  qs('#headerMeta').innerHTML= realName==="Kith'ix" ? `<span class=\"pill venom\">The Unbinding of Kith'ix • Patch 12.1.5</span> <span class=\"pill\">Standalone raid • 1 boss</span> <span class=\"pill\">2/4/14 • Heroic summaries</span>` : `<span class=\"pill venom\">Boss ${data.bossNum} / ${RAID_ORDER.filter(n=>n!=="Kith'ix").length} • Season 2 Raid</span> <span class=\"pill\">2/4/14 • Heroic summaries</span> <a class="pill pill-link" href="bonus-rolls.html#browse">Loot tables &rarr;</a>`;
   const q=query.toLowerCase().trim();
   let html=`<div class="boss-card"><div class="boss-head raid-head"><h3><span class=\"boss-icon raid\">${data.bossNum}</span>${escapeHtml(realName)}<span style=\"margin-left:10px;font-size:12px;color:var(--muted);font-weight:500\">— ${escapeHtml(data.short)}</span></h3><span class=\"mini\">TL;DR + Setup + Strat</span></div><div class="raid-body">`;
   html+=`<div class="tldr venom-tldr"><strong>TL;DR:</strong> ${data.tldr}</div>`; if(TANK_SWAP[realName]){ html+=`<div class="tank-box"><div class="tank-box-head"><span class=\"tb-icon\">🛡️</span> Tank Swap / Taunt</div>${TANK_SWAP[realName]}</div>`; } html+=`<div class="setup-line"><span class=\"pill venom\">${escapeHtml(data.setup)}</span>${data.bossNum===1?`<span class=\"pill\">Tower-defense • 100 energy enrage</span>`:''}${data.bossNum===2?`<span class=\"pill\">40y DR • Even HP</span>`:''}${data.bossNum===6?`<span class=\"pill\">Eternal Venom 10 = death</span>`:''}</div>`;
